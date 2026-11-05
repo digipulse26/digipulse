@@ -30,10 +30,10 @@ export default function Navbar() {
   const cls = ({ isActive }) => `px-3 py-2 text-sm font-semibold rounded-full transition-colors ${isActive ? 'text-white bg-white/10' : 'text-slate-400 hover:text-white'}`;
 
   return (
-    <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled || open ? 'bg-background/85 backdrop-blur-md border-b border-white/5' : ''}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+    <header className={`fixed top-0 inset-x-0 z-50 pt-[max(0.75rem,env(safe-area-inset-top))] sm:pt-0 transition-all duration-300 ${scrolled || open ? 'bg-background/85 backdrop-blur-md border-b border-white/5' : ''}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-[4.5rem] sm:h-20 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3" aria-label="DigiPulse beranda">
-          <img src={logo} alt="" className="h-10 sm:h-11 w-auto" />
+          <img src={logo} alt="" className="h-11 sm:h-12 w-auto" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1" aria-label="Utama">
@@ -65,7 +65,7 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div className="lg:hidden h-[calc(100dvh-4rem)] overflow-y-auto px-6 pb-10 page-enter">
+        <div className="lg:hidden h-[calc(100dvh-4.5rem)] overflow-y-auto px-6 pb-10 page-enter">
           <nav className="flex flex-col" aria-label="Seluler">
             {links.map((l, i) => (
               <NavLink key={l.to} to={l.to} end={l.end} style={{ animationDelay: `${i * 40}ms` }} className={({ isActive }) => `page-enter py-4 text-3xl font-extrabold border-b border-white/5 ${isActive ? 'text-gradient' : 'text-white'}`}>{l.label}</NavLink>
