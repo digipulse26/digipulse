@@ -81,7 +81,7 @@ export function Marquee({ items, className = '', rev = false }) {
   );
 }
 
-export function CtaBand({ title = 'Punya sesuatu yang ingin dibuat?', text = 'Tidak harus sudah rapi. Ceritakan idenya, kebutuhannya, atau masalah yang sedang dihadapi.' }) {
+export function CtaBand({ title = 'Siap mewujudkan ide Anda?', text = 'Tidak perlu persiapan yang rumit. Ceritakan gagasan, kebutuhan, atau tantangan Anda, dan kami bantu menentukan langkah terbaik berikutnya.' }) {
   return (
     <section className="py-24 px-6">
       <div className="max-w-5xl mx-auto relative overflow-hidden rounded-[2rem] p-10 md:p-16 text-center bg-gradient-to-br from-primary/25 via-secondary to-accent/20 border border-white/10">

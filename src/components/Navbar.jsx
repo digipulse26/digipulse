@@ -57,7 +57,7 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link to="/kontak" className="btn btn-primary hidden sm:inline-flex !py-2.5 !px-5 !text-sm">Mulai Diskusi</Link>
+          <Link to="/kontak" className="btn btn-primary hidden sm:inline-flex !py-2.5 !px-5 !text-sm">Mulai Konsultasi</Link>
           <button className="lg:hidden p-2 rounded-full bg-white/5 border border-white/10" onClick={() => setOpen(!open)} aria-label={open ? 'Tutup menu' : 'Buka menu'} aria-expanded={open}>
             {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -71,7 +71,7 @@ export default function Navbar() {
               <NavLink key={l.to} to={l.to} end={l.end} style={{ animationDelay: `${i * 40}ms` }} className={({ isActive }) => `page-enter py-4 text-3xl font-extrabold border-b border-white/5 ${isActive ? 'text-gradient' : 'text-white'}`}>{l.label}</NavLink>
             ))}
           </nav>
-          <Link to="/kontak" className="btn btn-primary mt-8 w-full justify-center">Mulai Diskusi</Link>
+          <Link to="/kontak" className="btn btn-primary mt-8 w-full justify-center">Mulai Konsultasi</Link>
         </div>
       )}
     </header>

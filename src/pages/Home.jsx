@@ -6,10 +6,10 @@ import { useScrollyProgress } from '../hooks';
 import { Marquee, CtaBand } from '../components/fx';
 
 const chapters = [
-  { icon: Ear, k: 'Dengar', t: 'Kami mulai dari mendengar, bukan menawarkan.', d: 'Sebelum menyentuh desain atau kode, kami memahami bisnis Anda: siapa penggunanya, apa yang menghambat, dan hasil seperti apa yang dianggap berhasil.' },
-  { icon: Compass, k: 'Rancang', t: 'Jalurnya digambar dulu supaya tidak tersesat.', d: 'Kebutuhan dipetakan menjadi alur pengguna, struktur halaman, dan prioritas fitur. Anda bisa melihat dan mengoreksi arah sebelum pengembangan dimulai.' },
-  { icon: Hammer, k: 'Bangun', t: 'Dikerjakan bertahap, bisa dicoba setiap saat.', d: 'Hasil kerja dirilis ke lingkungan uji secara berkala. Anda ikut melihat kemajuan nyata, bukan menunggu kejutan di akhir.' },
-  { icon: LifeBuoy, k: 'Dampingi', t: 'Setelah rilis, kami tetap ada.', d: 'Domain, pemantauan, dan perbaikan lanjutan kami siapkan agar produk terus sehat dan bisa tumbuh bersama kebutuhan Anda.' },
+  { icon: Ear, k: 'Dengar', t: 'Setiap proyek kami mulai dengan mendengarkan Anda.', d: 'Sebelum merancang apa pun, kami memahami bisnis Anda terlebih dahulu: siapa penggunanya, kendala yang dihadapi, dan hasil yang ingin dicapai.' },
+  { icon: Compass, k: 'Rancang', t: 'Arah yang jelas sebelum pekerjaan dimulai.', d: 'Kebutuhan Anda kami petakan menjadi alur pengguna, struktur halaman, dan prioritas fitur, sehingga setiap keputusan dapat Anda tinjau sejak awal.' },
+  { icon: Hammer, k: 'Bangun', t: 'Dikerjakan bertahap, dapat Anda pantau kapan saja.', d: 'Hasil kerja kami rilis secara berkala ke lingkungan uji. Anda melihat kemajuan yang nyata, tanpa kejutan di akhir proyek.' },
+  { icon: LifeBuoy, k: 'Dampingi', t: 'Setelah peluncuran, kami tetap mendampingi.', d: 'Domain, pemantauan, dan perbaikan lanjutan kami siapkan agar produk Anda terus berjalan dengan baik dan berkembang sesuai kebutuhan.' },
 ];
 
 function Scrolly() {
@@ -57,9 +57,9 @@ function Chooser() {
     <section className="py-24 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="reveal text-center max-w-2xl mx-auto">
-          <span className="eyebrow">Mulai dari kebutuhan</span>
-          <h2 className="mt-5 text-3xl md:text-5xl font-extrabold tracking-tight">Anda ingin membuat apa?</h2>
-          <p className="mt-4 text-slate-400">Pilih arahnya, kami tunjukkan layanan yang paling mendekati.</p>
+          <span className="eyebrow">Mulai dari kebutuhan Anda</span>
+          <h2 className="mt-5 text-3xl md:text-5xl font-extrabold tracking-tight">Apa yang ingin Anda wujudkan?</h2>
+          <p className="mt-4 text-slate-400">Pilih arahnya, dan kami tunjukkan layanan yang paling sesuai untuk Anda.</p>
           <div className="mt-8 flex flex-wrap justify-center gap-1 max-w-full mx-auto w-fit p-1.5 rounded-3xl sm:rounded-full bg-white/5 border border-white/10" role="tablist">
             {opts.map((o) => (
               <button key={o} role="tab" aria-selected={sel === o} onClick={() => setSel(o)} className={`px-4 sm:px-6 py-2.5 rounded-full text-sm font-bold transition-all ${sel === o ? 'bg-primary text-white shadow-lg shadow-primary/30' : 'text-slate-400 hover:text-white'}`}>{o}</button>
@@ -72,7 +72,7 @@ function Chooser() {
               <span className="text-xs font-bold text-primary tracking-widest">{s.no}</span>
               <h3 className="mt-3 text-2xl font-extrabold group-hover:text-primary transition-colors">{s.title}</h3>
               <p className="mt-3 text-slate-400 text-sm leading-relaxed flex-1">{s.desc}</p>
-              <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-primary">Pelajari <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></span>
+              <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-primary">Pelajari lebih lanjut <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></span>
             </Link>
           ))}
         </div>
@@ -95,11 +95,11 @@ export default function Home() {
           </h1>
           <div className="mt-8 grid md:grid-cols-12 gap-8 items-end">
             <p className="md:col-span-6 text-lg md:text-xl text-slate-400 leading-relaxed page-enter" style={{ animationDelay: '500ms' }}>
-              DigiPulse merancang website, aplikasi, dan sistem IoT yang enak dipakai, masuk akal untuk dibangun, dan siap tumbuh bersama bisnis Anda.
+              DigiPulse merancang website, aplikasi, dan sistem IoT yang nyaman digunakan, dibangun dengan perencanaan matang, dan siap berkembang bersama bisnis Anda.
             </p>
             <div className="md:col-span-6 flex flex-wrap gap-4 md:justify-end page-enter" style={{ animationDelay: '650ms' }}>
-              <Link to="/kontak" className="btn btn-primary">Mulai Diskusi <ArrowRight className="w-4 h-4" /></Link>
-              <Link to="/portofolio" className="btn btn-ghost">Lihat Karya</Link>
+              <Link to="/kontak" className="btn btn-primary">Mulai Konsultasi <ArrowRight className="w-4 h-4" /></Link>
+              <Link to="/portofolio" className="btn btn-ghost">Lihat Karya Kami</Link>
             </div>
           </div>
         </div>
@@ -115,8 +115,8 @@ export default function Home() {
       <section className="py-24 px-6 bg-secondary/30 border-y border-white/5">
         <div className="max-w-7xl mx-auto">
           <div className="reveal flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-            <div><span className="eyebrow">Karya pilihan</span><h2 className="mt-5 text-3xl md:text-5xl font-extrabold tracking-tight">Proyek yang pernah kami kerjakan</h2></div>
-            <Link to="/portofolio" className="btn btn-ghost self-start md:self-auto">Semua portofolio <ArrowRight className="w-4 h-4" /></Link>
+            <div><span className="eyebrow">Karya pilihan</span><h2 className="mt-5 text-3xl md:text-5xl font-extrabold tracking-tight">Hasil kerja yang berbicara untuk kami</h2></div>
+            <Link to="/portofolio" className="btn btn-ghost self-start md:self-auto">Lihat semua portofolio <ArrowRight className="w-4 h-4" /></Link>
           </div>
           <div className="grid md:grid-cols-2 gap-6">
             {projects.slice(0, 2).map((p, i) => (
@@ -138,8 +138,8 @@ export default function Home() {
         <div className="max-w-4xl mx-auto">
           <div className="reveal text-center mb-14">
             <span className="eyebrow">Proses kerja</span>
-            <h2 className="mt-5 text-3xl md:text-5xl font-extrabold tracking-tight">Alur yang menyesuaikan kebutuhan</h2>
-            <p className="mt-4 text-slate-400">Tahap dan kedalamannya bisa disesuaikan dengan lingkup, risiko, dan kondisi produk yang sudah berjalan.</p>
+            <h2 className="mt-5 text-3xl md:text-5xl font-extrabold tracking-tight">Alur kerja yang fleksibel, menyesuaikan kebutuhan Anda</h2>
+            <p className="mt-4 text-slate-400">Setiap tahap dan kedalamannya kami sesuaikan dengan lingkup proyek, tingkat risiko, dan kondisi produk Anda saat ini.</p>
           </div>
           <ol className="relative border-l border-white/10 ml-3 space-y-8">
             {steps.map((s, i) => (

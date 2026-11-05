@@ -12,7 +12,7 @@ export default function Footer() {
           <Link to="/" className="flex items-center gap-3">
             <img src={logo} alt="" className="h-10 sm:h-11 w-auto" />
           </Link>
-          <p className="text-slate-400 max-w-sm leading-relaxed">Kami membantu bisnis dan institusi membuat produk digital yang terasa mudah dipakai, dari ide pertama sampai berjalan di lapangan.</p>
+          <p className="text-slate-400 max-w-sm leading-relaxed">Kami membantu bisnis dan institusi membangun produk digital yang nyaman digunakan, mulai dari gagasan awal hingga beroperasi di lapangan.</p>
         </div>
         <div className="md:col-span-3">
           <h3 className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-4">Navigasi</h3>

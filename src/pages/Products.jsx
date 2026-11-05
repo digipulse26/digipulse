@@ -15,8 +15,8 @@ export default function Products() {
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/60 pointer-events-none" />
         <div className="relative max-w-7xl mx-auto px-6 pt-40 pb-14 w-full">
           <span className="eyebrow page-enter">Produk Digital</span>
-          <h1 className="mt-5 text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.05] max-w-4xl page-enter" style={{ animationDelay: '80ms' }}>Produk buatan DigiPulse untuk <span className="text-gradient">pekerjaan harian.</span></h1>
-          <p className="mt-5 text-lg text-slate-300 max-w-xl page-enter" style={{ animationDelay: '160ms' }}>Alat yang kami bangun agar urusan sehari-hari jadi lebih ringkas. Lihat mana yang sudah bisa dipakai dan mana yang masih dikerjakan.</p>
+          <h1 className="mt-5 text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.05] max-w-4xl page-enter" style={{ animationDelay: '80ms' }}>Produk DigiPulse untuk menunjang <span className="text-gradient">pekerjaan harian Anda.</span></h1>
+          <p className="mt-5 text-lg text-slate-300 max-w-xl page-enter" style={{ animationDelay: '160ms' }}>Solusi yang kami kembangkan agar aktivitas sehari-hari lebih ringkas dan terorganisasi. Kenali produk yang sudah tersedia maupun yang sedang kami siapkan.</p>
         </div>
       </section>
 
@@ -32,13 +32,13 @@ export default function Products() {
                 <h2 className="depth-2 mt-4 text-3xl font-extrabold">{p.name}</h2>
                 <p className="mt-3 text-slate-400 leading-relaxed">{p.desc}</p>
                 <ul className="depth-1 mt-6 space-y-2">{p.feats.map((f) => <li key={f} className="flex items-center gap-3 text-sm text-slate-200"><Check className="w-4 h-4 text-primary" />{f}</li>)}</ul>
-                <Link to="/kontak" className="depth-2 mt-8 inline-flex items-center gap-2 text-sm font-bold text-primary">{p.status === 'Tersedia' ? 'Minta demo' : 'Gabung daftar tunggu'} <ArrowRight className="w-4 h-4" /></Link>
+                <Link to="/kontak" className="depth-2 mt-8 inline-flex items-center gap-2 text-sm font-bold text-primary">{p.status === 'Tersedia' ? 'Jadwalkan demo' : 'Masuk daftar tunggu'} <ArrowRight className="w-4 h-4" /></Link>
               </article>
             </Tilt></div>
           );
         })}
       </section>
-      <CtaBand title="Butuh produk yang dibuat khusus?" text="Kalau alat di atas belum pas, kami bisa merancang yang sesuai alur kerja Anda." />
+      <CtaBand title="Membutuhkan solusi yang dirancang khusus?" text="Jika produk di atas belum sesuai, kami siap merancang solusi yang selaras dengan alur kerja Anda." />
     </>
   );
 }

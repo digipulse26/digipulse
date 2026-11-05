@@ -29,8 +29,8 @@ export function PortfolioPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/60 pointer-events-none" />
         <div className="relative max-w-7xl mx-auto px-6 pt-40 pb-14 w-full">
           <span className="eyebrow page-enter">Portofolio</span>
-          <h1 className="mt-5 text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.05] max-w-4xl page-enter" style={{ animationDelay: '80ms' }}>Proyek yang pernah <span className="text-gradient">kami kerjakan.</span></h1>
-          <p className="mt-5 text-lg text-slate-300 max-w-xl page-enter" style={{ animationDelay: '160ms' }}>Studi kasus yang memperlihatkan persoalan, keputusan, dan hasil di balik setiap proyek.</p>
+          <h1 className="mt-5 text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.05] max-w-4xl page-enter" style={{ animationDelay: '80ms' }}>Proyek yang telah <span className="text-gradient">kami kerjakan.</span></h1>
+          <p className="mt-5 text-lg text-slate-300 max-w-xl page-enter" style={{ animationDelay: '160ms' }}>Studi kasus yang memperlihatkan tantangan, keputusan, dan hasil di balik setiap proyek kami.</p>
         </div>
       </section>
 
@@ -49,7 +49,7 @@ export function PortfolioPage() {
                   <span className="eyebrow">{p.cat}</span>
                   <h2 className="mt-3 text-2xl font-extrabold">{p.title}</h2>
                   <p className="mt-2 text-sm text-slate-300 max-w-sm">{p.desc}</p>
-                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-primary">Lihat studi kasus <ArrowUpRight className="w-4 h-4" /></span>
+                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-primary">Baca studi kasus <ArrowUpRight className="w-4 h-4" /></span>
                 </div>
               </Link>
             </Tilt>
@@ -83,7 +83,7 @@ export function PortfolioDetail() {
         </Tilt>
       </section>
       <section className="max-w-7xl mx-auto px-6 pb-20 grid md:grid-cols-3 gap-6">
-        {[['Persoalan', p.problem], ['Pendekatan', p.solution]].map(([h, t], k) => (
+        {[['Tantangan', p.problem], ['Solusi', p.solution]].map(([h, t], k) => (
           <div key={h} className="reveal card p-8" style={{ '--d': `${k * 100}ms` }}><h2 className="text-xs font-bold tracking-widest text-primary uppercase">{h}</h2><p className="mt-3 text-slate-200 leading-relaxed">{t}</p></div>
         ))}
         <div className="reveal card p-8" style={{ '--d': '200ms' }}>

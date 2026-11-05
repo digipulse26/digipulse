@@ -27,7 +27,7 @@ export function ServicesPage() {
             <span className="glitch auto text-white" data-text="LAYANAN"><Kinetic text="LAYANAN" wave /></span>
           </h1>
           <p className="mt-8 text-lg md:text-xl text-slate-400 max-w-2xl leading-relaxed">
-            Mulailah dari persoalan yang nyata. Kami bantu memilih apa yang perlu dibangun, lalu mengerjakannya tanpa membuat prosesnya lebih rumit dari yang seharusnya.
+            Setiap bisnis memiliki tantangan yang berbeda. Kami membantu Anda menentukan apa yang perlu dibangun, lalu mengerjakannya melalui proses yang jelas dan efisien.
           </p>
         </div>
       </section>
@@ -70,14 +70,14 @@ export function ServiceDetail() {
             {rest.length > 0 && <><br /><span className="outline-text"><Kinetic text={rest.join(' ')} /></span></>}
           </h1>
           <p className="mt-8 text-xl text-slate-300 max-w-2xl leading-relaxed">{s.desc}</p>
-          <Link to="/kontak" className="btn btn-primary mt-8">Diskusikan layanan ini <ArrowRight className="w-4 h-4" /></Link>
+          <Link to="/kontak" className="btn btn-primary mt-8">Konsultasikan layanan ini <ArrowRight className="w-4 h-4" /></Link>
         </div>
       </section>
 
       <div className="py-5 border-y border-white/5 text-3xl md:text-5xl font-black text-slate-500 overflow-hidden"><Marquee items={s.tags} rev /></div>
 
       <section className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-10">
-        <div className="reveal"><span className="eyebrow">Yang Anda dapatkan</span><h2 className="mt-5 text-3xl md:text-4xl font-extrabold tracking-tight">Cakupan pekerjaan</h2></div>
+        <div className="reveal"><span className="eyebrow">Manfaat untuk Anda</span><h2 className="mt-5 text-3xl md:text-4xl font-extrabold tracking-tight">Cakupan pekerjaan</h2></div>
         <ul className="space-y-4">
           {s.points.map((p, i) => (
             <li key={p} style={{ '--d': `${i * 80}ms` }} className="reveal reveal-r card p-5 flex items-start gap-4 hover:border-primary/40 transition-colors">
@@ -89,7 +89,7 @@ export function ServiceDetail() {
       </section>
 
       <section className="max-w-7xl mx-auto px-6 pb-20">
-        <div className="reveal"><span className="eyebrow">Teknologi &amp; tools</span><h2 className="mt-5 text-3xl md:text-4xl font-extrabold tracking-tight">Yang kami pakai untuk layanan ini</h2></div>
+        <div className="reveal"><span className="eyebrow">Teknologi &amp; tools</span><h2 className="mt-5 text-3xl md:text-4xl font-extrabold tracking-tight">Teknologi pendukung layanan ini</h2></div>
         <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {s.stack.map((grp, i) => (
             <div key={grp.g} style={{ '--d': `${i * 80}ms` }} className="reveal card p-6">
@@ -110,7 +110,7 @@ export function ServiceDetail() {
 
       <section className="bg-secondary/30 border-y border-white/5 py-20 px-6">
         <div className="max-w-7xl mx-auto">
-          <h2 className="reveal text-3xl md:text-4xl font-extrabold tracking-tight">Bagaimana kami mengerjakannya</h2>
+          <h2 className="reveal text-3xl md:text-4xl font-extrabold tracking-tight">Cara kami mengerjakannya</h2>
           <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {steps.slice(0, 4).map((st, i) => (
               <div key={st.t} style={{ '--d': `${i * 80}ms` }} className="reveal card p-6">
