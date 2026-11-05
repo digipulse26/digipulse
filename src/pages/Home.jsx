@@ -60,9 +60,9 @@ function Chooser() {
           <span className="eyebrow">Mulai dari kebutuhan</span>
           <h2 className="mt-5 text-3xl md:text-5xl font-extrabold tracking-tight">Anda ingin membuat apa?</h2>
           <p className="mt-4 text-slate-400">Pilih arahnya, kami tunjukkan layanan yang paling mendekati.</p>
-          <div className="mt-8 inline-flex p-1.5 rounded-full bg-white/5 border border-white/10" role="tablist">
+          <div className="mt-8 flex flex-wrap justify-center gap-1 max-w-full mx-auto w-fit p-1.5 rounded-3xl sm:rounded-full bg-white/5 border border-white/10" role="tablist">
             {opts.map((o) => (
-              <button key={o} role="tab" aria-selected={sel === o} onClick={() => setSel(o)} className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all ${sel === o ? 'bg-primary text-white shadow-lg shadow-primary/30' : 'text-slate-400 hover:text-white'}`}>{o}</button>
+              <button key={o} role="tab" aria-selected={sel === o} onClick={() => setSel(o)} className={`px-4 sm:px-6 py-2.5 rounded-full text-sm font-bold transition-all ${sel === o ? 'bg-primary text-white shadow-lg shadow-primary/30' : 'text-slate-400 hover:text-white'}`}>{o}</button>
             ))}
           </div>
         </div>

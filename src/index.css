@@ -29,13 +29,14 @@
   --font-sans: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: clip; }
 body {
   background-color: rgb(var(--background));
   color: rgb(var(--foreground));
   font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
   margin: 0;
-  overflow-x: hidden;
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 .text-gradient {
