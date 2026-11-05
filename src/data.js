@@ -1,4 +1,4 @@
-export const EMAIL = 'hello@digipulse.studio';
+export const EMAIL = 'digipulseid@gmail.com';
 
 export const services = [
   {
