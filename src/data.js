@@ -86,7 +86,7 @@ export const projects = [
   },
   {
     slug: 'velox-ecommerce', title: 'Velox E-Commerce', cat: 'UI/UX', tag: 'Website', shot: 'shop',
-    desc: 'Toko online fesyen dengan checkout yang ringkas.',
+    desc: 'Toko online fashion dengan checkout yang ringkas.',
     problem: 'Banyak pembeli berhenti di tengah proses checkout.',
     solution: 'Alur belanja dirombak dan checkout disederhanakan.',
     result: ['Checkout menjadi tiga langkah', 'Nyaman dipakai di ponsel', 'Tetap ringan di jaringan lambat'],
