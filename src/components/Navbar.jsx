@@ -58,8 +58,8 @@ export default function Navbar() {
 
         <div className="flex items-center gap-3">
           <Link to="/kontak" className="btn btn-primary hidden sm:inline-flex !py-2.5 !px-4 !text-sm">Mulai Konsultasi <ArrowRight className="w-4 h-4" /></Link>
-          <button className="lg:hidden h-10 px-3 mono text-xs uppercase tracking-wider border rule rounded" onClick={() => setOpen(!open)} aria-label={open ? 'Tutup menu' : 'Buka menu'} aria-expanded={open}>
-            {open ? 'Tutup' : 'Menu'}
+          <button className="lg:hidden h-10 px-4 text-sm border rule rounded-full hover:border-white/30 transition-colors" onClick={() => setOpen(!open)} aria-label={open ? 'Tutup menu' : 'Buka menu'} aria-expanded={open}>
+            {open ? "Tutup" : "Menu"}
           </button>
         </div>
       </div>
