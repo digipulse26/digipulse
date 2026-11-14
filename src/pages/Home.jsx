@@ -1,18 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ArrowUpRight, Plus } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Plus, Globe, MessageCircle, FileSpreadsheet, LayoutDashboard, TriangleAlert, BellRing, Shuffle, LayoutGrid, Eye, LifeBuoy, Users } from 'lucide-react';
 import { services, projects, groups, pains, faqs } from '../data';
 import { useScrollyProgress } from '../hooks';
 import { Marquee, CtaBand, Rules, Label, ConsultLink } from '../components/fx';
+import { HeroVisual, GroupVisual, ProjectShot, ChatVisual, Wireframe, BuildVisual, Monitor } from '../components/visuals';
 
 const chapters = [
-  { k: 'Memahami', t: 'Kami memulai dengan memahami kebutuhan Anda.', d: 'Sebelum merancang, kami mempelajari model bisnis, pengguna, serta kendala yang sedang dihadapi, agar usulan kami tepat sasaran.' },
-  { k: 'Merancang', t: 'Rencana kerja disepakati sejak awal.', d: 'Kebutuhan dituangkan ke dalam alur pengguna, struktur halaman, dan prioritas fitur. Setiap keputusan dapat Anda tinjau sebelum pengembangan dimulai.' },
-  { k: 'Membangun', t: 'Pengembangan dilakukan secara bertahap.', d: 'Hasil pekerjaan kami unggah secara berkala ke lingkungan uji, sehingga Anda dapat mencoba dan memberikan masukan sepanjang proses.' },
-  { k: 'Mendampingi', t: 'Pendampingan berlanjut setelah peluncuran.', d: 'Kami membantu konfigurasi domain dan pemantauan, serta menyediakan perbaikan dan pengembangan lanjutan sesuai kebutuhan.' },
+  { k: 'Memahami', t: 'Kami dengarkan kebutuhan Anda.', d: 'Kendala dan tujuan dicatat sebelum apa pun dibuat.', V: ChatVisual },
+  { k: 'Merancang', t: 'Rancangan disetujui lebih dulu.', d: 'Anda melihat tampilannya sebelum pengembangan dimulai.', V: Wireframe },
+  { k: 'Membangun', t: 'Progres dapat Anda pantau.', d: 'Versi uji diperbarui berkala untuk Anda coba.', V: BuildVisual },
+  { k: 'Mendampingi', t: 'Tetap didampingi setelah rilis.', d: 'Pemantauan, pencadangan, dan perbaikan berjalan rutin.', V: Monitor },
 ];
 
-const trust = ['Perkembangan proyek dapat Anda pantau', 'Pendampingan setelah peluncuran', 'Desain dan pengembangan dalam satu tim'];
+const trust = [[Eye, 'Progres transparan'], [LifeBuoy, 'Didampingi setelah rilis'], [Users, 'Desain & kode satu tim']];
+const painIcons = [[Globe, MessageCircle], [FileSpreadsheet, LayoutDashboard], [TriangleAlert, BellRing], [Shuffle, LayoutGrid]];
+const featured = ['apex-financial-dashboard', 'kopi-senja-promosi'].map((slug) => projects.find((p) => p.slug === slug));
 
 function Scrolly() {
   const [ref, active] = useScrollyProgress(chapters.length);
@@ -20,28 +23,32 @@ function Scrolly() {
     <section ref={ref} className="relative border-t rule" style={{ height: `${chapters.length * 90 + 40}vh` }} aria-label="Cara kami bekerja">
       <div className="sticky top-0 h-screen overflow-hidden flex items-center">
         <Rules />
-        <div className="relative max-w-7xl mx-auto px-6 w-full grid md:grid-cols-12 gap-10 items-center">
-          <div className="md:col-span-7 relative min-h-[22rem] md:min-h-[26rem]">
+        <div className="relative max-w-7xl mx-auto px-6 w-full grid md:grid-cols-12 gap-4 md:gap-10 items-center">
+          <div className="md:col-span-6 relative min-h-[11rem] md:min-h-[24rem] order-2 md:order-1">
             {chapters.map((c, i) => (
               <div key={c.k} className="scrolly-layer absolute inset-0 flex flex-col justify-center" style={{ opacity: active === i ? 1 : 0, transform: active === i ? 'none' : `translate3d(0, ${i < active ? -32 : 32}px, 0)`, pointerEvents: active === i ? 'auto' : 'none' }} aria-hidden={active !== i}>
-                <Label n={`0${i + 1} / 0${chapters.length}`}>Cara kami bekerja · {c.k}</Label>
-                <h2 className="mt-6 text-[2.1rem] sm:text-5xl md:text-6xl leading-[1.02]">{c.t}</h2>
-                <p className="mt-6 text-slate-400 text-lg leading-relaxed max-w-xl">{c.d}</p>
+                <Label n={`0${i + 1} / 0${chapters.length}`}>{c.k}</Label>
+                <h2 className="mt-4 md:mt-6 text-[1.9rem] sm:text-5xl md:text-6xl leading-[1.02]">{c.t}</h2>
+                <p className="mt-3 md:mt-6 text-slate-400 md:text-lg leading-relaxed max-w-md">{c.d}</p>
               </div>
             ))}
           </div>
-          <ol className="hidden md:block md:col-span-4 md:col-start-9 relative pl-8">
-            <span className="absolute left-0 top-0 bottom-0 w-px bg-white/10" />
-            <span className="scrolly-rail absolute left-0 top-0 bottom-0 w-px bg-primary-soft" />
+          <div className="md:col-span-5 md:col-start-8 relative h-[17rem] sm:h-[22rem] md:h-[28rem] order-1 md:order-2">
             {chapters.map((c, i) => (
-              <li key={c.k} className={`py-5 border-b rule flex items-baseline justify-between transition-colors duration-500 ${active === i ? 'text-white' : 'text-slate-600'}`}>
-                <span className="display text-3xl">{c.k}</span>
-                <span className="mono text-xs">0{i + 1}</span>
-              </li>
+              <div key={c.k} className="scrolly-layer absolute inset-0 flex items-center justify-center" style={{ opacity: active === i ? 1 : 0, transform: active === i ? 'none' : `scale(.94) translate3d(0, ${i < active ? -24 : 24}px, 0)` }} aria-hidden="true">
+                <div className="w-full max-w-[22rem] md:max-w-md"><c.V /></div>
+              </div>
             ))}
-          </ol>
+          </div>
         </div>
-        <div className="md:hidden absolute bottom-10 left-6 right-6 h-px bg-white/10"><div className="scrolly-bar h-full bg-primary-soft" /></div>
+        <div className="absolute bottom-8 md:bottom-12 inset-x-0 px-6">
+          <div className="max-w-7xl mx-auto">
+            <div className="h-px bg-white/10"><div className="scrolly-bar h-full bg-primary-soft" /></div>
+            <ol className="mt-3 hidden sm:grid grid-cols-4 gap-2 mono text-[10px] sm:text-xs uppercase tracking-wide">
+              {chapters.map((c, i) => <li key={c.k} className={`truncate transition-colors duration-500 ${active === i ? 'text-white' : 'text-slate-600'}`}>0{i + 1} {c.k}</li>)}
+            </ol>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -53,15 +60,20 @@ function Pains() {
       <div className="max-w-7xl mx-auto">
         <div className="reveal max-w-3xl">
           <Label>Kendala yang sering kami tangani</Label>
-          <h2 className="mt-6 text-4xl md:text-6xl leading-[1.02]">Beberapa kendala yang paling sering kami <span className="serif">bantu atasi.</span></h2>
+          <h2 className="mt-6 text-4xl md:text-6xl leading-[1.02]">Dari kendala, menjadi <span className="serif">solusi.</span></h2>
         </div>
-        <div className="mt-14 grid md:grid-cols-2 border-t rule">
-          {pains.map((p, i) => (
-            <a key={p.q} href={`#layanan-${p.to}`} style={{ '--d': `${(i % 2) * 100}ms` }} className={`reveal group block py-10 border-b rule ${i % 2 === 0 ? 'md:pr-12 md:border-r' : 'md:pl-12'}`}>
-              <p className="display text-2xl md:text-[1.75rem] leading-snug text-white">{p.q}</p>
-              <p className="mt-4 text-slate-400 leading-relaxed flex gap-3"><ArrowRight className="w-4 h-4 mt-1 shrink-0 text-primary-soft transition-transform group-hover:translate-x-1" />{p.a}</p>
+        <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {pains.map((p, i) => { const [From, To] = painIcons[i]; return (
+            <a key={p.q} href={`#layanan-${p.to}`} style={{ '--d': `${i * 80}ms` }} className="reveal group panel p-6 flex flex-col hover:border-white/20 transition-colors">
+              <div className="flex items-center gap-3">
+                <span className="w-12 h-12 rounded-xl border border-accent/30 bg-accent/10 text-rose-300 flex items-center justify-center"><From className="w-5 h-5" /></span>
+                <span className="flex-1 h-px bg-gradient-to-r from-accent/40 to-primary-soft/60 relative"><ArrowRight className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 text-primary-soft nudge" /></span>
+                <span className="w-12 h-12 rounded-xl border border-primary-soft/40 bg-primary/15 text-primary-soft flex items-center justify-center"><To className="w-5 h-5" /></span>
+              </div>
+              <p className="mt-6 text-slate-500 line-through decoration-slate-600">{p.q}</p>
+              <p className="mt-2 display text-xl text-white leading-snug">{p.a}</p>
             </a>
-          ))}
+          ); })}
         </div>
       </div>
     </section>
@@ -72,27 +84,28 @@ function Groups() {
   return (
     <section className="px-6 py-24 md:py-32 border-t rule">
       <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-12 gap-8 items-end reveal">
-          <div className="md:col-span-7">
+        <div className="reveal flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
             <Label>Layanan</Label>
-            <h2 className="mt-6 text-4xl md:text-6xl leading-[1.02]">Layanan kami terbagi dalam <span className="serif">empat bidang.</span></h2>
+            <h2 className="mt-6 text-4xl md:text-6xl leading-[1.02]">Empat bidang, <span className="serif">satu tim.</span></h2>
           </div>
-          <p className="md:col-span-4 md:col-start-9 text-slate-400 leading-relaxed">Anda dapat memulai dari satu kebutuhan. Ketika usaha berkembang, layanan lain dapat ditambahkan bersama tim yang sama.</p>
+          <Link to="/layanan" className="link self-start md:self-auto">Semua layanan <ArrowUpRight className="w-4 h-4" /></Link>
         </div>
-        <div className="mt-14 border-t rule">
+        <div className="mt-14 grid md:grid-cols-2 gap-5">
           {groups.map((g, i) => (
-            <div key={g.slug} id={`layanan-${g.slug}`} style={{ '--d': `${i * 60}ms` }} className="reveal scroll-mt-28 grid md:grid-cols-12 gap-6 py-10 border-b rule">
-              <span className="md:col-span-1 mono text-xs text-slate-500 pt-2">0{i + 1}</span>
-              <div className="md:col-span-5">
-                <h3 className="text-3xl md:text-4xl">{g.title}</h3>
-                <p className="mt-3 text-xl text-white leading-snug">{g.hook}</p>
-              </div>
-              <div className="md:col-span-6">
-                <p className="text-slate-400 leading-relaxed">{g.desc}</p>
-                <p className="mt-4 text-sm text-slate-500">Sesuai untuk: <span className="text-slate-300">{g.who}</span></p>
-                <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
+            <div key={g.slug} id={`layanan-${g.slug}`} style={{ '--d': `${(i % 2) * 100}ms` }} className="reveal scroll-mt-28 panel overflow-hidden group">
+              <Link to={`/layanan#${g.slug}`} aria-label={`Layanan ${g.title}`} className="block px-6 pt-8 pb-4 sm:px-10 sm:pt-10 bg-[radial-gradient(ellipse_at_top,rgb(99_102_241/.18),transparent_70%)] border-b rule">
+                <div className="transition-transform duration-700 group-hover:-translate-y-1"><GroupVisual slug={g.slug} /></div>
+              </Link>
+              <div className="p-6 sm:p-8">
+                <div className="flex items-baseline justify-between gap-4">
+                  <h3 className="text-3xl">{g.title}</h3>
+                  <span className="mono text-xs text-slate-500">0{i + 1}</span>
+                </div>
+                <p className="mt-2 text-slate-300">{g.hook}</p>
+                <div className="mt-5 flex flex-wrap gap-2">
                   {g.items.map((slug) => { const s = services.find((x) => x.slug === slug); return (
-                    <Link key={slug} to={`/layanan/${slug}`} className="link text-sm">{s.title} <ArrowUpRight className="w-3.5 h-3.5" /></Link>
+                    <Link key={slug} to={`/layanan/${slug}`} className="inline-flex items-center gap-1.5 rounded-full border border-white/12 px-3 py-1.5 text-sm text-slate-300 hover:text-white hover:border-white/30 transition-colors">{s.title} <ArrowUpRight className="w-3.5 h-3.5" /></Link>
                   ); })}
                 </div>
               </div>
@@ -112,7 +125,6 @@ function Faq() {
           <div className="md:sticky md:top-28">
             <Label>Pertanyaan yang sering diajukan</Label>
             <h2 className="mt-6 text-4xl md:text-5xl leading-[1.02]">Informasi sebelum <span className="serif">memulai.</span></h2>
-            <p className="mt-6 text-slate-400 leading-relaxed">Apabila pertanyaan Anda belum terjawab, silakan hubungi kami secara langsung.</p>
             <ConsultLink className="link mt-6 text-sm">Hubungi kami <ArrowUpRight className="w-4 h-4" /></ConsultLink>
           </div>
         </div>
@@ -138,23 +150,26 @@ export default function Home() {
     <>
       <section className="relative min-h-[100svh] flex flex-col justify-end overflow-hidden pt-32">
         <Rules />
-        <div className="relative max-w-7xl mx-auto px-6 w-full pb-12">
-          <Label className="page-enter">Studio pengembangan digital &amp; IoT</Label>
-          <h1 className="mt-8 text-[3.1rem] sm:text-7xl lg:text-[8.25rem] leading-[0.95] font-semibold">
-            {words.map((w, i) => <React.Fragment key={w}><span className="word"><span style={{ '--d': `${i * 90}ms` }}>{w}</span></span>{' '}</React.Fragment>)}
-            <span className="word"><span className="serif" style={{ '--d': '420ms' }}>bisnis Anda.</span></span>
-          </h1>
-          <div className="mt-12 grid md:grid-cols-12 gap-8 items-end">
-            <p className="md:col-span-6 text-lg md:text-xl text-slate-300 leading-relaxed page-enter" style={{ animationDelay: '500ms' }}>
-              DigiPulse membantu bisnis dan institusi membangun website, aplikasi, sistem IoT, dan materi promosi, mulai dari perencanaan hingga <span className="text-white">pendampingan setelah peluncuran.</span>
+        <div className="relative max-w-7xl mx-auto px-6 w-full pb-12 grid lg:grid-cols-12 gap-12 lg:gap-8 items-end">
+          <div className="lg:col-span-7">
+            <Label className="page-enter">Studio pengembangan digital &amp; IoT</Label>
+            <h1 className="mt-8 text-[3.1rem] sm:text-7xl lg:text-[6.4rem] leading-[0.95] font-semibold">
+              {words.map((w, i) => <React.Fragment key={w}><span className="word"><span style={{ '--d': `${i * 90}ms` }}>{w}</span></span>{' '}</React.Fragment>)}
+              <span className="word"><span className="serif" style={{ '--d': '420ms' }}>bisnis Anda.</span></span>
+            </h1>
+            <p className="mt-8 text-lg md:text-xl text-slate-300 leading-relaxed max-w-xl page-enter" style={{ animationDelay: '500ms' }}>
+              Website, aplikasi, IoT, dan materi promosi, <span className="text-white">dari rancangan hingga pendampingan.</span>
             </p>
-            <div className="md:col-span-5 md:col-start-8 flex flex-wrap gap-3 md:justify-end page-enter" style={{ animationDelay: '650ms' }}>
+            <div className="mt-8 flex flex-wrap gap-3 page-enter" style={{ animationDelay: '650ms' }}>
               <ConsultLink className="btn btn-primary">Konsultasi Sekarang <ArrowRight className="w-4 h-4" /></ConsultLink>
               <Link to="/portofolio" className="btn btn-ghost">Lihat Portofolio</Link>
             </div>
           </div>
-          <ul className="mt-14 pt-5 border-t rule flex flex-col sm:flex-row sm:flex-wrap gap-x-8 gap-y-2 text-sm text-slate-400 page-enter" style={{ animationDelay: '800ms' }}>
-            {trust.map((t) => <li key={t} className="flex items-center gap-2.5"><span className="w-1 h-1 rounded-full bg-primary-soft" />{t}</li>)}
+          <div className="lg:col-span-5 w-full max-w-lg mx-auto lg:max-w-none page-enter" style={{ animationDelay: '300ms' }}>
+            <HeroVisual />
+          </div>
+          <ul className="lg:col-span-12 pt-5 border-t rule grid grid-cols-3 gap-3 text-xs sm:text-sm text-slate-400 page-enter" style={{ animationDelay: '800ms' }}>
+            {trust.map(([I, t]) => <li key={t} className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3"><span className="w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center text-primary-soft shrink-0"><I className="w-4 h-4" /></span>{t}</li>)}
           </ul>
         </div>
         <div className="relative py-6 border-t rule display text-3xl md:text-5xl text-slate-600">
@@ -170,22 +185,21 @@ export default function Home() {
           <div className="reveal flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
             <div>
               <Label>Portofolio</Label>
-              <h2 className="mt-6 text-4xl md:text-6xl leading-[1.02]">Contoh hasil <span className="serif">pekerjaan kami.</span></h2>
+              <h2 className="mt-6 text-4xl md:text-6xl leading-[1.02]">Hasil <span className="serif">pekerjaan kami.</span></h2>
             </div>
             <Link to="/portofolio" className="link self-start md:self-auto">Lihat seluruh portofolio <ArrowUpRight className="w-4 h-4" /></Link>
           </div>
           <div className="grid md:grid-cols-12 gap-x-6 gap-y-14">
-            {projects.slice(0, 2).map((p, i) => (
+            {featured.map((p, i) => (
               <Link key={p.slug} to={`/portofolio/${p.slug}`} style={{ '--d': `${i * 100}ms` }} className={`reveal group block ${i === 0 ? 'md:col-span-7' : 'md:col-span-5 md:mt-24'}`}>
-                <div className="overflow-hidden rounded-[4px] aspect-[4/3] bg-secondary">
-                  <img src={p.img} alt={p.title} loading="lazy" className="w-full h-full object-cover grayscale-[35%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-[1.03]" />
+                <div className="relative overflow-hidden rounded-[6px] aspect-[4/3] border border-white/[0.08] bg-[radial-gradient(ellipse_at_top,rgb(99_102_241/.22),rgb(15_23_42/.6)_70%)]">
+                  <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-[1.03]"><ProjectShot shot={p.shot} /></div>
                 </div>
                 <div className="mt-5 flex items-baseline justify-between gap-4">
                   <h3 className="text-2xl md:text-3xl">{p.title}</h3>
                   <span className="mono text-xs text-slate-500 shrink-0">{p.cat}</span>
                 </div>
-                <p className="mt-3 text-primary-soft">{p.result[0]}</p>
-                <p className="mt-1 text-slate-400 max-w-md">{p.desc}</p>
+                <p className="mt-2 text-slate-400">{p.desc}</p>
               </Link>
             ))}
           </div>
@@ -194,7 +208,7 @@ export default function Home() {
 
       <Scrolly />
       <Faq />
-      <CtaBand title="Mari diskusikan kebutuhan usaha Anda." text="Sampaikan gambaran kebutuhan Anda. Kami akan membantu menentukan langkah yang sesuai, lengkap dengan estimasi waktu dan biayanya." />
+      <CtaBand title="Mari diskusikan kebutuhan usaha Anda." text="Ceritakan kebutuhan Anda, kami bantu tentukan langkah, waktu, dan biayanya." />
     </>
   );
 }

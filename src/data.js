@@ -78,43 +78,60 @@ export const steps = [
 
 export const projects = [
   {
-    slug: 'apex-financial-dashboard', title: 'Apex Financial Dashboard', cat: 'Web App', tag: 'Website',
-    img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=70',
-    desc: 'Platform pemantauan portofolio aset dengan analitik otomatis dan prediksi tren.',
-    problem: 'Tim analis harus memindahkan data dari berbagai sumber ke spreadsheet secara manual setiap hari.',
-    solution: 'Kami membangun dasbor real-time yang menarik data secara otomatis, lengkap dengan grafik interaktif dan peringatan.',
-    result: ['Pelaporan harian berubah dari hitungan jam menjadi menit', 'Satu sumber data tepercaya untuk seluruh tim', 'Peringatan otomatis saat angka melewati batas'],
+    slug: 'apex-financial-dashboard', title: 'Apex Financial Dashboard', cat: 'Web App', tag: 'Website', shot: 'dash',
+    desc: 'Dasbor pemantauan aset dengan laporan otomatis.',
+    problem: 'Data dipindahkan manual ke spreadsheet setiap hari.',
+    solution: 'Dasbor real-time yang menarik data otomatis, lengkap dengan grafik dan peringatan.',
+    result: ['Laporan harian dari hitungan jam menjadi menit', 'Satu sumber data untuk seluruh tim', 'Peringatan otomatis saat angka melewati batas'],
   },
   {
-    slug: 'velox-ecommerce', title: 'Velox E-Commerce Experience', cat: 'UI/UX', tag: 'Website',
-    img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=70',
-    desc: 'Toko online fesyen dengan pratinjau produk 3D dan proses checkout yang ringkas.',
-    problem: 'Banyak pengunjung meninggalkan halaman di tengah proses pembelian karena alurnya terlalu panjang.',
-    solution: 'Kami merombak alur belanja, menambahkan pratinjau produk interaktif, dan menyederhanakan proses checkout.',
-    result: ['Checkout dipangkas menjadi tiga langkah', 'Pratinjau produk 360° di perangkat seluler', 'Halaman tetap ringan di jaringan yang lambat'],
+    slug: 'velox-ecommerce', title: 'Velox E-Commerce', cat: 'UI/UX', tag: 'Website', shot: 'shop',
+    desc: 'Toko online fesyen dengan checkout yang ringkas.',
+    problem: 'Banyak pembeli berhenti di tengah proses checkout.',
+    solution: 'Alur belanja dirombak dan checkout disederhanakan.',
+    result: ['Checkout menjadi tiga langkah', 'Nyaman dipakai di ponsel', 'Tetap ringan di jaringan lambat'],
   },
   {
-    slug: 'pulse-ai-mobile', title: 'Pulse AI Assistant', cat: 'Mobile', tag: 'Aplikasi',
-    img: 'https://images.unsplash.com/photo-1526498460520-4c246339dccb?auto=format&fit=crop&w=1000&q=70',
-    desc: 'Aplikasi asisten suara untuk mengatur tugas harian dan mencatat rapat secara otomatis.',
-    problem: 'Catatan rapat tercecer dan tindak lanjut sering terlewat.',
-    solution: 'Kami membuat aplikasi yang mentranskripsi suara, merangkum poin penting, dan menjadwalkan pengingat.',
-    result: ['Transkripsi langsung selama rapat berlangsung', 'Ringkasan dan daftar tugas yang dibuat otomatis', 'Sinkronisasi di Android dan iOS'],
+    slug: 'pulse-ai-mobile', title: 'Pulse AI Assistant', cat: 'Mobile', tag: 'Aplikasi', shot: 'app',
+    desc: 'Aplikasi pencatat rapat dan pengingat tugas.',
+    problem: 'Catatan rapat tercecer dan tindak lanjut terlewat.',
+    solution: 'Aplikasi yang merekam rapat, merangkum poin penting, dan membuat pengingat.',
+    result: ['Transkripsi selama rapat berlangsung', 'Daftar tugas dibuat otomatis', 'Tersedia di Android dan iOS'],
   },
   {
-    slug: 'nexus-saas-portal', title: 'Nexus SaaS Portal', cat: 'Web App', tag: 'Aplikasi',
-    img: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1000&q=70',
-    desc: 'Situs pemasaran dan portal pelanggan untuk produk langganan, lengkap dengan onboarding.',
-    problem: 'Calon pelanggan kesulitan memulai karena situs pemasaran dan aplikasi terpisah.',
-    solution: 'Kami menyatukan pengalaman dari halaman awal, pendaftaran, hingga panduan penggunaan pertama.',
-    result: ['Pendaftaran selesai dalam satu alur', 'Panduan interaktif untuk pengguna baru', 'Pengelolaan paket dan tagihan secara mandiri'],
+    slug: 'nexus-saas-portal', title: 'Nexus SaaS Portal', cat: 'Web App', tag: 'Aplikasi', shot: 'portal',
+    desc: 'Portal pelanggan dan pendaftaran untuk produk langganan.',
+    problem: 'Calon pelanggan kesulitan memulai karena alurnya terpisah.',
+    solution: 'Halaman awal, pendaftaran, dan panduan penggunaan disatukan dalam satu alur.',
+    result: ['Pendaftaran dalam satu alur', 'Panduan untuk pengguna baru', 'Paket dan tagihan dikelola mandiri'],
+  },
+  {
+    slug: 'kopi-senja-promosi', title: 'Kopi Senja', cat: 'Desain Grafis', tag: 'Desain & Video', shot: 'social',
+    desc: 'Poster pembukaan dan konten media sosial bulanan.',
+    problem: 'Unggahan media sosial tidak seragam dan kurang dikenali.',
+    solution: 'Panduan warna dan templat konten, lalu poster serta unggahan harian dengan gaya yang sama.',
+    result: ['Tampilan feed yang seragam', 'Templat siap pakai untuk unggahan rutin', 'Poster cetak dan versi digital'],
+  },
+  {
+    slug: 'madu-hutan-label', title: 'Madu Hutan', cat: 'Label Kemasan', tag: 'Desain & Video', shot: 'label',
+    desc: 'Desain label kemasan untuk tiga ukuran botol.',
+    problem: 'Kemasan lama kurang menonjol di rak toko.',
+    solution: 'Label baru dengan warna hangat dan informasi produk yang mudah dibaca.',
+    result: ['Satu desain untuk tiga ukuran', 'File siap cetak', 'Versi foto produk untuk toko online'],
+  },
+  {
+    slug: 'undangan-rina-dimas', title: 'Undangan Rina & Dimas', cat: 'Video', tag: 'Desain & Video', shot: 'invite',
+    desc: 'Undangan digital dalam format gambar dan video.',
+    problem: 'Undangan perlu dibagikan cepat lewat WhatsApp.',
+    solution: 'Undangan gambar dan video pendek dengan ukuran file yang ringan.',
+    result: ['Mudah dibagikan lewat chat', 'Versi gambar dan video', 'Tampilan selaras dengan tema acara'],
   },
 ];
 
 export const products = [
-  { slug: 'pulsedesk', name: 'PulseDesk', status: 'Tersedia', desc: 'Sistem tiket bantuan pelanggan yang merapikan keluhan, penugasan, dan riwayat percakapan dalam satu layar.', feats: ['Kotak masuk terpadu', 'Penugasan otomatis', 'Laporan waktu respons'], c: 'primary' },
-  { slug: 'pulsestock', name: 'PulseStock', status: 'Tersedia', desc: 'Pencatatan stok multi-gudang dengan pemindai kode batang dan peringatan otomatis saat stok menipis.', feats: ['Multi-gudang', 'Pindai barcode', 'Peringatan stok'], c: 'accent' },
-  { slug: 'pulsesense', name: 'PulseSense', status: 'Dalam pengembangan', desc: 'Platform pemantauan sensor IoT untuk suhu, kelembapan, dan energi, lengkap dengan notifikasi saat melewati ambang batas.', feats: ['Dasbor real-time', 'Notifikasi ambang', 'Riwayat data'], c: 'primary' },
+  { slug: 'pulsedesk', name: 'PulseDesk', status: 'Tersedia', desc: 'Semua keluhan pelanggan dalam satu kotak masuk.', feats: ['Kotak masuk terpadu', 'Penugasan otomatis', 'Laporan waktu respons'], c: 'primary' },
+  { slug: 'pulsestock', name: 'PulseStock', status: 'Tersedia', desc: 'Stok banyak gudang, cukup dipindai.', feats: ['Multi-gudang', 'Pindai barcode', 'Peringatan stok'], c: 'accent' },
+  { slug: 'pulsesense', name: 'PulseSense', status: 'Dalam pengembangan', desc: 'Suhu, kelembapan, dan energi terpantau dari ponsel.', feats: ['Dasbor real-time', 'Notifikasi ambang', 'Riwayat data'], c: 'primary' },
 ];
 
 export const tools = { react: 'React', vite: 'Vite', tailwind: 'Tailwind CSS', typescript: 'TypeScript', ga4: 'Google Analytics', searchconsole: 'Search Console', vercel: 'Vercel', cloudflare: 'Cloudflare', githubactions: 'GitHub Actions', node: 'Node.js', laravel: 'Laravel', postgres: 'PostgreSQL', jwt: 'JWT', next: 'Next.js', redis: 'Redis', stripe: 'Stripe', xendit: 'Xendit', docker: 'Docker', aws: 'AWS', figma: 'Figma', storybook: 'Storybook', graphql: 'GraphQL', whatsapp: 'WhatsApp Business API', google: 'Google Workspace', n8n: 'n8n', sentry: 'Sentry', git: 'Git', esp32: 'ESP32', arduino: 'Arduino', raspberrypi: 'Raspberry Pi', mqtt: 'MQTT', nodered: 'Node-RED', grafana: 'Grafana', influxdb: 'InfluxDB', telegram: 'Telegram', illustrator: 'Adobe Illustrator', photoshop: 'Adobe Photoshop', premiere: 'Adobe Premiere Pro', aftereffects: 'After Effects', canva: 'Canva', coreldraw: 'CorelDRAW', davinci: 'DaVinci Resolve', capcut: 'CapCut' };
@@ -133,10 +150,10 @@ export const groups = [
 ];
 
 export const pains = [
-  { q: 'Website sudah ada, tetapi jarang menghasilkan pertanyaan dari calon pelanggan.', a: 'Kami meninjau ulang tampilan, isi, dan alurnya agar pengunjung lebih mudah memahami layanan Anda, lalu menghubungi.', to: 'website' },
-  { q: 'Data operasional masih tersebar di spreadsheet dan percakapan.', a: 'Kami menyusun aplikasi yang menyatukan data tersebut, sehingga laporan dapat dibuat tanpa rekap manual.', to: 'aplikasi' },
-  { q: 'Gangguan pada perangkat baru diketahui setelah menimbulkan kerugian.', a: 'Kami memasang sensor dan notifikasi agar perubahan kondisi dapat diketahui lebih awal.', to: 'iot' },
-  { q: 'Materi promosi belum konsisten dari satu unggahan ke unggahan berikutnya.', a: 'Kami menyiapkan desain dan video dengan gaya yang seragam, sesuai identitas usaha Anda.', to: 'kreatif' },
+  { q: 'Website ada, tetapi sepi pertanyaan.', a: 'Pengunjung mudah menghubungi Anda.', to: 'website' },
+  { q: 'Data tersebar di banyak spreadsheet.', a: 'Satu dasbor, laporan otomatis.', to: 'aplikasi' },
+  { q: 'Gangguan perangkat terlambat diketahui.', a: 'Notifikasi saat kondisi berubah.', to: 'iot' },
+  { q: 'Konten promosi tidak seragam.', a: 'Gaya visual yang konsisten.', to: 'kreatif' },
 ];
 
 export const faqs = [

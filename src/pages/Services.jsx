@@ -1,8 +1,28 @@
 import React from 'react';
 import { Link, useParams, Navigate } from 'react-router-dom';
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
-import { services, steps, tools, groups, groupOf } from '../data';
+import {
+  ArrowRight, ArrowUpRight, Palette, Zap, Search, PenLine, ShieldCheck, ChartLine, MousePointerClick, Layers, Target, Building2, CreditCard,
+  Activity, Users, PenTool, LayoutGrid, RefreshCw, Route, Webhook, Repeat, BookOpen, Smartphone, BellRing, Battery, Cpu, Printer, Megaphone,
+  Package, PartyPopper, Clapperboard, Wrench, HardDrive, MessagesSquare, Code,
+} from 'lucide-react';
+import { services, tools, groups, groupOf } from '../data';
 import { Marquee, CtaBand, Rules, Label, ConsultLink } from '../components/fx';
+import { GroupVisual, ServiceVisual, Gallery } from '../components/visuals';
+
+// Ikon untuk setiap poin lingkup pekerjaan (urutan mengikuti services[].points)
+const pointIcons = {
+  'web-development': [Palette, Zap, Search, PenLine],
+  'web-application': [ShieldCheck, ChartLine, MousePointerClick, Layers],
+  'saas-development': [Target, Building2, CreditCard, Activity],
+  'ui-ux-design': [Users, PenTool, LayoutGrid, RefreshCw],
+  'system-integration': [Route, Webhook, Repeat, BookOpen],
+  'iot-embedded-system': [Smartphone, BellRing, Battery, Cpu],
+  'graphic-design': [Printer, Megaphone, Package, PenTool],
+  'video-editing': [PartyPopper, Clapperboard, Smartphone, RefreshCw],
+  'maintenance-support': [Activity, ShieldCheck, Wrench, HardDrive],
+};
+
+const flow = [[MessagesSquare, 'Konsultasi', 'Pahami kebutuhan'], [Search, 'Analisis', 'Susun lingkup'], [PenTool, 'Desain', 'Rancang tampilan'], [Code, 'Pengerjaan', 'Bangun bertahap']];
 
 export function Kinetic({ text, wave = false, className = '' }) {
   return (
@@ -28,7 +48,7 @@ export function ServicesPage() {
           </h1>
           <div className="mt-10 pt-6 border-t rule grid md:grid-cols-12 gap-6">
             <p className="md:col-span-6 text-lg text-slate-300 leading-relaxed">
-              Layanan kami dikelompokkan ke dalam empat bidang. Silakan pilih bidang yang sesuai dengan kebutuhan Anda, atau hubungi kami untuk berdiskusi terlebih dahulu.
+              Empat bidang layanan. Pilih yang sesuai, atau diskusikan dulu dengan kami.
             </p>
           </div>
         </div>
@@ -46,8 +66,8 @@ export function ServicesPage() {
                 <span className="mono text-xs text-primary-soft">0{gi + 1} / 0{groups.length}</span>
                 <h2 className="mt-4 text-4xl md:text-5xl leading-[1.02]">{g.title}</h2>
                 <p className="mt-4 text-xl text-white leading-snug">{g.hook}</p>
-                <p className="mt-4 text-slate-400 leading-relaxed">{g.desc}</p>
-                <p className="mt-4 text-sm text-slate-500">Sesuai untuk: <span className="text-slate-300">{g.who}</span></p>
+                <div className="mt-8 panel p-5 bg-[radial-gradient(ellipse_at_top,rgb(99_102_241/.16),transparent_70%)]"><GroupVisual slug={g.slug} /></div>
+                <p className="mt-5 text-sm text-slate-500">Sesuai untuk <span className="text-slate-300">{g.who}</span></p>
               </div>
             </div>
             <div className="md:col-span-8 border-t rule">
@@ -98,23 +118,36 @@ export function ServiceDetail() {
         </div>
       </section>
 
+      <section className="max-w-7xl mx-auto px-6 pb-16">
+        <div className="panel relative overflow-hidden px-5 py-10 sm:px-10 md:py-16 flex justify-center bg-[radial-gradient(ellipse_at_top,rgb(99_102_241/.2),transparent_65%)]">
+          <i className="hud tl" /><i className="hud tr" /><i className="hud bl" /><i className="hud br" />
+          <ServiceVisual slug={s.slug} />
+        </div>
+      </section>
+
       <div className="py-5 border-y rule display text-3xl md:text-5xl text-slate-600 overflow-hidden"><Marquee items={s.tags} rev /></div>
 
       <section className="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-12 gap-10">
         <div className="md:col-span-4 reveal">
           <Label>Lingkup pekerjaan</Label>
           <h2 className="mt-6 text-4xl md:text-5xl leading-[1.02]">Yang kami <span className="serif">kerjakan.</span></h2>
-          <p className="mt-6 text-slate-400 leading-relaxed">{s.short}</p>
         </div>
-        <ol className="md:col-span-7 md:col-start-6 border-t rule">
-          {s.points.map((p, i) => (
-            <li key={p} style={{ '--d': `${i * 80}ms` }} className="reveal reveal-r grid grid-cols-12 gap-4 py-6 border-b rule">
-              <span className="col-span-2 mono text-xs text-primary-soft pt-1.5">0{i + 1}</span>
-              <span className="col-span-10 text-lg text-slate-200 leading-snug">{p}</span>
+        <ul className="md:col-span-8 md:col-start-5 grid sm:grid-cols-2 gap-4">
+          {s.points.map((p, i) => { const I = (pointIcons[s.slug] || [])[i] || ArrowRight; return (
+            <li key={p} style={{ '--d': `${i * 80}ms` }} className="reveal panel p-6 flex flex-col gap-5">
+              <span className="w-11 h-11 rounded-xl border border-primary-soft/40 bg-primary/15 text-primary-soft flex items-center justify-center"><I className="w-5 h-5" /></span>
+              <span className="text-lg text-slate-200 leading-snug">{p}</span>
             </li>
-          ))}
-        </ol>
+          ); })}
+        </ul>
       </section>
+
+      {(s.slug === 'graphic-design' || s.slug === 'video-editing') && (
+        <section className="max-w-7xl mx-auto px-6 pb-24">
+          <div className="reveal mb-12"><Label>Contoh karya</Label><h2 className="mt-6 text-4xl md:text-5xl leading-[1.02]">Hasil yang bisa <span className="serif">Anda dapatkan.</span></h2></div>
+          <Gallery slug={s.slug} />
+        </section>
+      )}
 
       <section className="max-w-7xl mx-auto px-6 pb-24">
         <div className="reveal flex flex-col md:flex-row md:items-end justify-between gap-4">
@@ -144,15 +177,16 @@ export function ServiceDetail() {
       <section className="border-t rule px-6 py-24">
         <div className="max-w-7xl mx-auto">
           <div className="reveal"><Label>Proses</Label><h2 className="mt-6 text-4xl md:text-5xl leading-[1.02]">Cara kami <span className="serif">mengerjakannya.</span></h2></div>
-          <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 border-t rule">
-            {steps.slice(0, 4).map((st, i) => (
-              <div key={st.t} style={{ '--d': `${i * 80}ms` }} className="reveal py-8 lg:pr-8 border-b lg:border-b-0 rule">
-                <span className="mono text-xs text-primary-soft">0{i + 1}</span>
-                <h3 className="mt-4 text-xl">{st.t}</h3>
-                <p className="mt-2 text-sm text-slate-400 leading-relaxed">{st.d}</p>
-              </div>
+          <ol className="mt-12 relative grid grid-cols-2 lg:grid-cols-4 gap-y-10">
+            <span className="hidden lg:block absolute left-7 right-[12%] top-7 h-px bg-gradient-to-r from-primary-soft/60 via-primary-soft/30 to-transparent" />
+            {flow.map(([I, t, d], i) => (
+              <li key={t} style={{ '--d': `${i * 100}ms` }} className="reveal relative pr-4">
+                <span className="relative w-14 h-14 rounded-2xl bg-background border border-primary-soft/40 text-primary-soft flex items-center justify-center"><I className="w-6 h-6" /><span className="absolute -top-2 -right-2 mono text-[10px] bg-primary text-white rounded-full w-5 h-5 flex items-center justify-center">{i + 1}</span></span>
+                <h3 className="mt-5 text-xl">{t}</h3>
+                <p className="mt-1 text-sm text-slate-400">{d}</p>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 

@@ -1,14 +1,18 @@
 import React from 'react';
+import { Target, Layers, ShieldCheck, Handshake, PenTool, Code, Cpu, Compass, Globe, AppWindow, Cloud, Workflow, Radio, Palette } from 'lucide-react';
 import { Particles, CtaBand, Label } from '../components/fx';
+import { tools } from '../data';
 
 const values = [
-  { t: 'Berorientasi pada kebutuhan', d: 'Kami memastikan terlebih dahulu apa yang perlu dibangun, agar anggaran dan waktu Anda tidak terpakai untuk fitur yang jarang digunakan.' },
-  { t: 'Sederhana untuk dikembangkan', d: 'Struktur kode dan sistem kami rancang agar mudah dipahami, diperbarui, dan dilanjutkan oleh siapa pun di kemudian hari.' },
-  { t: 'Aman dan dapat diandalkan', d: 'Keamanan, performa, dan aksesibilitas kami periksa sebagai bagian wajib dari setiap pekerjaan, bukan sekadar tambahan di akhir.' },
-  { t: 'Kolaborasi yang terbuka', d: 'Perkembangan pekerjaan selalu kami informasikan. Setiap keputusan dibahas bersama dan dijelaskan dengan bahasa yang mudah dipahami.' },
+  { I: Target, t: 'Sesuai kebutuhan', d: 'Hanya fitur yang benar-benar dipakai.' },
+  { I: Layers, t: 'Mudah dikembangkan', d: 'Kode rapi, mudah diteruskan siapa pun.' },
+  { I: ShieldCheck, t: 'Aman & andal', d: 'Keamanan dan performa diperiksa sejak awal.' },
+  { I: Handshake, t: 'Kolaborasi terbuka', d: 'Setiap keputusan dibahas bersama.' },
 ];
 
-const scope = ['Website & aplikasi web', 'Produk SaaS', 'UI/UX', 'Integrasi sistem', 'IoT & perangkat', 'Desain grafis & video'];
+const roles = [[PenTool, 'Desainer'], [Code, 'Engineer'], [Cpu, 'IoT'], [Compass, 'Strategi']];
+const scope = [[Globe, 'Website'], [AppWindow, 'Aplikasi web'], [Cloud, 'SaaS'], [Workflow, 'Integrasi'], [Radio, 'IoT'], [Palette, 'Desain & video']];
+const eco = ['react', 'next', 'node', 'laravel', 'postgres', 'docker', 'aws', 'cloudflare', 'vercel', 'xendit', 'esp32', 'raspberrypi', 'figma', 'illustrator', 'premiere', 'canva'];
 
 export default function About() {
   return (
@@ -25,7 +29,7 @@ export default function About() {
           </h1>
           <div className="mt-12 pt-6 border-t rule grid md:grid-cols-12 gap-6 page-enter" style={{ animationDelay: '160ms' }}>
             <p className="md:col-span-6 text-lg text-slate-300 leading-relaxed">
-              DigiPulse membantu bisnis dan institusi merancang serta membangun website, aplikasi, dan sistem informasi yang tepat guna dan mudah dikembangkan.
+              Kami membantu bisnis dan institusi membangun produk digital yang tepat guna.
             </p>
           </div>
         </div>
@@ -37,11 +41,18 @@ export default function About() {
             <Label>Siapa kami</Label>
             <h2 className="mt-6 text-4xl md:text-5xl leading-[1.02]">Tim ringkas yang bekerja <span className="serif">dekat</span> dengan setiap klien.</h2>
           </div>
-          <div className="md:col-span-6 md:col-start-7 space-y-6 text-slate-300 text-lg leading-relaxed reveal" style={{ '--d': '120ms' }}>
-            <p>DigiPulse adalah studio digital yang terdiri dari desainer, engineer, dan perencana strategi yang bekerja sebagai satu tim. Kami memadukan pengembangan perangkat lunak dengan perangkat keras IoT, sehingga satu kebutuhan dapat ditangani secara menyeluruh, dari layar hingga sensor.</p>
-            <p className="text-slate-400">Kami memilih proyek dengan cermat, agar setiap pekerjaan dapat dikerjakan dengan baik, dijelaskan secara jujur, dan dirawat setelah diluncurkan.</p>
-            <ul className="pt-6 flex flex-wrap gap-x-6 gap-y-2 mono text-xs text-slate-500 uppercase tracking-wide">
-              {scope.map((s) => <li key={s}>{s}</li>)}
+          <div className="md:col-span-6 md:col-start-7 reveal" style={{ '--d': '120ms' }}>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {roles.map(([I, t], i) => (
+                <div key={t} className="panel aspect-square flex flex-col items-center justify-center gap-3 float" style={{ '--d': `${i * -1.5}s` }}>
+                  <span className="w-12 h-12 rounded-2xl bg-primary/15 border border-primary-soft/40 text-primary-soft flex items-center justify-center"><I className="w-6 h-6" /></span>
+                  <span className="text-sm text-slate-200">{t}</span>
+                </div>
+              ))}
+            </div>
+            <p className="mt-8 text-lg text-slate-300 leading-relaxed">Dari layar hingga sensor, ditangani oleh satu tim.</p>
+            <ul className="mt-6 flex flex-wrap gap-2">
+              {scope.map(([I, s]) => <li key={s} className="inline-flex items-center gap-2 rounded-full border border-white/12 px-3 py-1.5 text-sm text-slate-300"><I className="w-4 h-4 text-primary-soft" />{s}</li>)}
             </ul>
           </div>
         </div>
@@ -54,12 +65,12 @@ export default function About() {
             <Label>Prinsip kerja</Label>
             <h2 className="mt-6 text-4xl md:text-6xl leading-[1.02]">Prinsip yang kami terapkan dalam <span className="serif">setiap proyek.</span></h2>
           </div>
-          <div className="mt-16 grid md:grid-cols-2 border-t rule">
+          <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {values.map((v, i) => (
-              <div key={v.t} style={{ '--d': `${(i % 2) * 100}ms` }} className={`reveal py-10 border-b rule md:px-0 ${i % 2 === 0 ? 'md:pr-12 md:border-r' : 'md:pl-12'}`}>
-                <span className="mono text-xs text-primary-soft">0{i + 1}</span>
-                <h3 className="mt-4 text-2xl md:text-3xl">{v.t}</h3>
-                <p className="mt-3 text-slate-400 leading-relaxed max-w-md">{v.d}</p>
+              <div key={v.t} style={{ '--d': `${i * 80}ms` }} className="reveal panel p-7">
+                <span className="w-12 h-12 rounded-2xl bg-primary/15 border border-primary-soft/40 text-primary-soft flex items-center justify-center"><v.I className="w-6 h-6" /></span>
+                <h3 className="mt-8 text-2xl">{v.t}</h3>
+                <p className="mt-2 text-slate-400 leading-relaxed">{v.d}</p>
               </div>
             ))}
           </div>
@@ -67,12 +78,18 @@ export default function About() {
       </section>
 
       <section className="px-6 py-24 md:py-32 border-t rule">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-12 gap-10 reveal">
-          <div className="md:col-span-5">
+        <div className="max-w-7xl mx-auto">
+          <div className="reveal">
             <Label>Ekosistem</Label>
-            <h2 className="mt-6 text-4xl md:text-5xl leading-[1.02]">Berkolaborasi dengan mitra teknologi <span className="serif">tepercaya.</span></h2>
+            <h2 className="mt-6 text-4xl md:text-5xl leading-[1.02]">Teknologi yang <span className="serif">teruji.</span></h2>
           </div>
-          <p className="md:col-span-5 md:col-start-8 self-end text-slate-400 text-lg leading-relaxed">Kami bekerja bersama penyedia infrastruktur, pembayaran, dan perangkat keras yang telah teruji, agar hasil kerja kami andal dan tahan lama.</p>
+          <ul className="mt-12 grid grid-cols-4 sm:grid-cols-8 gap-3">
+            {eco.map((it, i) => (
+              <li key={it} title={tools[it]} style={{ '--d': `${(i % 8) * 50}ms` }} className="reveal aspect-square rounded-xl bg-slate-100 flex items-center justify-center transition-transform hover:-translate-y-1">
+                <img src={`${import.meta.env.BASE_URL}logos/${it}.svg`} alt={tools[it]} width="32" height="32" loading="lazy" decoding="async" className="w-[42%] h-[42%] object-contain" />
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
       <CtaBand />

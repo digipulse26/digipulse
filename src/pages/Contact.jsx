@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Mail, Clock, Globe, AppWindow, Radio, Palette, MessagesSquare, FileText, Rocket } from 'lucide-react';
 import { EMAIL } from '../data';
 import { Label } from '../components/fx';
 import { VRStage } from './Portfolio';
 
-const kinds = ['Website', 'Aplikasi', 'IoT', 'Perangkat IoT', 'Desain & Video'];
+const kinds = [[Globe, 'Website'], [AppWindow, 'Aplikasi'], [Radio, 'IoT'], [Palette, 'Desain & Video']];
+const next = [[MessagesSquare, 'Diskusi kebutuhan'], [FileText, 'Penawaran tertulis'], [Rocket, 'Mulai dikerjakan']];
 const field = 'mt-2 w-full rounded-xl bg-white/[0.03] border border-white/10 px-4 py-3 text-[0.97rem] text-white placeholder:text-slate-500 transition-colors hover:border-white/20 focus:border-primary-soft/70 focus:bg-white/[0.05] focus:outline-none';
 
 export default function Contact() {
@@ -24,15 +25,25 @@ export default function Contact() {
         <div className="lg:col-span-5">
           <Label className="page-enter">Mulai percakapan</Label>
           <h1 className="mt-8 text-[2.75rem] sm:text-6xl leading-[0.98] page-enter" style={{ animationDelay: '80ms' }}>Ceritakan apa yang sedang <span className="serif">Anda kerjakan.</span></h1>
-          <p className="mt-8 text-lg text-slate-300 leading-relaxed page-enter" style={{ animationDelay: '160ms' }}>Sampaikan gambaran kebutuhan, kendala yang dihadapi, dan hasil yang Anda harapkan. Kami akan menindaklanjutinya dengan rekomendasi langkah yang sesuai.</p>
+          <ol className="mt-10 flex items-start page-enter" style={{ animationDelay: '160ms' }}>
+            {next.map(([I, t], i) => (
+              <li key={t} className="flex-1 flex flex-col items-start">
+                <div className="w-full flex items-center">
+                  <span className="w-11 h-11 rounded-xl bg-primary/15 border border-primary-soft/40 text-primary-soft flex items-center justify-center shrink-0"><I className="w-5 h-5" /></span>
+                  {i < next.length - 1 && <span className="flex-1 h-px mx-2 bg-gradient-to-r from-primary-soft/50 to-transparent" />}
+                </div>
+                <span className="mt-3 text-sm text-slate-300 pr-2">{t}</span>
+              </li>
+            ))}
+          </ol>
           <dl className="mt-12 border-t rule page-enter" style={{ animationDelay: '240ms' }}>
-            <div className="py-5 border-b rule grid grid-cols-3 gap-4">
-              <dt className="text-sm text-slate-500 pt-0.5">Email</dt>
-              <dd className="col-span-2"><a href={`mailto:${EMAIL}`} className="link">{EMAIL} <ArrowUpRight className="w-4 h-4" /></a></dd>
+            <div className="py-5 border-b rule flex items-center gap-4">
+              <dt className="text-slate-500"><Mail className="w-5 h-5" aria-label="Email" /></dt>
+              <dd><a href={`mailto:${EMAIL}`} className="link">{EMAIL} <ArrowUpRight className="w-4 h-4" /></a></dd>
             </div>
-            <div className="py-5 border-b rule grid grid-cols-3 gap-4">
-              <dt className="text-sm text-slate-500 pt-0.5">Jam kerja</dt>
-              <dd className="col-span-2 text-slate-200">Senin – Jumat, 09.00 – 17.00 WIB</dd>
+            <div className="py-5 border-b rule flex items-center gap-4">
+              <dt className="text-slate-500"><Clock className="w-5 h-5" aria-label="Jam kerja" /></dt>
+              <dd className="text-slate-200">Senin – Jumat, 09.00 – 17.00 WIB</dd>
             </div>
           </dl>
         </div>
@@ -47,10 +58,10 @@ export default function Contact() {
             <fieldset>
               <legend className="text-sm text-slate-300">Saya ingin membuat</legend>
               <div className="mt-3 flex flex-wrap gap-2">
-                {kinds.map((k) => (
+                {kinds.map(([I, k]) => (
                   <button type="button" key={k} onClick={() => setKind(k)} aria-pressed={kind === k}
-                    className={`px-3.5 py-1.5 rounded-full text-sm border transition-colors duration-200 ${kind === k ? 'bg-white text-slate-950 border-white' : 'border-white/12 text-slate-400 hover:text-white hover:border-white/30'}`}>
-                    {k}
+                    className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-sm border transition-colors duration-200 ${kind === k ? 'bg-white text-slate-950 border-white' : 'border-white/12 text-slate-400 hover:text-white hover:border-white/30'}`}>
+                    <I className="w-4 h-4" />{k}
                   </button>
                 ))}
               </div>
@@ -60,7 +71,7 @@ export default function Contact() {
               <label className="block"><span className="text-sm text-slate-300">Nama</span><input required value={f.name} onChange={set('name')} className={field} placeholder="Nama lengkap" autoComplete="name" /></label>
               <label className="block"><span className="text-sm text-slate-300">Email</span><input required type="email" value={f.email} onChange={set('email')} className={field} placeholder="nama@email.com" autoComplete="email" /></label>
             </div>
-            <label className="block"><span className="text-sm text-slate-300">Pesan</span><textarea required rows={5} value={f.msg} onChange={set('msg')} className={`${field} resize-none`} placeholder="Jelaskan secara singkat kebutuhan Anda dan kendala yang sedang dihadapi." /></label>
+            <label className="block"><span className="text-sm text-slate-300">Pesan</span><textarea required rows={5} value={f.msg} onChange={set('msg')} className={`${field} resize-none`} placeholder="Ceritakan singkat kebutuhan Anda." /></label>
 
             <div className="pt-2 flex flex-col-reverse sm:flex-row sm:items-center justify-between gap-4">
               <p className="text-xs text-slate-500 sm:max-w-[15rem]">Formulir ini akan membuka aplikasi email Anda dengan pesan yang telah terisi.</p>

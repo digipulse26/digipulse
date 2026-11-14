@@ -1,14 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Check } from 'lucide-react';
 import { products } from '../data';
 import { Tilt, CtaBand } from '../components/fx';
+import { ProductShot } from '../components/visuals';
 import { StageHead } from './Portfolio';
 
 export default function Products() {
   return (
     <>
-      <StageHead label="Produk digital" text="Perangkat lunak yang kami kembangkan untuk membantu pekerjaan sehari-hari. Sebagian sudah dapat digunakan, sebagian lainnya masih dalam tahap pengembangan.">
+      <StageHead label="Produk digital" text="Perangkat lunak siap pakai buatan DigiPulse.">
         Produk untuk menunjang <span className="serif">pekerjaan harian</span> Anda.
       </StageHead>
 
@@ -26,10 +27,11 @@ export default function Products() {
                       <span className={`w-1.5 h-1.5 rounded-full ${ready ? 'bg-emerald-400' : 'bg-amber-300'}`} />{p.status}
                     </span>
                   </div>
-                  <h2 className="depth-3 mt-14 text-5xl font-bold">{p.name}</h2>
-                  <p className="mt-4 text-slate-400 leading-relaxed">{p.desc}</p>
-                  <ul className="depth-1 mt-8 border-t rule">
-                    {p.feats.map((f) => <li key={f} className="py-3 border-b rule text-sm text-slate-200">{f}</li>)}
+                  <div className="depth-2 mt-8"><ProductShot slug={p.slug} /></div>
+                  <h2 className="depth-3 mt-8 text-4xl font-bold">{p.name}</h2>
+                  <p className="mt-2 text-slate-400 leading-relaxed">{p.desc}</p>
+                  <ul className="depth-1 mt-6 flex flex-wrap gap-2">
+                    {p.feats.map((f) => <li key={f} className="inline-flex items-center gap-1.5 rounded-full border border-white/12 px-3 py-1.5 text-sm text-slate-200"><Check className="w-3.5 h-3.5 text-emerald-400" />{f}</li>)}
                   </ul>
                   <div className="mt-auto pt-8 depth-2">
                     <Link to="/kontak" className="link text-sm">{ready ? 'Jadwalkan demo' : 'Masuk daftar tunggu'} <ArrowUpRight className="w-4 h-4" /></Link>
@@ -40,7 +42,7 @@ export default function Products() {
           );
         })}
       </section>
-      <CtaBand title="Membutuhkan solusi yang dirancang khusus?" text="Jika produk di atas belum sesuai, kami siap merancang solusi yang selaras dengan alur kerja Anda." />
+      <CtaBand title="Membutuhkan solusi yang dirancang khusus?" text="Kami rancang solusi yang sesuai dengan alur kerja Anda." />
     </>
   );
 }

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useParams, Navigate } from 'react-router-dom';
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, CircleAlert, Lightbulb, CircleCheck } from 'lucide-react';
 import { projects } from '../data';
 import { Tilt, CtaBand, Label } from '../components/fx';
+import { ProjectShot } from '../components/visuals';
 
 // Panggung AR/VR: kubus wireframe 3D, cincin orbit, dan lantai grid bergerak
 export function VRStage({ className = '' }) {
@@ -35,28 +36,28 @@ export function StageHead({ label, children, text }) {
 }
 
 export function PortfolioPage() {
-  const cats = ['Semua', 'Website', 'Aplikasi'];
+  const cats = ['Semua', 'Website', 'Aplikasi', 'Desain & Video'];
   const [f, setF] = useState('Semua');
   const list = f === 'Semua' ? projects : projects.filter((p) => p.tag === f);
   return (
     <>
-      <StageHead label="Portofolio" text="Studi kasus yang memperlihatkan tantangan, keputusan, dan hasil di balik setiap proyek kami.">
+      <StageHead label="Portofolio" text="Tantangan, solusi, dan hasil dari setiap proyek.">
         Proyek yang telah <span className="serif">kami kerjakan.</span>
       </StageHead>
 
       <section className="max-w-7xl mx-auto px-6 py-16 md:py-24">
         <div className="flex items-center justify-between gap-4 border-b rule mb-12">
-          <div className="flex gap-6" role="tablist">
-            {cats.map((c) => <button key={c} role="tab" aria-selected={f === c} onClick={() => setF(c)} className={`pb-4 -mb-px border-b transition-colors ${f === c ? 'text-white border-white' : 'text-slate-500 border-transparent hover:text-slate-300'}`}>{c}</button>)}
+          <div className="flex gap-x-6 gap-y-1 flex-wrap" role="tablist">
+            {cats.map((c) => <button key={c} role="tab" aria-selected={f === c} onClick={() => setF(c)} className={`pb-4 -mb-px border-b whitespace-nowrap transition-colors ${f === c ? 'text-white border-white' : 'text-slate-500 border-transparent hover:text-slate-300'}`}>{c}</button>)}
           </div>
-          <span className="mono text-xs text-slate-500 pb-4">{String(list.length).padStart(2, '0')} proyek</span>
+          <span className="hidden sm:inline mono text-xs text-slate-500 pb-4 shrink-0">{String(list.length).padStart(2, '0')} proyek</span>
         </div>
         <div key={f} className="grid md:grid-cols-2 gap-x-8 gap-y-16 scene">
           {list.map((p, i) => (
             <div key={p.slug} className={`page-enter ${i % 2 === 1 ? 'md:mt-20' : ''}`} style={{ animationDelay: `${i * 80}ms` }}>
               <Tilt max={6} className="rounded-[4px]">
-                <Link to={`/portofolio/${p.slug}`} className="group relative block rounded-[4px] overflow-hidden bg-secondary aspect-[4/3] scan">
-                  <img src={p.img} alt={p.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover grayscale-[35%] group-hover:grayscale-0 transition-all duration-700" />
+                <Link to={`/portofolio/${p.slug}`} aria-label={p.title} className="group relative block rounded-[4px] overflow-hidden border border-white/[0.08] bg-[radial-gradient(ellipse_at_top,rgb(99_102_241/.22),rgb(15_23_42/.7)_70%)] aspect-[4/3] scan">
+                  <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-[1.03]"><ProjectShot shot={p.shot} /></div>
                   <i className="hud tl" /><i className="hud tr" /><i className="hud bl" /><i className="hud br" />
                   <span className="absolute top-4 left-6 mono text-[11px] text-white/80 depth-1">{String(i + 1).padStart(2, '0')}</span>
                 </Link>
@@ -67,7 +68,7 @@ export function PortfolioPage() {
                   <span className="mono text-xs text-slate-500 shrink-0">{p.cat}</span>
                 </div>
                 <p className="mt-2 text-slate-400 max-w-md">{p.desc}</p>
-                <span className="link mt-4 text-sm">Baca studi kasus <ArrowUpRight className="w-4 h-4" /></span>
+                <span className="link mt-4 text-sm">Lihat proyek <ArrowUpRight className="w-4 h-4" /></span>
               </Link>
             </div>
           ))}
@@ -97,20 +98,22 @@ export function PortfolioDetail() {
         </div>
       </section>
       <section className="max-w-7xl mx-auto px-6 pb-16 scene">
-        <Tilt max={3} className="rounded-[4px] overflow-hidden aspect-[16/9] md:aspect-[16/8] relative">
-          <img src={p.img} alt={p.title} className="w-full h-full object-cover" />
+        <Tilt max={3} className="rounded-[6px] overflow-hidden aspect-[4/3] md:aspect-[16/9] relative border border-white/[0.08] bg-[radial-gradient(ellipse_at_top,rgb(99_102_241/.22),rgb(15_23_42/.7)_70%)]">
+          <div className="absolute inset-0 md:inset-x-[12%]"><ProjectShot shot={p.shot} /></div>
         </Tilt>
       </section>
-      <section className="max-w-7xl mx-auto px-6 pb-24 grid md:grid-cols-3 border-t rule">
-        {[['Tantangan', p.problem], ['Solusi', p.solution]].map(([h, t], k) => (
-          <div key={h} className="reveal py-10 md:pr-10 border-b md:border-b-0 md:border-r rule md:[&:nth-child(2)]:px-10" style={{ '--d': `${k * 100}ms` }}>
-            <span className="label">{h}</span>
-            <p className="mt-5 text-lg text-slate-200 leading-relaxed">{t}</p>
+      <section className="max-w-7xl mx-auto px-6 pb-24 grid md:grid-cols-3 gap-4">
+        {[[CircleAlert, 'Tantangan', p.problem, 'text-rose-300 border-accent/30 bg-accent/10'], [Lightbulb, 'Solusi', p.solution, 'text-amber-200 border-amber-300/30 bg-amber-300/10']].map(([I, h, t, c], k) => (
+          <div key={h} className="reveal panel p-7" style={{ '--d': `${k * 100}ms` }}>
+            <span className={`w-11 h-11 rounded-xl border flex items-center justify-center ${c}`}><I className="w-5 h-5" /></span>
+            <span className="label mt-6">{h}</span>
+            <p className="mt-3 text-lg text-slate-200 leading-relaxed">{t}</p>
           </div>
         ))}
-        <div className="reveal py-10 md:pl-10" style={{ '--d': '200ms' }}>
-          <span className="label">Hasil</span>
-          <ul className="mt-5 space-y-4">{p.result.map((r, n) => <li key={r} className="flex gap-4 text-slate-200"><span className="mono text-xs text-primary-soft pt-1">0{n + 1}</span>{r}</li>)}</ul>
+        <div className="reveal panel p-7" style={{ '--d': '200ms' }}>
+          <span className="w-11 h-11 rounded-xl border border-emerald-400/30 bg-emerald-400/10 text-emerald-300 flex items-center justify-center"><CircleCheck className="w-5 h-5" /></span>
+          <span className="label mt-6">Hasil</span>
+          <ul className="mt-3 space-y-3">{p.result.map((r) => <li key={r} className="flex gap-3 text-slate-200"><CircleCheck className="w-4 h-4 mt-1 shrink-0 text-emerald-400" />{r}</li>)}</ul>
         </div>
       </section>
       <Link to={`/portofolio/${next.slug}`} className="group block px-6 py-16 border-t rule">

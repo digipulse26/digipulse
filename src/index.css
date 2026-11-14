@@ -194,6 +194,39 @@ h1, h2, h3, .display { font-family: 'Bricolage Grotesque', 'Geist', system-ui, s
 .scrolly-rail { transform-origin: top; transform: scaleY(var(--p, 0)); }
 .scrolly-layer { transition: opacity .6s, transform .6s cubic-bezier(.2,.8,.2,1); }
 
+/* ---------- Ilustrasi mockup (visuals.jsx) ---------- */
+.draw { stroke-dasharray: 1; animation: draw 2.4s cubic-bezier(.4,0,.2,1) both; }
+@keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+.bar-live { transform-origin: bottom; animation: barLive 3.2s ease-in-out infinite alternate; animation-delay: var(--d, 0s); }
+@keyframes barLive { from { transform: scaleY(.72); } to { transform: scaleY(1); } }
+.eq { animation: eq 1.1s ease-in-out infinite alternate; animation-delay: var(--d, 0s); }
+@keyframes eq { from { transform: scaleY(.35); } to { transform: scaleY(1); } }
+.pulse-ring { box-shadow: 0 0 0 0 rgb(var(--primary-soft) / .45); animation: pulseRing 2.4s ease-out infinite; }
+@keyframes pulseRing { to { box-shadow: 0 0 0 14px rgb(var(--primary-soft) / 0); } }
+.blink { animation: blink 1.6s ease-in-out infinite; }
+@keyframes blink { 50% { opacity: .25; } }
+.gauge { animation: gauge 1.6s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes gauge { from { stroke-dasharray: 0 100; } }
+.notif { animation: notif 6s ease-in-out infinite; }
+@keyframes notif { 0%, 8% { opacity: 0; transform: translateY(8px); } 14%, 86% { opacity: 1; transform: none; } 94%, 100% { opacity: 0; transform: translateY(-4px); } }
+.typing { animation: typing 1.2s ease-in-out infinite; }
+@keyframes typing { 0%, 60%, 100% { transform: none; opacity: .4; } 30% { transform: translateY(-40%); opacity: 1; } }
+.flow { stroke-dasharray: 4 5; animation: flow 1.2s linear infinite; }
+@keyframes flow { to { stroke-dashoffset: -9; } }
+.wave { opacity: 0; animation: wave 2.1s ease-out infinite; }
+@keyframes wave { 0% { opacity: 0; } 30% { opacity: .9; } 100% { opacity: 0; } }
+.nudge { animation: nudge 1.8s ease-in-out infinite; }
+@keyframes nudge { 50% { transform: translateX(5px); } }
+.grow-x { transform-origin: left; animation: growX 1.6s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes growX { from { transform: scaleX(0); } }
+.playhead { animation: playhead 6s linear infinite; }
+@keyframes playhead { from { left: 0; } to { left: 100%; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .float, .bar-live, .eq, .pulse-ring, .blink, .notif, .typing, .flow, .wave, .nudge, .playhead { animation: none !important; }
+  .wave, .notif { opacity: 1; }
+}
+
 /* Ringan di ponsel */
 @media (max-width: 767px) {
   .aurora i { filter: blur(50px); width: 20rem !important; height: 20rem !important; }
