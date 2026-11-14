@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import { EMAIL, services } from '../data';
-import logo from '../images/Logo.png';
+import logo from '../images/Logo-putih.png';
 
 const nav = [['/', 'Beranda'], ['/tentang', 'Tentang'], ['/layanan', 'Layanan'], ['/portofolio', 'Portofolio'], ['/produk', 'Produk'], ['/kontak', 'Kontak']];
 

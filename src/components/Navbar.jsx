@@ -3,7 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { services, groups } from '../data';
 import { ConsultLink } from './fx';
-import logo from '../images/Logo.png';
+import logo from '../images/Logo-putih.png';
 
 const links = [
   { to: '/', label: 'Beranda', end: true },
