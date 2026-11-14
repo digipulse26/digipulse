@@ -118,3 +118,34 @@ export const products = [
 ];
 
 export const tools = { react: 'React', vite: 'Vite', tailwind: 'Tailwind CSS', typescript: 'TypeScript', ga4: 'Google Analytics', searchconsole: 'Search Console', vercel: 'Vercel', cloudflare: 'Cloudflare', githubactions: 'GitHub Actions', node: 'Node.js', laravel: 'Laravel', postgres: 'PostgreSQL', jwt: 'JWT', next: 'Next.js', redis: 'Redis', stripe: 'Stripe', xendit: 'Xendit', docker: 'Docker', aws: 'AWS', figma: 'Figma', storybook: 'Storybook', graphql: 'GraphQL', whatsapp: 'WhatsApp Business API', google: 'Google Workspace', n8n: 'n8n', sentry: 'Sentry', git: 'Git', esp32: 'ESP32', arduino: 'Arduino', raspberrypi: 'Raspberry Pi', mqtt: 'MQTT', nodered: 'Node-RED', grafana: 'Grafana', influxdb: 'InfluxDB', telegram: 'Telegram', illustrator: 'Adobe Illustrator', photoshop: 'Adobe Photoshop', premiere: 'Adobe Premiere Pro', aftereffects: 'After Effects', canva: 'Canva', coreldraw: 'CorelDRAW', davinci: 'DaVinci Resolve', capcut: 'CapCut' };
+
+// Nomor WhatsApp bisnis, format internasional tanpa "+" atau spasi, mis. '6281234567890'.
+// Selama kosong, semua tombol konsultasi mengarah ke halaman Kontak.
+export const WHATSAPP = '';
+export const WA_TEXT = 'Halo DigiPulse, saya ingin konsultasi mengenai kebutuhan digital bisnis saya.';
+
+// Empat pintu masuk layanan, ditampilkan di Beranda, menu, dan halaman Layanan
+export const groups = [
+  { slug: 'website', title: 'Website', hook: 'Website yang membuat calon pelanggan percaya.', desc: 'Tampil profesional, terbuka cepat di ponsel, mudah ditemukan di Google, dan mengarahkan pengunjung untuk menghubungi Anda.', who: 'UMKM, company profile, toko online, institusi', items: ['web-development', 'ui-ux-design'] },
+  { slug: 'aplikasi', title: 'Aplikasi & Sistem', hook: 'Rapikan operasional bisnis dalam satu sistem.', desc: 'Ganti spreadsheet dan input berulang dengan aplikasi yang sesuai alur kerja tim Anda, lengkap dengan pendampingan setelah rilis.', who: 'Perusahaan, startup, sekolah, klinik', items: ['web-application', 'saas-development', 'system-integration', 'maintenance-support'] },
+  { slug: 'iot', title: 'IoT', hook: 'Pantau perangkat dan lokasi Anda dari ponsel.', desc: 'Sensor, perangkat, dan dasbor yang memberi kabar sebelum masalah kecil berubah menjadi kerugian.', who: 'Pabrik, gudang, pertanian, gedung', items: ['iot-embedded-system'] },
+  { slug: 'kreatif', title: 'Desain & Konten', hook: 'Konten promosi siap tayang, tanpa repot.', desc: 'Poster, banner, konten media sosial, label kemasan, video singkat, hingga undangan digital yang tampil rapi dan konsisten.', who: 'UMKM, brand lokal, acara dan komunitas', items: ['graphic-design', 'video-editing'] },
+];
+
+export const pains = [
+  { q: 'Website sudah ada, tetapi tidak ada yang menghubungi.', a: 'Kami rancang ulang agar meyakinkan dan mengarahkan pengunjung untuk menghubungi Anda.', to: 'website' },
+  { q: 'Data masih tersebar di Excel dan percakapan chat.', a: 'Kami satukan dalam satu aplikasi, sehingga laporan siap tanpa rekap manual.', to: 'aplikasi' },
+  { q: 'Kerusakan perangkat baru ketahuan setelah terlambat.', a: 'Sensor dan notifikasi kami pasang agar Anda tahu lebih dulu.', to: 'iot' },
+  { q: 'Konten promosi tidak konsisten dan kurang menarik.', a: 'Kami siapkan desain dan video yang seragam dan siap diposting.', to: 'kreatif' },
+];
+
+export const faqs = [
+  { q: 'Berapa lama proses pengerjaannya?', a: 'Tergantung lingkup pekerjaan. Website profil umumnya lebih singkat dibanding aplikasi atau sistem IoT. Estimasi waktu yang jelas kami sampaikan setelah konsultasi awal.' },
+  { q: 'Berapa biaya yang perlu saya siapkan?', a: 'Biaya disesuaikan dengan kebutuhan Anda. Setelah memahami lingkupnya, kami kirimkan penawaran tertulis yang merinci pekerjaan dan biayanya.' },
+  { q: 'Apa yang perlu saya siapkan sebelum konsultasi?', a: 'Cukup gambaran singkat tentang bisnis Anda, masalah yang ingin diselesaikan, dan hasil yang diharapkan. Brief yang rapi tidak diperlukan.' },
+  { q: 'Apakah saya bisa memantau perkembangan pekerjaan?', a: 'Bisa. Hasil kerja kami rilis bertahap ke lingkungan uji, sehingga Anda dapat mencoba dan memberi masukan di setiap tahap.' },
+  { q: 'Bagaimana jika ada kendala setelah peluncuran?', a: 'Kami menyediakan layanan Maintenance & Support untuk pemantauan, pembaruan keamanan, dan perbaikan setelah produk berjalan.' },
+  { q: 'Apakah bisa memesan desain atau video saja?', a: 'Bisa. Layanan Desain & Konten dapat dipesan terpisah, misalnya poster, konten media sosial, label kemasan, atau undangan digital.' },
+];
+
+export const groupOf = (slug) => groups.find((g) => g.items.includes(slug));

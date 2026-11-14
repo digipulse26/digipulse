@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { ArrowRight, MessageCircle } from 'lucide-react';
+import { WHATSAPP, WA_TEXT } from '../data';
 
 // Kartu 3D yang miring mengikuti kursor (efek AR/VR). Tidak aktif di layar sentuh / reduced motion.
 export function Tilt({ children, className = '', max = 10, as: Tag = 'div', ...rest }) {
@@ -107,11 +108,40 @@ export function CtaBand({ title = 'Siap mewujudkan ide Anda?', text = 'Tidak per
         <div className="md:col-span-4 reveal" style={{ '--d': '120ms' }}>
           <p className="text-slate-400 leading-relaxed">{text}</p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link to="/kontak" className="btn btn-primary">Ceritakan ide Anda <ArrowRight className="w-4 h-4" /></Link>
+            <ConsultLink className="btn btn-primary">Konsultasi Sekarang <ArrowRight className="w-4 h-4" /></ConsultLink>
             <Link to="/portofolio" className="btn btn-ghost">Lihat portofolio</Link>
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+export const waHref = WHATSAPP ? `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(WA_TEXT)}` : '';
+
+// Satu ajakan yang konsisten: ke WhatsApp bila nomornya diisi, selain itu ke halaman Kontak
+export function ConsultLink({ children, className = '', ...rest }) {
+  return waHref
+    ? <a href={waHref} target="_blank" rel="noopener noreferrer" className={className} {...rest}>{children}</a>
+    : <Link to="/kontak" className={className} {...rest}>{children}</Link>;
+}
+
+// Tombol konsultasi mengambang, muncul setelah pengunjung mulai menggulir
+export function FloatCta() {
+  const { pathname } = useLocation();
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    const on = () => setShow(window.scrollY > 500);
+    on();
+    window.addEventListener('scroll', on, { passive: true });
+    return () => window.removeEventListener('scroll', on);
+  }, [pathname]);
+  if (pathname === '/kontak') return null;
+  return (
+    <div className={`fixed z-40 right-4 sm:right-6 bottom-[max(1rem,env(safe-area-inset-bottom))] transition-all duration-500 ${show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6 pointer-events-none'}`}>
+      <ConsultLink className="btn btn-primary shadow-[0_12px_32px_-12px_rgba(0,0,0,.8)] !py-3.5" aria-label="Konsultasi sekarang">
+        <MessageCircle className="w-4 h-4" /> Konsultasi
+      </ConsultLink>
+    </div>
   );
 }

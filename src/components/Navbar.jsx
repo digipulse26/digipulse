@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import { services } from '../data';
+import { services, groups } from '../data';
+import { ConsultLink } from './fx';
 import logo from '../images/Logo.png';
 
 const links = [
@@ -41,13 +42,18 @@ export default function Navbar() {
             <div key={l.to} className="relative group">
               <NavLink to={l.to} className={cls}>{l.label}</NavLink>
               <div className="absolute left-0 top-full pt-4 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200">
-                <div className="w-72 py-2 panel bg-secondary shadow-2xl">
-                  {services.map((s) => (
-                    <Link key={s.slug} to={`/layanan/${s.slug}`} className="flex items-baseline gap-3 px-4 py-2 text-sm text-slate-300 hover:bg-white/5 hover:text-white">
-                      <span className="mono text-[11px] text-slate-500">{s.no}</span>{s.title}
-                    </Link>
+                <div className="w-[34rem] p-5 panel bg-secondary shadow-2xl grid grid-cols-2 gap-x-6 gap-y-5">
+                  {groups.map((g) => (
+                    <div key={g.slug}>
+                      <p className="mono text-[11px] uppercase tracking-wide text-slate-500">{g.title}</p>
+                      <div className="mt-2 flex flex-col">
+                        {g.items.map((slug) => { const sv = services.find((x) => x.slug === slug); return (
+                          <Link key={slug} to={`/layanan/${slug}`} className="py-1 text-sm text-slate-300 hover:text-white">{sv.title}</Link>
+                        ); })}
+                      </div>
+                    </div>
                   ))}
-                  <Link to="/layanan" className="mt-1 mx-2 flex items-center justify-between px-2 pt-3 pb-1 border-t rule text-sm text-primary-soft hover:text-white">Semua layanan <ArrowRight className="w-4 h-4" /></Link>
+                  <Link to="/layanan" className="col-span-2 pt-4 border-t rule flex items-center justify-between text-sm text-primary-soft hover:text-white">Lihat semua layanan <ArrowRight className="w-4 h-4" /></Link>
                 </div>
               </div>
             </div>
@@ -57,7 +63,7 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link to="/kontak" className="btn btn-primary hidden sm:inline-flex !py-2.5 !px-4 !text-sm">Mulai Konsultasi <ArrowRight className="w-4 h-4" /></Link>
+          <ConsultLink className="btn btn-primary hidden sm:inline-flex !py-2.5 !px-4 !text-sm">Konsultasi Sekarang <ArrowRight className="w-4 h-4" /></ConsultLink>
           <button className="lg:hidden h-10 px-4 text-sm border rule rounded-full hover:border-white/30 transition-colors" onClick={() => setOpen(!open)} aria-label={open ? 'Tutup menu' : 'Buka menu'} aria-expanded={open}>
             {open ? "Tutup" : "Menu"}
           </button>
@@ -73,7 +79,7 @@ export default function Navbar() {
               </NavLink>
             ))}
           </nav>
-          <Link to="/kontak" className="btn btn-primary mt-8 w-full justify-between">Mulai Konsultasi <ArrowRight className="w-4 h-4" /></Link>
+          <ConsultLink className="btn btn-primary mt-8 w-full justify-between">Konsultasi Sekarang <ArrowRight className="w-4 h-4" /></ConsultLink>
         </div>
       )}
     </header>

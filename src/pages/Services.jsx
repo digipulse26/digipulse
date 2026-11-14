@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, useParams, Navigate } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
-import { services, steps, tools } from '../data';
-import { Marquee, CtaBand, Rules, Label } from '../components/fx';
+import { services, steps, tools, groups, groupOf } from '../data';
+import { Marquee, CtaBand, Rules, Label, ConsultLink } from '../components/fx';
 
 export function Kinetic({ text, wave = false, className = '' }) {
   return (
@@ -22,7 +22,7 @@ export function ServicesPage() {
       <section className="relative overflow-hidden pt-36 pb-14">
         <Rules />
         <div className="relative max-w-7xl mx-auto px-6">
-          <Label n={`0${services.length}`}>Layanan</Label>
+          <Label n={`0${groups.length}`}>Kelompok layanan</Label>
           <h1 className="mt-6 font-bold tracking-[-0.05em] leading-[0.85] text-[18vw] md:text-[12rem]">
             <span className="glitch auto" data-text="Layanan"><Kinetic text="Layanan" wave /></span>
           </h1>
@@ -38,14 +38,28 @@ export function ServicesPage() {
         <Marquee items={['Web', 'Aplikasi', 'SaaS', 'UI/UX', 'API', 'IoT', 'Desain', 'Video']} />
       </div>
 
-      <section className="max-w-7xl mx-auto px-6 py-16">
-        {services.map((s) => (
-          <Link key={s.slug} to={`/layanan/${s.slug}`} className="svc-row reveal group grid grid-cols-12 gap-4 items-baseline py-8 border-b rule">
-            <span className="col-span-2 md:col-span-1 mono text-xs text-slate-500">{s.no}</span>
-            <h2 className="svc-title col-span-10 md:col-span-6 text-[2.4rem] leading-none md:text-6xl font-bold"><span className="fill glitch" data-text={s.title}>{s.title}</span></h2>
-            <p className="col-span-12 md:col-span-4 text-slate-400 leading-relaxed">{s.short}</p>
-            <ArrowUpRight className="hidden md:block col-span-1 justify-self-end w-6 h-6 text-slate-500 group-hover:text-white transition-all group-hover:translate-x-1 group-hover:-translate-y-1" />
-          </Link>
+      <section className="max-w-7xl mx-auto px-6 py-16 md:py-24">
+        {groups.map((g, gi) => (
+          <div key={g.slug} id={g.slug} className="scroll-mt-28 grid md:grid-cols-12 gap-6 md:gap-10 py-14 border-b rule first:pt-0">
+            <div className="md:col-span-4 reveal">
+              <div className="md:sticky md:top-28">
+                <span className="mono text-xs text-primary-soft">0{gi + 1} / 0{groups.length}</span>
+                <h2 className="mt-4 text-4xl md:text-5xl leading-[1.02]">{g.title}</h2>
+                <p className="mt-4 text-xl text-white leading-snug">{g.hook}</p>
+                <p className="mt-4 text-slate-400 leading-relaxed">{g.desc}</p>
+                <p className="mt-4 text-sm text-slate-500">Cocok untuk: <span className="text-slate-300">{g.who}</span></p>
+              </div>
+            </div>
+            <div className="md:col-span-8 border-t rule">
+              {g.items.map((slug) => { const s = services.find((x) => x.slug === slug); return (
+                <Link key={slug} to={`/layanan/${slug}`} className="svc-row reveal group grid grid-cols-12 gap-4 items-baseline py-7 border-b rule last:border-b-0">
+                  <h3 className="svc-title col-span-12 md:col-span-7 text-[2.1rem] leading-none md:text-5xl font-bold"><span className="fill glitch" data-text={s.title}>{s.title}</span></h3>
+                  <p className="col-span-11 md:col-span-4 text-slate-400 leading-relaxed">{s.short}</p>
+                  <ArrowUpRight className="col-span-1 justify-self-end w-6 h-6 text-slate-500 group-hover:text-white transition-all group-hover:translate-x-1 group-hover:-translate-y-1" />
+                </Link>
+              ); })}
+            </div>
+          </div>
         ))}
       </section>
       <CtaBand />
@@ -60,6 +74,7 @@ export function ServiceDetail() {
   const s = services[idx];
   const next = services[(idx + 1) % services.length];
   const [first, ...rest] = s.title.split(' ');
+  const g = groupOf(s.slug);
   return (
     <div key={slug}>
       <section className="relative overflow-hidden pt-36 pb-14">
@@ -67,7 +82,7 @@ export function ServiceDetail() {
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-6 mono text-xs text-slate-500">
             <Link to="/layanan" className="hover:text-white">← Semua layanan</Link>
-            <span>{s.no} / 0{services.length}</span>
+            {g && <Link to={`/layanan#${g.slug}`} className="hover:text-white">{g.title}</Link>}
           </div>
           <h1 className="mt-10 font-bold tracking-[-0.05em] leading-[0.9] text-[14vw] md:text-[9rem] break-words">
             <span className="glitch auto" data-text={first}><Kinetic text={first} wave /></span>
@@ -75,8 +90,9 @@ export function ServiceDetail() {
           </h1>
           <div className="mt-10 pt-6 border-t rule grid md:grid-cols-12 gap-6 items-end">
             <p className="md:col-span-6 text-xl text-slate-300 leading-relaxed">{s.desc}</p>
-            <div className="md:col-span-4 md:col-start-9 md:justify-self-end">
-              <Link to="/kontak" className="btn btn-primary">Konsultasikan layanan ini <ArrowRight className="w-4 h-4" /></Link>
+            <div className="md:col-span-5 md:col-start-8 md:justify-self-end md:text-right">
+              <ConsultLink className="btn btn-primary">Konsultasikan layanan ini <ArrowRight className="w-4 h-4" /></ConsultLink>
+              <p className="mt-3 text-sm text-slate-500">Progres dapat dipantau · Pendampingan setelah rilis</p>
             </div>
           </div>
         </div>

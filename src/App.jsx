@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollProgress from './components/ScrollProgress';
+import { FloatCta } from './components/fx';
 import Home from './pages/Home';
 const About = lazy(() => import('./pages/About'));
 const ServicesPage = lazy(() => import('./pages/Services').then(m => ({ default: m.ServicesPage })));
@@ -14,8 +15,17 @@ const Contact = lazy(() => import('./pages/Contact'));
 import { useRevealAll } from './hooks';
 
 function Shell() {
-  const { pathname } = useLocation();
-  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (!hash) { window.scrollTo(0, 0); return; }
+    // Tautan seperti /layanan#website: tunggu halaman (lazy) selesai dimuat, lalu gulir ke bagiannya
+    let tries = 0;
+    const id = setInterval(() => {
+      const el = document.getElementById(decodeURIComponent(hash.slice(1)));
+      if (el || ++tries > 20) { clearInterval(id); el?.scrollIntoView({ block: 'start' }); }
+    }, 100);
+    return () => clearInterval(id);
+  }, [pathname, hash]);
   // Panggil setelah halaman baru dirender
   useRevealAll();
   return (
@@ -38,6 +48,7 @@ function Shell() {
         </Suspense>
       </main>
       <Footer />
+      <FloatCta />
     </div>
   );
 }
