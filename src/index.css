@@ -58,14 +58,14 @@ h1, h2, h3, .display { font-family: 'Bricolage Grotesque', 'Geist', system-ui, s
 /* Kata aksen: serif miring, bukan gradien */
 .serif { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: -0.01em; color: var(--gc, rgb(var(--accent-soft))); }
 /* Teks bergradasi warna logo, hanya untuk frasa kunci */
-.group:hover .hover-grad { color: rgb(var(--accent)); -webkit-text-stroke: 0; }
+.group:hover .hover-grad { color: rgb(var(--accent-soft)); }
 .grad-text { color: rgb(var(--accent)) !important; }
 /* Bagian terang untuk memecah ritme gelap */
 .light { background: #F4F1EA; color: #0C0C10; }
 .light .rule { border-color: rgb(12 12 16 / .14); }
 .light .label { color: #6B6870; }
 .light .serif { color: #DB2777; }
-.outline-text { -webkit-text-stroke: 1.2px rgb(var(--foreground) / 0.3); color: transparent; }
+.outline-text { color: rgb(var(--foreground)); }
 
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: rgb(var(--background)); }
@@ -175,11 +175,12 @@ h1, h2, h3, .display { font-family: 'Bricolage Grotesque', 'Geist', system-ui, s
 @keyframes gl2 { 0% { transform: translate(3px, -1px); } 25% { transform: translate(-3px, 2px); } 50% { transform: translate(2px, -2px); } 75% { transform: translate(-4px, 0); } 100% { transform: translate(3px, 1px); } }
 .svc-row { transition: padding .35s ease, background .35s ease; }
 .svc-row:hover { padding-left: 1rem; }
-.svc-title { -webkit-text-stroke: 1.2px rgb(var(--foreground) / .45); color: transparent; transition: -webkit-text-stroke-color .3s; }
-.svc-title .fill { background: linear-gradient(var(--gc, rgb(var(--foreground))), var(--gc, rgb(var(--foreground)))) no-repeat left / 0% 100%; -webkit-background-clip: text; background-clip: text; transition: background-size .55s cubic-bezier(.2,.8,.2,1); }
-.svc-row:hover .svc-title .fill { background-size: 100% 100%; }
-/* Layar sentuh tidak punya hover: judul langsung terisi agar mudah dibaca */
-@media (hover: none) { .svc-title .fill { background-size: 100% 100%; } }
+.svc-title { color: rgb(var(--foreground)); }
+/* Judul sudah putih solid sejak awal; saat disorot, warna bidangnya menyapu dari kiri */
+.svc-title .fill { background: linear-gradient(var(--gc, rgb(var(--accent-soft))), var(--gc, rgb(var(--accent-soft)))) no-repeat left / 0% 100%, linear-gradient(rgb(var(--foreground)), rgb(var(--foreground))); -webkit-background-clip: text; background-clip: text; color: transparent; transition: background-size .55s cubic-bezier(.2,.8,.2,1); }
+.svc-row:hover .svc-title .fill { background-size: 100% 100%, 100% 100%; }
+/* Layar sentuh tidak punya hover: judul langsung berwarna bidangnya */
+@media (hover: none) { .svc-title .fill { background-size: 100% 100%, 100% 100%; } }
 
 /* ---------- AR / VR motion graphics ---------- */
 .scene { perspective: 1100px; perspective-origin: 50% 40%; }
@@ -267,14 +268,14 @@ h1, h2, h3, .display { font-family: 'Bricolage Grotesque', 'Geist', system-ui, s
 .vr-rig { transform-style: preserve-3d; transform: rotateY(calc(var(--mx, 0) * 22deg)) rotateX(calc(var(--my, 0) * -12deg)); }
 .grid-floor { translate: calc(var(--mx, 0) * -48px) 0; }
 /* Kata yang menyala bergiliran */
-.cycle { color: rgb(71 85 105); animation: cyc 8s infinite; animation-delay: calc(var(--i) * 2s); }
-@keyframes cyc { 0% { color: rgb(71 85 105); } 3%, 25% { color: var(--cc, rgb(var(--foreground))); } 29%, 100% { color: rgb(71 85 105); } }
+.cycle { color: rgb(148 163 184); animation: cyc 8s infinite; animation-delay: calc(var(--i) * 2s); }
+@keyframes cyc { 0% { color: rgb(148 163 184); } 3%, 25% { color: var(--cc, rgb(var(--foreground))); } 29%, 100% { color: rgb(148 163 184); } }
 /* Pergantian visual: tirai terbuka */
 .swap-in { animation: swapIn .8s cubic-bezier(.7,0,.2,1) both; }
 @keyframes swapIn { from { clip-path: inset(0 0 100% 0); transform: translateY(16px) scale(.98); } to { clip-path: inset(0 0 0 0); transform: none; } }
 /* Angka besar bergaris yang terisi saat disorot */
-.num-outline { -webkit-text-stroke: 1px rgb(var(--foreground) / .35); color: transparent; transition: color .4s, -webkit-text-stroke-color .4s; }
-.num-outline { -webkit-text-stroke-color: var(--gc, rgb(var(--foreground) / .35)); }
+.num-outline { -webkit-text-stroke: 1.5px rgb(var(--foreground) / .7); color: transparent; transition: color .4s, -webkit-text-stroke-color .4s; }
+.num-outline { -webkit-text-stroke-color: var(--gc, rgb(var(--foreground) / .7)); }
 .group:hover .num-outline, .num-outline.on { color: var(--gc, rgb(var(--primary-soft))); -webkit-text-stroke-color: transparent; }
 .packet { position: absolute; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 9999px; background: rgb(var(--primary-soft)); box-shadow: 0 0 0 4px rgb(var(--primary-soft) / .25); animation: packet .9s cubic-bezier(.6,0,.3,1) both; }
 @keyframes packet { from { left: var(--fx); top: var(--fy); } to { left: 50%; top: 50%; opacity: .2; } }

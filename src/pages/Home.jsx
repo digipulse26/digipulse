@@ -45,7 +45,7 @@ function Scrolly() {
           <div className="max-w-7xl mx-auto">
             <div className="h-px bg-white/10"><div className="scrolly-bar h-full bg-primary-soft" /></div>
             <ol className="mt-3 hidden sm:grid grid-cols-4 gap-2 mono text-[10px] sm:text-xs uppercase tracking-wide">
-              {chapters.map((c, i) => <li key={c.k} className={`truncate transition-colors duration-500 ${active === i ? 'text-white' : 'text-slate-600'}`}>0{i + 1} {c.k}</li>)}
+              {chapters.map((c, i) => <li key={c.k} className={`truncate transition-colors duration-500 ${active === i ? 'text-white' : 'text-slate-400'}`}>0{i + 1} {c.k}</li>)}
             </ol>
           </div>
         </div>
@@ -109,8 +109,8 @@ function Groups() {
               <li key={x.slug} id={`layanan-${x.slug}`} className="scroll-mt-28 border-b rule" style={{ '--gc': x.color }}>
                 <button type="button" onMouseEnter={() => pick(i)} onFocus={() => pick(i)} onClick={() => pick(i)} aria-expanded={cur === i}
                   className="w-full text-left py-6 flex items-baseline gap-5 group">
-                  <span className="mono text-xs transition-colors" style={{ color: cur === i ? x.color : undefined }}><span className={cur === i ? '' : 'text-slate-600'}>0{i + 1}</span></span>
-                  <span className={`display text-[2rem] md:text-5xl leading-none transition-all duration-500 ${cur === i ? 'translate-x-2' : 'text-slate-600 group-hover:text-slate-300'}`} style={{ color: cur === i ? x.color : undefined }}>{x.title}</span>
+                  <span className="mono text-xs transition-colors" style={{ color: cur === i ? x.color : undefined }}><span className={cur === i ? '' : 'text-slate-400'}>0{i + 1}</span></span>
+                  <span className={`display text-[2rem] md:text-5xl leading-none transition-all duration-500 ${cur === i ? 'translate-x-2' : 'text-slate-300 group-hover:text-white'}`} style={{ color: cur === i ? x.color : undefined }}>{x.title}</span>
                 </button>
                 <div className="lg:hidden grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(.2,.8,.2,1)]" style={{ gridTemplateRows: cur === i ? '1fr' : '0fr' }}>
                   <div className="overflow-hidden">

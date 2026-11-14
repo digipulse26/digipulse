@@ -66,7 +66,7 @@ export default function About() {
               {roles.map((r, i) => (
                 <React.Fragment key={r}>
                   <span className="cycle inline-block transition-transform duration-300 hover:-translate-y-2" style={{ '--i': i, '--cc': palette[i] }}>{r}</span>
-                  {i < roles.length - 1 && <span className="serif text-slate-600"> + </span>}
+                  {i < roles.length - 1 && <span className="serif text-slate-400"> + </span>}
                 </React.Fragment>
               ))}
             </p>
