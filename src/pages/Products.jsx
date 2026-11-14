@@ -8,7 +8,7 @@ import { StageHead } from './Portfolio';
 export default function Products() {
   return (
     <>
-      <StageHead label="Produk digital" text="Solusi yang kami kembangkan agar aktivitas sehari-hari lebih ringkas dan terorganisasi. Kenali produk yang sudah tersedia maupun yang sedang kami siapkan.">
+      <StageHead label="Produk digital" text="Perangkat lunak yang kami kembangkan untuk membantu pekerjaan sehari-hari. Sebagian sudah dapat digunakan, sebagian lainnya masih dalam tahap pengembangan.">
         Produk untuk menunjang <span className="serif">pekerjaan harian</span> Anda.
       </StageHead>
 

@@ -24,7 +24,7 @@ export default function Contact() {
         <div className="lg:col-span-5">
           <Label className="page-enter">Mulai percakapan</Label>
           <h1 className="mt-8 text-[2.75rem] sm:text-6xl leading-[0.98] page-enter" style={{ animationDelay: '80ms' }}>Ceritakan apa yang sedang <span className="serif">Anda kerjakan.</span></h1>
-          <p className="mt-8 text-lg text-slate-300 leading-relaxed page-enter" style={{ animationDelay: '160ms' }}>Anda tidak perlu menyiapkan brief yang sempurna. Bagikan konteks, kendala, dan hasil yang diharapkan, lalu kami bantu merumuskan langkah berikutnya.</p>
+          <p className="mt-8 text-lg text-slate-300 leading-relaxed page-enter" style={{ animationDelay: '160ms' }}>Sampaikan gambaran kebutuhan, kendala yang dihadapi, dan hasil yang Anda harapkan. Kami akan menindaklanjutinya dengan rekomendasi langkah yang sesuai.</p>
           <dl className="mt-12 border-t rule page-enter" style={{ animationDelay: '240ms' }}>
             <div className="py-5 border-b rule grid grid-cols-3 gap-4">
               <dt className="text-sm text-slate-500 pt-0.5">Email</dt>
@@ -41,7 +41,7 @@ export default function Contact() {
           <form onSubmit={submit} className="rounded-2xl border border-white/10 bg-secondary/60 backdrop-blur-sm p-6 sm:p-9 space-y-7">
             <div>
               <h2 className="text-2xl">Kirim pesan</h2>
-              <p className="mt-1.5 text-sm text-slate-400">Cukup isi singkat, kami akan menghubungi Anda kembali.</p>
+              <p className="mt-1.5 text-sm text-slate-400">Kami akan menghubungi Anda melalui email yang tercantum.</p>
             </div>
 
             <fieldset>
@@ -60,10 +60,10 @@ export default function Contact() {
               <label className="block"><span className="text-sm text-slate-300">Nama</span><input required value={f.name} onChange={set('name')} className={field} placeholder="Nama lengkap" autoComplete="name" /></label>
               <label className="block"><span className="text-sm text-slate-300">Email</span><input required type="email" value={f.email} onChange={set('email')} className={field} placeholder="nama@email.com" autoComplete="email" /></label>
             </div>
-            <label className="block"><span className="text-sm text-slate-300">Pesan</span><textarea required rows={5} value={f.msg} onChange={set('msg')} className={`${field} resize-none`} placeholder="Ceritakan singkat apa yang ingin Anda bangun dan kendala yang sedang dihadapi." /></label>
+            <label className="block"><span className="text-sm text-slate-300">Pesan</span><textarea required rows={5} value={f.msg} onChange={set('msg')} className={`${field} resize-none`} placeholder="Jelaskan secara singkat kebutuhan Anda dan kendala yang sedang dihadapi." /></label>
 
             <div className="pt-2 flex flex-col-reverse sm:flex-row sm:items-center justify-between gap-4">
-              <p className="text-xs text-slate-500 sm:max-w-[15rem]">Pesan akan dibuka di aplikasi email Anda dan siap dikirim.</p>
+              <p className="text-xs text-slate-500 sm:max-w-[15rem]">Formulir ini akan membuka aplikasi email Anda dengan pesan yang telah terisi.</p>
               <button type="submit" className="btn btn-primary justify-center shrink-0 whitespace-nowrap">Kirim Pesan <ArrowRight className="w-4 h-4" /></button>
             </div>
           </form>

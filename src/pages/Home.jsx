@@ -6,13 +6,13 @@ import { useScrollyProgress } from '../hooks';
 import { Marquee, CtaBand, Rules, Label, ConsultLink } from '../components/fx';
 
 const chapters = [
-  { k: 'Dengar', t: 'Setiap proyek kami mulai dengan mendengarkan Anda.', d: 'Sebelum merancang apa pun, kami memahami bisnis Anda terlebih dahulu: siapa penggunanya, kendala yang dihadapi, dan hasil yang ingin dicapai.' },
-  { k: 'Rancang', t: 'Arah yang jelas sebelum pekerjaan dimulai.', d: 'Kebutuhan Anda kami petakan menjadi alur pengguna, struktur halaman, dan prioritas fitur, sehingga setiap keputusan dapat Anda tinjau sejak awal.' },
-  { k: 'Bangun', t: 'Dikerjakan bertahap, dapat Anda pantau kapan saja.', d: 'Hasil kerja kami rilis secara berkala ke lingkungan uji. Anda melihat kemajuan yang nyata, tanpa kejutan di akhir proyek.' },
-  { k: 'Dampingi', t: 'Setelah peluncuran, kami tetap mendampingi.', d: 'Domain, pemantauan, dan perbaikan lanjutan kami siapkan agar produk Anda terus berjalan dengan baik dan berkembang sesuai kebutuhan.' },
+  { k: 'Memahami', t: 'Kami memulai dengan memahami kebutuhan Anda.', d: 'Sebelum merancang, kami mempelajari model bisnis, pengguna, serta kendala yang sedang dihadapi, agar usulan kami tepat sasaran.' },
+  { k: 'Merancang', t: 'Rencana kerja disepakati sejak awal.', d: 'Kebutuhan dituangkan ke dalam alur pengguna, struktur halaman, dan prioritas fitur. Setiap keputusan dapat Anda tinjau sebelum pengembangan dimulai.' },
+  { k: 'Membangun', t: 'Pengembangan dilakukan secara bertahap.', d: 'Hasil pekerjaan kami unggah secara berkala ke lingkungan uji, sehingga Anda dapat mencoba dan memberikan masukan sepanjang proses.' },
+  { k: 'Mendampingi', t: 'Pendampingan berlanjut setelah peluncuran.', d: 'Kami membantu konfigurasi domain dan pemantauan, serta menyediakan perbaikan dan pengembangan lanjutan sesuai kebutuhan.' },
 ];
 
-const trust = ['Progres dapat dipantau setiap tahap', 'Pendampingan setelah rilis', 'Desain hingga sistem dalam satu tim'];
+const trust = ['Perkembangan proyek dapat Anda pantau', 'Pendampingan setelah peluncuran', 'Desain dan pengembangan dalam satu tim'];
 
 function Scrolly() {
   const [ref, active] = useScrollyProgress(chapters.length);
@@ -52,13 +52,13 @@ function Pains() {
     <section className="px-6 py-24 md:py-32 border-t rule">
       <div className="max-w-7xl mx-auto">
         <div className="reveal max-w-3xl">
-          <Label>Apakah ini terdengar familiar?</Label>
-          <h2 className="mt-6 text-4xl md:text-6xl leading-[1.02]">Masalah yang sering dialami bisnis, dan cara kami <span className="serif">menyelesaikannya.</span></h2>
+          <Label>Kendala yang sering kami tangani</Label>
+          <h2 className="mt-6 text-4xl md:text-6xl leading-[1.02]">Beberapa kendala yang paling sering kami <span className="serif">bantu atasi.</span></h2>
         </div>
         <div className="mt-14 grid md:grid-cols-2 border-t rule">
           {pains.map((p, i) => (
             <a key={p.q} href={`#layanan-${p.to}`} style={{ '--d': `${(i % 2) * 100}ms` }} className={`reveal group block py-10 border-b rule ${i % 2 === 0 ? 'md:pr-12 md:border-r' : 'md:pl-12'}`}>
-              <p className="display text-2xl md:text-[1.75rem] leading-snug text-white">“{p.q}”</p>
+              <p className="display text-2xl md:text-[1.75rem] leading-snug text-white">{p.q}</p>
               <p className="mt-4 text-slate-400 leading-relaxed flex gap-3"><ArrowRight className="w-4 h-4 mt-1 shrink-0 text-primary-soft transition-transform group-hover:translate-x-1" />{p.a}</p>
             </a>
           ))}
@@ -75,9 +75,9 @@ function Groups() {
         <div className="grid md:grid-cols-12 gap-8 items-end reveal">
           <div className="md:col-span-7">
             <Label>Layanan</Label>
-            <h2 className="mt-6 text-4xl md:text-6xl leading-[1.02]">Empat cara kami membantu bisnis Anda <span className="serif">tumbuh.</span></h2>
+            <h2 className="mt-6 text-4xl md:text-6xl leading-[1.02]">Layanan kami terbagi dalam <span className="serif">empat bidang.</span></h2>
           </div>
-          <p className="md:col-span-4 md:col-start-9 text-slate-400 leading-relaxed">Mulai dari satu kebutuhan. Bila bisnis Anda berkembang, layanan lain siap menyusul tanpa perlu berganti tim.</p>
+          <p className="md:col-span-4 md:col-start-9 text-slate-400 leading-relaxed">Anda dapat memulai dari satu kebutuhan. Ketika usaha berkembang, layanan lain dapat ditambahkan bersama tim yang sama.</p>
         </div>
         <div className="mt-14 border-t rule">
           {groups.map((g, i) => (
@@ -89,7 +89,7 @@ function Groups() {
               </div>
               <div className="md:col-span-6">
                 <p className="text-slate-400 leading-relaxed">{g.desc}</p>
-                <p className="mt-4 text-sm text-slate-500">Cocok untuk: <span className="text-slate-300">{g.who}</span></p>
+                <p className="mt-4 text-sm text-slate-500">Sesuai untuk: <span className="text-slate-300">{g.who}</span></p>
                 <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
                   {g.items.map((slug) => { const s = services.find((x) => x.slug === slug); return (
                     <Link key={slug} to={`/layanan/${slug}`} className="link text-sm">{s.title} <ArrowUpRight className="w-3.5 h-3.5" /></Link>
@@ -110,10 +110,10 @@ function Faq() {
       <div className="max-w-7xl mx-auto grid md:grid-cols-12 gap-10">
         <div className="md:col-span-4 reveal">
           <div className="md:sticky md:top-28">
-            <Label>Pertanyaan umum</Label>
-            <h2 className="mt-6 text-4xl md:text-5xl leading-[1.02]">Sebelum Anda <span className="serif">menghubungi kami.</span></h2>
-            <p className="mt-6 text-slate-400 leading-relaxed">Belum menemukan jawabannya? Tanyakan langsung, kami dengan senang hati menjelaskan.</p>
-            <ConsultLink className="link mt-6 text-sm">Tanyakan langsung <ArrowUpRight className="w-4 h-4" /></ConsultLink>
+            <Label>Pertanyaan yang sering diajukan</Label>
+            <h2 className="mt-6 text-4xl md:text-5xl leading-[1.02]">Informasi sebelum <span className="serif">memulai.</span></h2>
+            <p className="mt-6 text-slate-400 leading-relaxed">Apabila pertanyaan Anda belum terjawab, silakan hubungi kami secara langsung.</p>
+            <ConsultLink className="link mt-6 text-sm">Hubungi kami <ArrowUpRight className="w-4 h-4" /></ConsultLink>
           </div>
         </div>
         <div className="md:col-span-7 md:col-start-6 border-t rule">
@@ -133,24 +133,24 @@ function Faq() {
 }
 
 export default function Home() {
-  const words = ['Bisnis', 'Anda', 'layak', 'terlihat'];
+  const words = ['Teknologi', 'yang', 'bekerja', 'untuk'];
   return (
     <>
       <section className="relative min-h-[100svh] flex flex-col justify-end overflow-hidden pt-32">
         <Rules />
         <div className="relative max-w-7xl mx-auto px-6 w-full pb-12">
-          <Label className="page-enter">Studio digital untuk UMKM, perusahaan &amp; institusi</Label>
+          <Label className="page-enter">Studio pengembangan digital &amp; IoT</Label>
           <h1 className="mt-8 text-[3.1rem] sm:text-7xl lg:text-[8.25rem] leading-[0.95] font-semibold">
             {words.map((w, i) => <React.Fragment key={w}><span className="word"><span style={{ '--d': `${i * 90}ms` }}>{w}</span></span>{' '}</React.Fragment>)}
-            <span className="word"><span className="serif" style={{ '--d': '420ms' }}>meyakinkan.</span></span>
+            <span className="word"><span className="serif" style={{ '--d': '420ms' }}>bisnis Anda.</span></span>
           </h1>
           <div className="mt-12 grid md:grid-cols-12 gap-8 items-end">
             <p className="md:col-span-6 text-lg md:text-xl text-slate-300 leading-relaxed page-enter" style={{ animationDelay: '500ms' }}>
-              Kami membangun website, aplikasi, sistem IoT, dan konten promosi yang membantu bisnis Anda <span className="text-white">dipercaya, ditemukan, dan dihubungi</span> calon pelanggan.
+              DigiPulse membantu bisnis dan institusi membangun website, aplikasi, sistem IoT, dan materi promosi, mulai dari perencanaan hingga <span className="text-white">pendampingan setelah peluncuran.</span>
             </p>
             <div className="md:col-span-5 md:col-start-8 flex flex-wrap gap-3 md:justify-end page-enter" style={{ animationDelay: '650ms' }}>
               <ConsultLink className="btn btn-primary">Konsultasi Sekarang <ArrowRight className="w-4 h-4" /></ConsultLink>
-              <Link to="/portofolio" className="btn btn-ghost">Lihat Karya Kami</Link>
+              <Link to="/portofolio" className="btn btn-ghost">Lihat Portofolio</Link>
             </div>
           </div>
           <ul className="mt-14 pt-5 border-t rule flex flex-col sm:flex-row sm:flex-wrap gap-x-8 gap-y-2 text-sm text-slate-400 page-enter" style={{ animationDelay: '800ms' }}>
@@ -169,10 +169,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="reveal flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
             <div>
-              <Label>Bukti kerja</Label>
-              <h2 className="mt-6 text-4xl md:text-6xl leading-[1.02]">Hasil yang <span className="serif">terukur.</span></h2>
+              <Label>Portofolio</Label>
+              <h2 className="mt-6 text-4xl md:text-6xl leading-[1.02]">Contoh hasil <span className="serif">pekerjaan kami.</span></h2>
             </div>
-            <Link to="/portofolio" className="link self-start md:self-auto">Lihat semua portofolio <ArrowUpRight className="w-4 h-4" /></Link>
+            <Link to="/portofolio" className="link self-start md:self-auto">Lihat seluruh portofolio <ArrowUpRight className="w-4 h-4" /></Link>
           </div>
           <div className="grid md:grid-cols-12 gap-x-6 gap-y-14">
             {projects.slice(0, 2).map((p, i) => (
@@ -194,7 +194,7 @@ export default function Home() {
 
       <Scrolly />
       <Faq />
-      <CtaBand title="Siap membuat bisnis Anda lebih dipercaya?" text="Ceritakan kebutuhan Anda secara singkat. Kami bantu menentukan solusi yang paling tepat, lengkap dengan langkah dan estimasinya." />
+      <CtaBand title="Mari diskusikan kebutuhan usaha Anda." text="Sampaikan gambaran kebutuhan Anda. Kami akan membantu menentukan langkah yang sesuai, lengkap dengan estimasi waktu dan biayanya." />
     </>
   );
 }

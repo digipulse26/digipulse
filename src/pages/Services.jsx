@@ -28,7 +28,7 @@ export function ServicesPage() {
           </h1>
           <div className="mt-10 pt-6 border-t rule grid md:grid-cols-12 gap-6">
             <p className="md:col-span-6 text-lg text-slate-300 leading-relaxed">
-              Setiap bisnis memiliki tantangan yang berbeda. Kami membantu Anda menentukan apa yang perlu dibangun, lalu mengerjakannya melalui proses yang jelas dan efisien.
+              Layanan kami dikelompokkan ke dalam empat bidang. Silakan pilih bidang yang sesuai dengan kebutuhan Anda, atau hubungi kami untuk berdiskusi terlebih dahulu.
             </p>
           </div>
         </div>
@@ -47,7 +47,7 @@ export function ServicesPage() {
                 <h2 className="mt-4 text-4xl md:text-5xl leading-[1.02]">{g.title}</h2>
                 <p className="mt-4 text-xl text-white leading-snug">{g.hook}</p>
                 <p className="mt-4 text-slate-400 leading-relaxed">{g.desc}</p>
-                <p className="mt-4 text-sm text-slate-500">Cocok untuk: <span className="text-slate-300">{g.who}</span></p>
+                <p className="mt-4 text-sm text-slate-500">Sesuai untuk: <span className="text-slate-300">{g.who}</span></p>
               </div>
             </div>
             <div className="md:col-span-8 border-t rule">
@@ -92,7 +92,7 @@ export function ServiceDetail() {
             <p className="md:col-span-6 text-xl text-slate-300 leading-relaxed">{s.desc}</p>
             <div className="md:col-span-5 md:col-start-8 md:justify-self-end md:text-right">
               <ConsultLink className="btn btn-primary">Konsultasikan layanan ini <ArrowRight className="w-4 h-4" /></ConsultLink>
-              <p className="mt-3 text-sm text-slate-500">Progres dapat dipantau · Pendampingan setelah rilis</p>
+              <p className="mt-3 text-sm text-slate-500">Perkembangan dapat dipantau · Pendampingan setelah peluncuran</p>
             </div>
           </div>
         </div>
@@ -102,8 +102,8 @@ export function ServiceDetail() {
 
       <section className="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-12 gap-10">
         <div className="md:col-span-4 reveal">
-          <Label>Manfaat untuk Anda</Label>
-          <h2 className="mt-6 text-4xl md:text-5xl leading-[1.02]">Cakupan <span className="serif">pekerjaan.</span></h2>
+          <Label>Lingkup pekerjaan</Label>
+          <h2 className="mt-6 text-4xl md:text-5xl leading-[1.02]">Yang kami <span className="serif">kerjakan.</span></h2>
           <p className="mt-6 text-slate-400 leading-relaxed">{s.short}</p>
         </div>
         <ol className="md:col-span-7 md:col-start-6 border-t rule">

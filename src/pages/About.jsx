@@ -2,10 +2,10 @@ import React from 'react';
 import { Particles, CtaBand, Label } from '../components/fx';
 
 const values = [
-  { t: 'Fokus pada kebutuhan yang nyata', d: 'Kami memastikan terlebih dahulu apa yang benar-benar perlu dibangun, agar anggaran dan waktu Anda tidak terserap oleh fitur yang jarang digunakan.' },
+  { t: 'Berorientasi pada kebutuhan', d: 'Kami memastikan terlebih dahulu apa yang perlu dibangun, agar anggaran dan waktu Anda tidak terpakai untuk fitur yang jarang digunakan.' },
   { t: 'Sederhana untuk dikembangkan', d: 'Struktur kode dan sistem kami rancang agar mudah dipahami, diperbarui, dan dilanjutkan oleh siapa pun di kemudian hari.' },
   { t: 'Aman dan dapat diandalkan', d: 'Keamanan, performa, dan aksesibilitas kami periksa sebagai bagian wajib dari setiap pekerjaan, bukan sekadar tambahan di akhir.' },
-  { t: 'Kolaborasi yang terbuka', d: 'Anda selalu mengetahui perkembangan pekerjaan. Komunikasi kami jelas, keputusan dibahas bersama, dan tanpa istilah yang membingungkan.' },
+  { t: 'Kolaborasi yang terbuka', d: 'Perkembangan pekerjaan selalu kami informasikan. Setiap keputusan dibahas bersama dan dijelaskan dengan bahasa yang mudah dipahami.' },
 ];
 
 const scope = ['Website & aplikasi web', 'Produk SaaS', 'UI/UX', 'Integrasi sistem', 'IoT & perangkat', 'Desain grafis & video'];
@@ -21,11 +21,11 @@ export default function About() {
         <div className="relative z-10 max-w-7xl mx-auto px-6 pt-36 pb-16 w-full">
           <Label className="page-enter">Tentang DigiPulse</Label>
           <h1 className="mt-8 text-[2.75rem] sm:text-6xl md:text-[6.5rem] leading-[0.98] max-w-5xl page-enter" style={{ animationDelay: '80ms' }}>
-            Teknologi yang bekerja untuk <span className="serif">kebutuhan nyata</span> Anda.
+            Studio digital yang mengutamakan <span className="serif">kebutuhan klien.</span>
           </h1>
           <div className="mt-12 pt-6 border-t rule grid md:grid-cols-12 gap-6 page-enter" style={{ animationDelay: '160ms' }}>
             <p className="md:col-span-6 text-lg text-slate-300 leading-relaxed">
-              Kami membantu bisnis dan institusi merancang website, aplikasi web, serta sistem informasi yang tepat guna, mudah dikelola, dan siap berkembang.
+              DigiPulse membantu bisnis dan institusi merancang serta membangun website, aplikasi, dan sistem informasi yang tepat guna dan mudah dikembangkan.
             </p>
           </div>
         </div>
@@ -52,7 +52,7 @@ export default function About() {
         <div className="relative max-w-7xl mx-auto">
           <div className="reveal max-w-3xl">
             <Label>Prinsip kerja</Label>
-            <h2 className="mt-6 text-4xl md:text-6xl leading-[1.02]">Empat hal yang kami pegang di <span className="serif">setiap proyek.</span></h2>
+            <h2 className="mt-6 text-4xl md:text-6xl leading-[1.02]">Prinsip yang kami terapkan dalam <span className="serif">setiap proyek.</span></h2>
           </div>
           <div className="mt-16 grid md:grid-cols-2 border-t rule">
             {values.map((v, i) => (

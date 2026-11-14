@@ -95,14 +95,14 @@ export function Label({ n, children, className = '' }) {
   return <span className={`label ${className}`}>{n && <span className="n">{n}</span>}{children}</span>;
 }
 
-export function CtaBand({ title = 'Siap mewujudkan ide Anda?', text = 'Tidak perlu persiapan yang rumit. Ceritakan gagasan, kebutuhan, atau tantangan Anda, dan kami bantu menentukan langkah terbaik berikutnya.' }) {
+export function CtaBand({ title = 'Mari diskusikan proyek Anda.', text = 'Anda tidak perlu menyiapkan dokumen yang lengkap. Sampaikan gambaran kebutuhan Anda, dan kami akan membantu merumuskan langkah selanjutnya.' }) {
   const words = title.split(' ');
   const last = words.pop();
   return (
     <section className="relative px-6 py-24 md:py-36 border-t rule overflow-hidden">
       <div className="max-w-7xl mx-auto grid md:grid-cols-12 gap-10 items-end">
         <div className="md:col-span-8 reveal">
-          <Label>Mulai proyek</Label>
+          <Label>Konsultasi</Label>
           <h2 className="mt-6 text-[2.6rem] leading-[1] sm:text-6xl md:text-[5.5rem]">{words.join(' ')} <span className="serif">{last}</span></h2>
         </div>
         <div className="md:col-span-4 reveal" style={{ '--d': '120ms' }}>

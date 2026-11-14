@@ -2,65 +2,65 @@ export const EMAIL = 'digipulseid@gmail.com';
 
 export const services = [
   {
-    slug: 'web-development', no: '01', title: 'Web Development', short: 'Website yang bekerja untuk bisnis Anda sepanjang waktu.',
-    desc: 'Website yang tampil profesional, terbuka cepat, dan mudah ditemukan, sehingga pengunjung yakin menjadi pelanggan.',
-    points: ['Tampilan profesional yang membangun kepercayaan sejak kunjungan pertama', 'Terbuka cepat di ponsel maupun koneksi yang lambat', 'Siap ditemukan di Google melalui SEO teknis dan analytics', 'Konten dapat Anda perbarui sendiri tanpa bantuan developer'],
+    slug: 'web-development', no: '01', title: 'Web Development', short: 'Website profesional yang mudah ditemukan dan cepat diakses.',
+    desc: 'Kami membangun website yang rapi, cepat diakses melalui ponsel, dan mudah ditemukan di mesin pencari.',
+    points: ['Tampilan yang menyesuaikan identitas usaha Anda', 'Waktu muat cepat, termasuk pada koneksi seluler', 'Optimasi SEO teknis dan pemasangan analytics', 'Konten dapat diperbarui sendiri melalui panel pengelola'],
     tags: ['React', 'Vite', 'Tailwind', 'SEO'], fit: 'Website',
     stack: [{ g: 'Frontend', items: ['react', 'vite', 'tailwind', 'typescript'] }, { g: 'Performa & SEO', items: ['ga4', 'searchconsole'] }, { g: 'Deploy', items: ['vercel', 'cloudflare', 'githubactions'] }],
   },
   {
-    slug: 'web-application', no: '02', title: 'Web Application', short: 'Tinggalkan spreadsheet, bekerja lebih cepat dan terstruktur.',
-    desc: 'Aplikasi yang merapikan alur kerja tim Anda, dari dashboard hingga portal pelanggan.',
-    points: ['Hak akses sesuai peran, sehingga data hanya dilihat oleh pihak yang tepat', 'Laporan dan ekspor data otomatis tanpa rekap manual', 'Dirancang mengikuti alur kerja Anda, bukan sebaliknya', 'Mudah dipelajari staf baru dan siap berkembang'],
+    slug: 'web-application', no: '02', title: 'Web Application', short: 'Aplikasi web yang disesuaikan dengan alur kerja tim Anda.',
+    desc: 'Dasbor, sistem internal, hingga portal pelanggan untuk menggantikan pencatatan manual dan pekerjaan berulang.',
+    points: ['Hak akses berdasarkan peran pengguna', 'Laporan dan ekspor data secara otomatis', 'Antarmuka yang mudah dipelajari oleh staf', 'Struktur sistem yang siap dikembangkan lebih lanjut'],
     tags: ['Dashboard', 'API', 'Database', 'Auth'], fit: 'Aplikasi',
     stack: [{ g: 'Frontend', items: ['react', 'typescript'] }, { g: 'Backend', items: ['node', 'laravel', 'postgres'] }, { g: 'Keamanan', items: ['jwt', 'cloudflare'] }],
   },
   {
-    slug: 'saas-development', no: '03', title: 'SaaS Development', short: 'Wujudkan ide produk menjadi layanan berlangganan yang siap dipasarkan.',
-    desc: 'Dari gagasan awal menjadi produk langganan pertama yang siap diuji ke pasar.',
-    points: ['Fokus pada fitur inti, sehingga MVP cepat rilis dan efisien biaya', 'Satu sistem untuk banyak pelanggan (multi-tenant)', 'Pembayaran berulang dan pengelolaan paket langganan', 'Data penggunaan sebagai dasar keputusan berikutnya'],
+    slug: 'saas-development', no: '03', title: 'SaaS Development', short: 'Pengembangan produk berlangganan sejak tahap awal.',
+    desc: 'Kami membantu menyusun versi pertama produk Anda (MVP), termasuk sistem langganan dan pembayaran, agar dapat segera diuji oleh pengguna.',
+    points: ['Penentuan fitur inti untuk versi pertama', 'Arsitektur multi-tenant untuk banyak pelanggan', 'Integrasi pembayaran berulang dan paket langganan', 'Data penggunaan sebagai dasar pengembangan berikutnya'],
     tags: ['MVP', 'Billing', 'Multi-tenant', 'Cloud'], fit: 'Aplikasi',
     stack: [{ g: 'Produk', items: ['next', 'typescript', 'postgres', 'redis'] }, { g: 'Pembayaran', items: ['stripe', 'xendit'] }, { g: 'Infrastruktur', items: ['docker', 'aws', 'githubactions'] }],
   },
   {
-    slug: 'ui-ux-design', no: '04', title: 'UI/UX Design', short: 'Produk yang mudah digunakan membuat pelanggan kembali.',
-    desc: 'Alur yang jelas dan tampilan yang nyaman, diuji melalui prototipe sebelum dibangun.',
-    points: ['Memahami pengguna Anda terlebih dahulu, baru merancang', 'Prototipe interaktif yang dapat dicoba sebelum pengembangan', 'Design system agar tampilan konsisten di semua layar', 'Menghindari revisi yang mahal pada tahap pengembangan'],
+    slug: 'ui-ux-design', no: '04', title: 'UI/UX Design', short: 'Rancangan antarmuka yang jelas sebelum tahap pengembangan.',
+    desc: 'Riset pengguna, alur aplikasi, dan prototipe interaktif untuk memastikan produk mudah digunakan sebelum dibangun.',
+    points: ['Riset kebutuhan dan perilaku pengguna', 'Wireframe dan prototipe yang dapat diuji', 'Design system untuk tampilan yang konsisten', 'Mengurangi revisi pada tahap pengembangan'],
     tags: ['Figma', 'Prototype', 'Design System', 'Riset'], fit: 'Website',
     stack: [{ g: 'Desain', items: ['figma'] }, { g: 'Serah terima', items: ['storybook'] }],
   },
   {
-    slug: 'system-integration', no: '05', title: 'System Integration', short: 'Satukan seluruh sistem Anda, biarkan data mengalir otomatis.',
-    desc: 'Hubungkan seluruh sistem Anda dan biarkan data berpindah sendiri tanpa input ulang.',
-    points: ['Tanpa input ganda, sehingga risiko salah catat berkurang', 'Tidak perlu mengganti sistem lama yang masih bermanfaat', 'Integrasi pembayaran, WhatsApp, dan API pihak ketiga', 'Sinkronisasi terpantau, dilengkapi dokumentasi untuk tim Anda'],
+    slug: 'system-integration', no: '05', title: 'System Integration', short: 'Menghubungkan sistem yang selama ini berjalan terpisah.',
+    desc: 'Integrasi antaraplikasi, layanan pembayaran, dan API pihak ketiga agar data tersinkron tanpa input ulang.',
+    points: ['Pemetaan sistem dan sumber data yang ada', 'Integrasi API, webhook, dan payment gateway', 'Sinkronisasi data yang dapat dipantau', 'Dokumentasi teknis untuk tim internal'],
     tags: ['REST', 'Webhook', 'ETL', 'Payment'], fit: 'Aplikasi',
     stack: [{ g: 'Koneksi', items: ['graphql', 'whatsapp', 'google'] }, { g: 'Alur data', items: ['n8n', 'node'] }, { g: 'Pemantauan', items: ['sentry'] }],
   },
   {
-    slug: 'iot-embedded-system', no: '06', title: 'IoT & Embedded System', short: 'Pantau perangkat dan lingkungan Anda dari mana saja.',
-    desc: 'Sensor, perangkat, dan dasbor yang memantau kondisi lapangan serta memberi kabar saat ada yang tidak normal.',
-    points: ['Pemantauan real-time dari ponsel maupun laptop', 'Notifikasi otomatis saat nilai melewati batas', 'Perangkat hemat daya dan tahan beroperasi terus-menerus', 'Satu paket lengkap: perangkat keras, firmware, dan dasbor'],
+    slug: 'iot-embedded-system', no: '06', title: 'IoT & Embedded System', short: 'Pemantauan perangkat dan lingkungan secara real-time.',
+    desc: 'Sensor, perangkat, dan dasbor untuk memantau kondisi di lapangan, dilengkapi notifikasi ketika terjadi perubahan.',
+    points: ['Pemantauan melalui ponsel maupun komputer', 'Notifikasi otomatis ketika nilai melewati batas', 'Perangkat hemat daya untuk penggunaan jangka panjang', 'Pengerjaan perangkat keras, firmware, dan dasbor'],
     tags: ['ESP32', 'MQTT', 'Sensor', 'Dashboard'], fit: 'IoT',
     stack: [{ g: 'Perangkat', items: ['esp32', 'arduino', 'raspberrypi'] }, { g: 'Komunikasi', items: ['mqtt'] }, { g: 'Dasbor', items: ['nodered', 'grafana', 'influxdb', 'telegram'] }],
   },
   {
-    slug: 'graphic-design', no: '07', title: 'Graphic Design', short: 'Desain yang menarik perhatian dan mendorong pembelian.',
-    desc: 'Poster, banner, konten media sosial, hingga label kemasan, tampil rapi dan siap digunakan.',
-    points: ['Poster, flyer, spanduk, dan banner yang mudah terbaca dari kejauhan', 'Konten media sosial harian dengan tampilan yang seragam', 'Label kemasan yang meningkatkan nilai produk Anda', 'Ilustrasi vector yang tajam di ukuran apa pun, serta edit foto dasar'],
+    slug: 'graphic-design', no: '07', title: 'Graphic Design', short: 'Desain promosi yang rapi dan sesuai karakter usaha.',
+    desc: 'Poster, banner, konten media sosial, dan label kemasan yang dirancang dengan gaya visual yang konsisten.',
+    points: ['Poster, flyer, spanduk, dan banner', 'Konten media sosial dengan gaya yang seragam', 'Desain label dan kemasan produk', 'Ilustrasi vektor dan penyuntingan foto dasar'],
     tags: ['Poster', 'Banner', 'Label Kemasan', 'Vector'], fit: 'Kreatif',
     stack: [{ g: 'Vector & ilustrasi', items: ['illustrator', 'coreldraw'] }, { g: 'Foto & layout', items: ['photoshop', 'canva', 'figma'] }],
   },
   {
-    slug: 'video-editing', no: '08', title: 'Video Editing', short: 'Video singkat dan undangan digital yang berkesan.',
-    desc: 'Video singkat yang mudah diingat dan undangan digital yang istimewa, praktis dibagikan melalui pesan.',
-    points: ['Undangan digital berupa gambar atau video yang berkesan', 'Video promosi singkat dengan teks dan musik yang selaras', 'Format siap pakai untuk WhatsApp, Instagram, dan TikTok', 'Proses ringkas: kirim bahan, terima hasil, revisi seperlunya'],
+    slug: 'video-editing', no: '08', title: 'Video Editing', short: 'Video singkat dan undangan digital untuk berbagai keperluan.',
+    desc: 'Penyuntingan video promosi dan konten media sosial, serta pembuatan undangan digital dalam format gambar maupun video.',
+    points: ['Undangan digital dalam format gambar atau video', 'Video promosi singkat dengan teks dan musik', 'Format yang sesuai untuk WhatsApp, Instagram, dan TikTok', 'Revisi sesuai kesepakatan di awal'],
     tags: ['Undangan Digital', 'Video Singkat', 'Reels', 'Teks & Musik'], fit: 'Kreatif',
     stack: [{ g: 'Penyuntingan', items: ['premiere', 'capcut', 'davinci'] }, { g: 'Efek & teks', items: ['aftereffects'] }],
   },
   {
-    slug: 'maintenance-support', no: '09', title: 'Maintenance & Support', short: 'Sistem Anda tetap aman dan terawat.',
-    desc: 'Dipantau, diperbarui, dan diperbaiki secara rutin, agar Anda dapat fokus pada pertumbuhan bisnis.',
-    points: ['Pemantauan uptime, sehingga masalah terdeteksi lebih awal', 'Pembaruan keamanan rutin untuk menutup celah yang ada', 'Respons cepat saat terjadi kendala', 'Backup berkala dan roadmap perbaikan yang jelas'],
+    slug: 'maintenance-support', no: '09', title: 'Maintenance & Support', short: 'Pemeliharaan rutin agar sistem tetap aman dan stabil.',
+    desc: 'Pemantauan, pembaruan keamanan, dan perbaikan berkala untuk website maupun aplikasi yang sudah berjalan.',
+    points: ['Pemantauan uptime dan error', 'Pembaruan keamanan secara berkala', 'Penanganan kendala sesuai prioritas', 'Pencadangan data dan rencana perbaikan'],
     tags: ['Monitoring', 'Security', 'SLA', 'Backup'], fit: 'Aplikasi',
     stack: [{ g: 'Pemantauan', items: ['sentry', 'cloudflare'] }, { g: 'Versi & cadangan', items: ['git', 'githubactions', 'docker'] }],
   },
@@ -122,30 +122,30 @@ export const tools = { react: 'React', vite: 'Vite', tailwind: 'Tailwind CSS', t
 // Nomor WhatsApp bisnis, format internasional tanpa "+" atau spasi, mis. '6281234567890'.
 // Selama kosong, semua tombol konsultasi mengarah ke halaman Kontak.
 export const WHATSAPP = '';
-export const WA_TEXT = 'Halo DigiPulse, saya ingin konsultasi mengenai kebutuhan digital bisnis saya.';
+export const WA_TEXT = 'Halo DigiPulse, saya ingin berkonsultasi mengenai kebutuhan digital usaha saya.';
 
-// Empat pintu masuk layanan, ditampilkan di Beranda, menu, dan halaman Layanan
+// Empat bidang layanan, ditampilkan di Beranda, menu, dan halaman Layanan
 export const groups = [
-  { slug: 'website', title: 'Website', hook: 'Website yang membuat calon pelanggan percaya.', desc: 'Tampil profesional, terbuka cepat di ponsel, mudah ditemukan di Google, dan mengarahkan pengunjung untuk menghubungi Anda.', who: 'UMKM, company profile, toko online, institusi', items: ['web-development', 'ui-ux-design'] },
-  { slug: 'aplikasi', title: 'Aplikasi & Sistem', hook: 'Rapikan operasional bisnis dalam satu sistem.', desc: 'Ganti spreadsheet dan input berulang dengan aplikasi yang sesuai alur kerja tim Anda, lengkap dengan pendampingan setelah rilis.', who: 'Perusahaan, startup, sekolah, klinik', items: ['web-application', 'saas-development', 'system-integration', 'maintenance-support'] },
-  { slug: 'iot', title: 'IoT', hook: 'Pantau perangkat dan lokasi Anda dari ponsel.', desc: 'Sensor, perangkat, dan dasbor yang memberi kabar sebelum masalah kecil berubah menjadi kerugian.', who: 'Pabrik, gudang, pertanian, gedung', items: ['iot-embedded-system'] },
-  { slug: 'kreatif', title: 'Desain & Konten', hook: 'Konten promosi siap tayang, tanpa repot.', desc: 'Poster, banner, konten media sosial, label kemasan, video singkat, hingga undangan digital yang tampil rapi dan konsisten.', who: 'UMKM, brand lokal, acara dan komunitas', items: ['graphic-design', 'video-editing'] },
+  { slug: 'website', title: 'Website', hook: 'Website yang mencerminkan kredibilitas usaha Anda.', desc: 'Kami merancang website yang rapi, cepat diakses melalui ponsel, mudah ditemukan di mesin pencari, dan memudahkan pengunjung untuk menghubungi Anda.', who: 'UMKM, company profile, toko online, dan institusi', items: ['web-development', 'ui-ux-design'] },
+  { slug: 'aplikasi', title: 'Aplikasi & Sistem', hook: 'Operasional yang lebih tertata dalam satu sistem.', desc: 'Pekerjaan yang selama ini bergantung pada spreadsheet dan input berulang kami pindahkan ke aplikasi yang disesuaikan dengan alur kerja tim Anda.', who: 'Perusahaan, startup, sekolah, dan klinik', items: ['web-application', 'saas-development', 'system-integration', 'maintenance-support'] },
+  { slug: 'iot', title: 'IoT', hook: 'Kondisi perangkat dan lokasi dapat dipantau dari jarak jauh.', desc: 'Kami merangkai sensor, perangkat, dan dasbor yang memberi peringatan ketika terjadi perubahan kondisi, sehingga tindakan dapat diambil lebih cepat.', who: 'Pabrik, gudang, pertanian, dan pengelola gedung', items: ['iot-embedded-system'] },
+  { slug: 'kreatif', title: 'Desain & Konten', hook: 'Materi promosi yang rapi dan konsisten.', desc: 'Poster, banner, konten media sosial, label kemasan, video singkat, dan undangan digital yang dikerjakan sesuai karakter usaha Anda.', who: 'UMKM, brand lokal, penyelenggara acara, dan komunitas', items: ['graphic-design', 'video-editing'] },
 ];
 
 export const pains = [
-  { q: 'Website sudah ada, tetapi tidak ada yang menghubungi.', a: 'Kami rancang ulang agar meyakinkan dan mengarahkan pengunjung untuk menghubungi Anda.', to: 'website' },
-  { q: 'Data masih tersebar di Excel dan percakapan chat.', a: 'Kami satukan dalam satu aplikasi, sehingga laporan siap tanpa rekap manual.', to: 'aplikasi' },
-  { q: 'Kerusakan perangkat baru ketahuan setelah terlambat.', a: 'Sensor dan notifikasi kami pasang agar Anda tahu lebih dulu.', to: 'iot' },
-  { q: 'Konten promosi tidak konsisten dan kurang menarik.', a: 'Kami siapkan desain dan video yang seragam dan siap diposting.', to: 'kreatif' },
+  { q: 'Website sudah ada, tetapi jarang menghasilkan pertanyaan dari calon pelanggan.', a: 'Kami meninjau ulang tampilan, isi, dan alurnya agar pengunjung lebih mudah memahami layanan Anda, lalu menghubungi.', to: 'website' },
+  { q: 'Data operasional masih tersebar di spreadsheet dan percakapan.', a: 'Kami menyusun aplikasi yang menyatukan data tersebut, sehingga laporan dapat dibuat tanpa rekap manual.', to: 'aplikasi' },
+  { q: 'Gangguan pada perangkat baru diketahui setelah menimbulkan kerugian.', a: 'Kami memasang sensor dan notifikasi agar perubahan kondisi dapat diketahui lebih awal.', to: 'iot' },
+  { q: 'Materi promosi belum konsisten dari satu unggahan ke unggahan berikutnya.', a: 'Kami menyiapkan desain dan video dengan gaya yang seragam, sesuai identitas usaha Anda.', to: 'kreatif' },
 ];
 
 export const faqs = [
-  { q: 'Berapa lama proses pengerjaannya?', a: 'Tergantung lingkup pekerjaan. Website profil umumnya lebih singkat dibanding aplikasi atau sistem IoT. Estimasi waktu yang jelas kami sampaikan setelah konsultasi awal.' },
-  { q: 'Berapa biaya yang perlu saya siapkan?', a: 'Biaya disesuaikan dengan kebutuhan Anda. Setelah memahami lingkupnya, kami kirimkan penawaran tertulis yang merinci pekerjaan dan biayanya.' },
-  { q: 'Apa yang perlu saya siapkan sebelum konsultasi?', a: 'Cukup gambaran singkat tentang bisnis Anda, masalah yang ingin diselesaikan, dan hasil yang diharapkan. Brief yang rapi tidak diperlukan.' },
-  { q: 'Apakah saya bisa memantau perkembangan pekerjaan?', a: 'Bisa. Hasil kerja kami rilis bertahap ke lingkungan uji, sehingga Anda dapat mencoba dan memberi masukan di setiap tahap.' },
-  { q: 'Bagaimana jika ada kendala setelah peluncuran?', a: 'Kami menyediakan layanan Maintenance & Support untuk pemantauan, pembaruan keamanan, dan perbaikan setelah produk berjalan.' },
-  { q: 'Apakah bisa memesan desain atau video saja?', a: 'Bisa. Layanan Desain & Konten dapat dipesan terpisah, misalnya poster, konten media sosial, label kemasan, atau undangan digital.' },
+  { q: 'Berapa lama waktu pengerjaannya?', a: 'Waktu pengerjaan bergantung pada lingkup pekerjaan. Website profil umumnya selesai lebih cepat dibandingkan aplikasi atau sistem IoT. Estimasi waktu akan kami sampaikan setelah konsultasi awal.' },
+  { q: 'Bagaimana penentuan biayanya?', a: 'Biaya ditentukan berdasarkan lingkup dan tingkat kerumitan pekerjaan. Setelah kebutuhan Anda jelas, kami akan mengirimkan penawaran tertulis yang memuat rincian pekerjaan dan biayanya.' },
+  { q: 'Apa saja yang perlu disiapkan sebelum konsultasi?', a: 'Gambaran singkat mengenai usaha Anda, kendala yang ingin diatasi, dan hasil yang diharapkan sudah cukup. Dokumen yang lengkap tidak diwajibkan.' },
+  { q: 'Apakah perkembangan pekerjaan dapat dipantau?', a: 'Dapat. Hasil pekerjaan kami unggah secara bertahap ke lingkungan uji, sehingga Anda dapat mencobanya dan memberikan masukan.' },
+  { q: 'Bagaimana jika terjadi kendala setelah peluncuran?', a: 'Kami menyediakan layanan Maintenance & Support yang mencakup pemantauan, pembaruan keamanan, dan perbaikan.' },
+  { q: 'Apakah layanan desain atau video dapat dipesan secara terpisah?', a: 'Dapat. Layanan Desain & Konten, seperti poster, konten media sosial, label kemasan, dan undangan digital, dapat dipesan tanpa layanan lainnya.' },
 ];
 
 export const groupOf = (slug) => groups.find((g) => g.items.includes(slug));
