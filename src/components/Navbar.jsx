@@ -64,8 +64,13 @@ export default function Navbar() {
 
         <div className="flex items-center gap-3">
           <ConsultLink className="btn btn-cta hidden sm:inline-flex !py-2.5 !px-4 !text-sm">Konsultasi Sekarang <ArrowRight className="w-4 h-4" /></ConsultLink>
-          <button className="lg:hidden h-10 px-4 text-sm border rule rounded-full hover:border-white/30 transition-colors" onClick={() => setOpen(!open)} aria-label={open ? 'Tutup menu' : 'Buka menu'} aria-expanded={open}>
-            {open ? "Tutup" : "Menu"}
+          {/* Tombol menu HP: solid dan kontras, ikon garis berubah menjadi silang saat terbuka */}
+          <button className={`lg:hidden h-11 pl-4 pr-3.5 inline-flex items-center gap-2.5 rounded-full text-sm font-semibold transition-colors ${open ? 'bg-accent text-[#0C0C10]' : 'bg-[#F4F1EA] text-[#0C0C10]'}`} onClick={() => setOpen(!open)} aria-label={open ? 'Tutup menu' : 'Buka menu'} aria-expanded={open}>
+            {open ? 'Tutup' : 'Menu'}
+            <span className="relative w-4 h-3" aria-hidden="true">
+              <i className={`absolute left-0 w-4 h-[2px] rounded bg-current transition-all duration-300 ${open ? 'top-[5px] rotate-45' : 'top-0'}`} />
+              <i className={`absolute left-0 w-4 h-[2px] rounded bg-current transition-all duration-300 ${open ? 'top-[5px] -rotate-45' : 'top-[10px]'}`} />
+            </span>
           </button>
         </div>
       </div>
