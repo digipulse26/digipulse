@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useParams, Navigate } from 'react-router-dom';
-import { ArrowRight, ArrowUpRight, Check } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { projects } from '../data';
-import { Tilt, CtaBand } from '../components/fx';
+import { Tilt, CtaBand, Label } from '../components/fx';
 
 // Panggung AR/VR: kubus wireframe 3D, cincin orbit, dan lantai grid bergerak
 export function VRStage({ className = '' }) {
@@ -11,10 +11,26 @@ export function VRStage({ className = '' }) {
       <div className="grid-floor" />
       <div className="absolute inset-0 flex items-center justify-center preserve">
         <div className="ring" style={{ width: '22rem', height: '22rem' }} />
-        <div className="ring" style={{ width: '30rem', height: '30rem', borderColor: 'rgb(var(--accent) / .4)', animationDuration: '24s', animationDirection: 'reverse' }} />
+        <div className="ring" style={{ width: '30rem', height: '30rem', borderColor: 'rgb(var(--accent) / .3)', animationDuration: '26s', animationDirection: 'reverse' }} />
         <div className="cube float"><b /><b /><b /><b /><b /><b /></div>
       </div>
     </div>
+  );
+}
+
+// Kepala halaman bersama untuk halaman dengan panggung AR/VR
+export function StageHead({ label, children, text }) {
+  return (
+    <section className="relative overflow-hidden min-h-[78svh] flex items-end border-b rule">
+      <VRStage className="absolute inset-0 md:left-1/3 opacity-90" />
+      <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent pointer-events-none" />
+      <div className="relative max-w-7xl mx-auto px-6 pt-40 pb-14 w-full">
+        <Label className="page-enter">{label}</Label>
+        <h1 className="mt-8 text-[2.75rem] sm:text-6xl md:text-[6rem] leading-[0.98] max-w-4xl page-enter" style={{ animationDelay: '80ms' }}>{children}</h1>
+        <p className="mt-8 text-lg text-slate-300 max-w-xl leading-relaxed page-enter" style={{ animationDelay: '160ms' }}>{text}</p>
+      </div>
+    </section>
   );
 }
 
@@ -24,35 +40,36 @@ export function PortfolioPage() {
   const list = f === 'Semua' ? projects : projects.filter((p) => p.tag === f);
   return (
     <>
-      <section className="relative overflow-hidden min-h-[70vh] flex items-end">
-        <VRStage className="absolute inset-0 opacity-80" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/60 pointer-events-none" />
-        <div className="relative max-w-7xl mx-auto px-6 pt-40 pb-14 w-full">
-          <span className="eyebrow page-enter">Portofolio</span>
-          <h1 className="mt-5 text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.05] max-w-4xl page-enter" style={{ animationDelay: '80ms' }}>Proyek yang telah <span className="text-gradient">kami kerjakan.</span></h1>
-          <p className="mt-5 text-lg text-slate-300 max-w-xl page-enter" style={{ animationDelay: '160ms' }}>Studi kasus yang memperlihatkan tantangan, keputusan, dan hasil di balik setiap proyek kami.</p>
-        </div>
-      </section>
+      <StageHead label="Portofolio" text="Studi kasus yang memperlihatkan tantangan, keputusan, dan hasil di balik setiap proyek kami.">
+        Proyek yang telah <span className="serif">kami kerjakan.</span>
+      </StageHead>
 
-      <section className="max-w-7xl mx-auto px-6 py-16">
-        <div className="flex gap-2 mb-10" role="tablist">
-          {cats.map((c) => <button key={c} role="tab" aria-selected={f === c} onClick={() => setF(c)} className={`px-5 py-2 rounded-full text-sm font-bold border transition-all ${f === c ? 'bg-primary border-primary text-white' : 'border-white/10 text-slate-400 hover:text-white'}`}>{c}</button>)}
+      <section className="max-w-7xl mx-auto px-6 py-16 md:py-24">
+        <div className="flex items-center justify-between gap-4 border-b rule mb-12">
+          <div className="flex gap-6" role="tablist">
+            {cats.map((c) => <button key={c} role="tab" aria-selected={f === c} onClick={() => setF(c)} className={`pb-4 -mb-px border-b transition-colors ${f === c ? 'text-white border-white' : 'text-slate-500 border-transparent hover:text-slate-300'}`}>{c}</button>)}
+          </div>
+          <span className="mono text-xs text-slate-500 pb-4">{String(list.length).padStart(2, '0')} proyek</span>
         </div>
-        <div key={f} className="grid md:grid-cols-2 gap-8">
+        <div key={f} className="grid md:grid-cols-2 gap-x-8 gap-y-16 scene">
           {list.map((p, i) => (
-            <Tilt key={p.slug} as="div" className="page-enter" style={{ animationDelay: `${i * 80}ms` }}>
-              <Link to={`/portofolio/${p.slug}`} className="group relative block rounded-3xl overflow-hidden border border-white/10 bg-secondary aspect-[4/3] scan">
-                <img src={p.img} alt={p.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
-                <i className="hud tl" /><i className="hud tr" /><i className="hud bl" /><i className="hud br" />
-                <div className="absolute bottom-0 p-7 depth-2">
-                  <span className="eyebrow">{p.cat}</span>
-                  <h2 className="mt-3 text-2xl font-extrabold">{p.title}</h2>
-                  <p className="mt-2 text-sm text-slate-300 max-w-sm">{p.desc}</p>
-                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-primary">Baca studi kasus <ArrowUpRight className="w-4 h-4" /></span>
+            <div key={p.slug} className={`page-enter ${i % 2 === 1 ? 'md:mt-20' : ''}`} style={{ animationDelay: `${i * 80}ms` }}>
+              <Tilt max={6} className="rounded-[4px]">
+                <Link to={`/portofolio/${p.slug}`} className="group relative block rounded-[4px] overflow-hidden bg-secondary aspect-[4/3] scan">
+                  <img src={p.img} alt={p.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover grayscale-[35%] group-hover:grayscale-0 transition-all duration-700" />
+                  <i className="hud tl" /><i className="hud tr" /><i className="hud bl" /><i className="hud br" />
+                  <span className="absolute top-4 left-6 mono text-[11px] text-white/80 depth-1">{String(i + 1).padStart(2, '0')}</span>
+                </Link>
+              </Tilt>
+              <Link to={`/portofolio/${p.slug}`} className="group block mt-5">
+                <div className="flex items-baseline justify-between gap-4">
+                  <h2 className="text-2xl md:text-3xl group-hover:text-primary-soft transition-colors">{p.title}</h2>
+                  <span className="mono text-xs text-slate-500 shrink-0">{p.cat}</span>
                 </div>
+                <p className="mt-2 text-slate-400 max-w-md">{p.desc}</p>
+                <span className="link mt-4 text-sm">Baca studi kasus <ArrowUpRight className="w-4 h-4" /></span>
               </Link>
-            </Tilt>
+            </div>
           ))}
         </div>
       </section>
@@ -69,31 +86,41 @@ export function PortfolioDetail() {
   return (
     <div key={slug}>
       <section className="relative overflow-hidden pt-36 pb-12">
-        <VRStage className="absolute inset-0 opacity-40" />
+        <VRStage className="absolute inset-0 md:left-1/2 opacity-40" />
         <div className="relative max-w-7xl mx-auto px-6">
-          <Link to="/portofolio" className="text-sm font-semibold text-slate-400 hover:text-white">← Portofolio</Link>
-          <span className="eyebrow ml-4">{p.cat}</span>
-          <h1 className="mt-6 text-4xl sm:text-6xl font-extrabold tracking-tight max-w-4xl leading-[1.05]">{p.title}</h1>
-          <p className="mt-5 text-lg text-slate-300 max-w-2xl">{p.desc}</p>
+          <div className="flex items-center gap-6 mono text-xs text-slate-500">
+            <Link to="/portofolio" className="hover:text-white">← Portofolio</Link>
+            <span>{p.cat}</span>
+          </div>
+          <h1 className="mt-10 text-[2.75rem] sm:text-6xl md:text-[5.5rem] leading-[0.98] max-w-5xl">{p.title}</h1>
+          <p className="mt-8 text-lg text-slate-300 max-w-2xl leading-relaxed">{p.desc}</p>
         </div>
       </section>
       <section className="max-w-7xl mx-auto px-6 pb-16 scene">
-        <Tilt max={4} className="rounded-3xl overflow-hidden border border-white/10 aspect-[16/8] relative">
+        <Tilt max={3} className="rounded-[4px] overflow-hidden aspect-[16/9] md:aspect-[16/8] relative">
           <img src={p.img} alt={p.title} className="w-full h-full object-cover" />
         </Tilt>
       </section>
-      <section className="max-w-7xl mx-auto px-6 pb-20 grid md:grid-cols-3 gap-6">
+      <section className="max-w-7xl mx-auto px-6 pb-24 grid md:grid-cols-3 border-t rule">
         {[['Tantangan', p.problem], ['Solusi', p.solution]].map(([h, t], k) => (
-          <div key={h} className="reveal card p-8" style={{ '--d': `${k * 100}ms` }}><h2 className="text-xs font-bold tracking-widest text-primary uppercase">{h}</h2><p className="mt-3 text-slate-200 leading-relaxed">{t}</p></div>
+          <div key={h} className="reveal py-10 md:pr-10 border-b md:border-b-0 md:border-r rule md:[&:nth-child(2)]:px-10" style={{ '--d': `${k * 100}ms` }}>
+            <span className="label">{h}</span>
+            <p className="mt-5 text-lg text-slate-200 leading-relaxed">{t}</p>
+          </div>
         ))}
-        <div className="reveal card p-8" style={{ '--d': '200ms' }}>
-          <h2 className="text-xs font-bold tracking-widest text-primary uppercase">Hasil</h2>
-          <ul className="mt-3 space-y-3">{p.result.map((r) => <li key={r} className="flex gap-3 text-slate-200"><Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />{r}</li>)}</ul>
+        <div className="reveal py-10 md:pl-10" style={{ '--d': '200ms' }}>
+          <span className="label">Hasil</span>
+          <ul className="mt-5 space-y-4">{p.result.map((r, n) => <li key={r} className="flex gap-4 text-slate-200"><span className="mono text-xs text-primary-soft pt-1">0{n + 1}</span>{r}</li>)}</ul>
         </div>
       </section>
-      <Link to={`/portofolio/${next.slug}`} className="group flex items-center justify-between max-w-7xl mx-auto px-6 py-10 border-t border-white/10 hover:text-primary transition-colors">
-        <span><span className="block text-xs tracking-[.3em] text-slate-500">PROYEK BERIKUTNYA</span><span className="text-2xl md:text-4xl font-extrabold">{next.title}</span></span>
-        <ArrowRight className="w-8 h-8 group-hover:translate-x-2 transition-transform" />
+      <Link to={`/portofolio/${next.slug}`} className="group block px-6 py-16 border-t rule">
+        <div className="max-w-7xl mx-auto flex items-end justify-between gap-6">
+          <div>
+            <span className="label">Proyek berikutnya</span>
+            <span className="block mt-4 display text-3xl md:text-6xl group-hover:text-primary-soft transition-colors">{next.title}</span>
+          </div>
+          <ArrowRight className="w-8 h-8 text-slate-500 group-hover:text-white group-hover:translate-x-2 transition-all shrink-0" />
+        </div>
       </Link>
     </div>
   );

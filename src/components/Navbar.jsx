@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { services } from '../data';
 import logo from '../images/Logo.png';
 
@@ -27,27 +27,27 @@ export default function Navbar() {
   }, []);
   useEffect(() => { document.body.style.overflow = open ? 'hidden' : ''; }, [open]);
 
-  const cls = ({ isActive }) => `px-3 py-2 text-sm font-semibold rounded-full transition-colors ${isActive ? 'text-white bg-white/10' : 'text-slate-400 hover:text-white'}`;
+  const cls = ({ isActive }) => `relative px-3 py-2 text-[0.92rem] transition-colors ${isActive ? 'text-white after:absolute after:left-3 after:right-3 after:-bottom-0.5 after:h-px after:bg-white' : 'text-slate-400 hover:text-white'}`;
 
   return (
-    <header className={`fixed top-0 inset-x-0 z-50 pt-[max(0.75rem,env(safe-area-inset-top))] sm:pt-0 transition-all duration-300 ${scrolled || open ? 'bg-background/85 backdrop-blur-md border-b border-white/5' : ''}`}>
+    <header className={`fixed top-0 inset-x-0 z-50 pt-[max(0.75rem,env(safe-area-inset-top))] sm:pt-0 transition-colors duration-300 ${scrolled || open ? 'bg-background/90 backdrop-blur-md border-b rule' : ''}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-[4.5rem] sm:h-20 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-3" aria-label="DigiPulse beranda">
+        <Link to="/" className="flex items-center" aria-label="DigiPulse beranda">
           <img src={logo} alt="" className="h-11 sm:h-12 w-auto" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1" aria-label="Utama">
           {links.map((l) => l.menu ? (
             <div key={l.to} className="relative group">
-              <NavLink to={l.to} className={cls}>
-                <span className="inline-flex items-center gap-1">{l.label}<ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" /></span>
-              </NavLink>
-              <div className="absolute left-0 top-full pt-3 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200">
-                <div className="w-64 p-2 rounded-2xl bg-secondary border border-white/10 shadow-2xl">
+              <NavLink to={l.to} className={cls}>{l.label}</NavLink>
+              <div className="absolute left-0 top-full pt-4 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200">
+                <div className="w-72 py-2 panel bg-secondary shadow-2xl">
                   {services.map((s) => (
-                    <Link key={s.slug} to={`/layanan/${s.slug}`} className="block px-3 py-2 rounded-xl text-sm text-slate-300 hover:bg-white/5 hover:text-white">{s.title}</Link>
+                    <Link key={s.slug} to={`/layanan/${s.slug}`} className="flex items-baseline gap-3 px-4 py-2 text-sm text-slate-300 hover:bg-white/5 hover:text-white">
+                      <span className="mono text-[11px] text-slate-500">{s.no}</span>{s.title}
+                    </Link>
                   ))}
-                  <Link to="/layanan" className="mt-1 flex items-center justify-between px-3 py-2 rounded-xl text-sm font-bold text-primary hover:bg-primary/10">Lihat semua layanan <ArrowRight className="w-4 h-4" /></Link>
+                  <Link to="/layanan" className="mt-1 mx-2 flex items-center justify-between px-2 pt-3 pb-1 border-t rule text-sm text-primary-soft hover:text-white">Semua layanan <ArrowRight className="w-4 h-4" /></Link>
                 </div>
               </div>
             </div>
@@ -57,9 +57,9 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link to="/kontak" className="btn btn-primary hidden sm:inline-flex !py-2.5 !px-5 !text-sm">Mulai Konsultasi</Link>
-          <button className="lg:hidden p-2 rounded-full bg-white/5 border border-white/10" onClick={() => setOpen(!open)} aria-label={open ? 'Tutup menu' : 'Buka menu'} aria-expanded={open}>
-            {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          <Link to="/kontak" className="btn btn-primary hidden sm:inline-flex !py-2.5 !px-4 !text-sm">Mulai Konsultasi <ArrowRight className="w-4 h-4" /></Link>
+          <button className="lg:hidden h-10 px-3 mono text-xs uppercase tracking-wider border rule rounded" onClick={() => setOpen(!open)} aria-label={open ? 'Tutup menu' : 'Buka menu'} aria-expanded={open}>
+            {open ? 'Tutup' : 'Menu'}
           </button>
         </div>
       </div>
@@ -68,10 +68,12 @@ export default function Navbar() {
         <div className="lg:hidden h-[calc(100dvh-4.5rem)] overflow-y-auto px-6 pb-10 page-enter">
           <nav className="flex flex-col" aria-label="Seluler">
             {links.map((l, i) => (
-              <NavLink key={l.to} to={l.to} end={l.end} style={{ animationDelay: `${i * 40}ms` }} className={({ isActive }) => `page-enter py-4 text-3xl font-extrabold border-b border-white/5 ${isActive ? 'text-gradient' : 'text-white'}`}>{l.label}</NavLink>
+              <NavLink key={l.to} to={l.to} end={l.end} style={{ animationDelay: `${i * 40}ms` }} className={({ isActive }) => `page-enter flex items-baseline gap-4 py-4 border-b rule display text-3xl ${isActive ? 'text-white' : 'text-slate-400'}`}>
+                <span className="mono text-xs text-slate-500">0{i + 1}</span>{l.label}
+              </NavLink>
             ))}
           </nav>
-          <Link to="/kontak" className="btn btn-primary mt-8 w-full justify-center">Mulai Konsultasi</Link>
+          <Link to="/kontak" className="btn btn-primary mt-8 w-full justify-between">Mulai Konsultasi <ArrowRight className="w-4 h-4" /></Link>
         </div>
       )}
     </header>

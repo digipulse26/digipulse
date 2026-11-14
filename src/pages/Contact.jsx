@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Mail, Clock, Send } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { EMAIL } from '../data';
-import { Tilt } from '../components/fx';
+import { Tilt, Label } from '../components/fx';
 import { VRStage } from './Portfolio';
 
 const kinds = ['Website', 'Aplikasi', 'IoT', 'Perangkat IoT', 'Desain & Video'];
-const input = 'w-full px-4 py-3 rounded-xl bg-background/70 border border-white/10 text-white placeholder:text-slate-500 focus:border-primary focus:outline-none transition-colors';
+const input = 'w-full bg-transparent border-0 border-b border-white/15 px-0 py-3 text-lg text-white placeholder:text-slate-600 focus:border-primary-soft focus:outline-none focus:ring-0 transition-colors';
 
 export default function Contact() {
   const [kind, setKind] = useState('Website');
@@ -18,36 +18,44 @@ export default function Contact() {
   };
   return (
     <section className="relative overflow-hidden min-h-screen pt-36 pb-24">
-      <VRStage className="absolute inset-0 opacity-60" />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background pointer-events-none" />
-      <div className="relative max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 items-center">
+      <VRStage className="absolute inset-0 opacity-50" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/30 to-background pointer-events-none" />
+      <div className="relative max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-14">
         <div className="lg:col-span-5">
-          <span className="eyebrow page-enter">Mulai percakapan</span>
-          <h1 className="mt-5 text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05] page-enter" style={{ animationDelay: '80ms' }}>Ceritakan apa yang sedang <span className="text-gradient">Anda kerjakan.</span></h1>
-          <p className="mt-5 text-lg text-slate-300 leading-relaxed page-enter" style={{ animationDelay: '160ms' }}>Anda tidak perlu menyiapkan brief yang sempurna. Bagikan konteks, kendala, dan hasil yang diharapkan, lalu kami bantu merumuskan langkah berikutnya.</p>
-          <ul className="mt-8 space-y-4 text-slate-200 page-enter" style={{ animationDelay: '240ms' }}>
-            <li className="flex items-center gap-4"><span className="w-11 h-11 rounded-xl bg-primary/15 border border-primary/30 text-primary flex items-center justify-center"><Mail className="w-5 h-5" /></span>{EMAIL}</li>
-            <li className="flex items-center gap-4"><span className="w-11 h-11 rounded-xl bg-primary/15 border border-primary/30 text-primary flex items-center justify-center"><Clock className="w-5 h-5" /></span>Senin – Jumat, 09.00 – 17.00 WIB</li>
-          </ul>
+          <Label className="page-enter">Mulai percakapan</Label>
+          <h1 className="mt-8 text-[2.75rem] sm:text-6xl leading-[0.98] page-enter" style={{ animationDelay: '80ms' }}>Ceritakan apa yang sedang <span className="serif">Anda kerjakan.</span></h1>
+          <p className="mt-8 text-lg text-slate-300 leading-relaxed page-enter" style={{ animationDelay: '160ms' }}>Anda tidak perlu menyiapkan brief yang sempurna. Bagikan konteks, kendala, dan hasil yang diharapkan, lalu kami bantu merumuskan langkah berikutnya.</p>
+          <dl className="mt-12 border-t rule page-enter" style={{ animationDelay: '240ms' }}>
+            <div className="py-5 border-b rule grid grid-cols-3 gap-4">
+              <dt className="mono text-xs text-slate-500 pt-1">Email</dt>
+              <dd className="col-span-2"><a href={`mailto:${EMAIL}`} className="link">{EMAIL} <ArrowUpRight className="w-4 h-4" /></a></dd>
+            </div>
+            <div className="py-5 border-b rule grid grid-cols-3 gap-4">
+              <dt className="mono text-xs text-slate-500 pt-1">Jam kerja</dt>
+              <dd className="col-span-2 text-slate-200">Senin – Jumat, 09.00 – 17.00 WIB</dd>
+            </div>
+          </dl>
         </div>
 
-        <div className="lg:col-span-7 scene">
-          <Tilt max={5} className="page-enter">
-            <form onSubmit={submit} className="relative card p-7 md:p-10 backdrop-blur-xl bg-secondary/70 scan space-y-6">
+        <div className="lg:col-span-6 lg:col-start-7 scene">
+          <Tilt max={4} className="page-enter rounded-[6px]">
+            <form onSubmit={submit} className="relative panel bg-secondary/80 backdrop-blur-md p-7 md:p-10 scan space-y-9">
               <i className="hud tl" /><i className="hud tr" /><i className="hud bl" /><i className="hud br" />
-              <div className="depth-1">
-                <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">Saya ingin membuat</p>
+              <fieldset className="depth-1">
+                <legend className="mono text-xs text-slate-500 mb-4">01 — Saya ingin membuat</legend>
                 <div className="flex flex-wrap gap-2">
-                  {kinds.map((k) => <button type="button" key={k} onClick={() => setKind(k)} aria-pressed={kind === k} className={`px-4 py-2 rounded-full text-sm font-bold border transition-all ${kind === k ? 'bg-primary border-primary text-white shadow-lg shadow-primary/30' : 'border-white/10 text-slate-400 hover:text-white'}`}>{k}</button>)}
+                  {kinds.map((k) => <button type="button" key={k} onClick={() => setKind(k)} aria-pressed={kind === k} className={`px-3.5 py-2 rounded-[4px] text-sm border transition-colors ${kind === k ? 'bg-white text-slate-950 border-white' : 'border-white/15 text-slate-400 hover:text-white hover:border-white/40'}`}>{k}</button>)}
                 </div>
+              </fieldset>
+              <div className="grid sm:grid-cols-2 gap-8 depth-1">
+                <label className="block"><span className="mono text-xs text-slate-500">02 — Nama</span><input required value={f.name} onChange={set('name')} className={input} placeholder="Nama Anda" /></label>
+                <label className="block"><span className="mono text-xs text-slate-500">03 — Email</span><input required type="email" value={f.email} onChange={set('email')} className={input} placeholder="nama@email.com" /></label>
               </div>
-              <div className="grid sm:grid-cols-2 gap-4 depth-1">
-                <label className="block"><span className="text-xs font-bold uppercase tracking-widest text-slate-400">Nama</span><input required value={f.name} onChange={set('name')} className={`${input} mt-2`} placeholder="Nama Anda" /></label>
-                <label className="block"><span className="text-xs font-bold uppercase tracking-widest text-slate-400">Email</span><input required type="email" value={f.email} onChange={set('email')} className={`${input} mt-2`} placeholder="nama@email.com" /></label>
+              <label className="block depth-1"><span className="mono text-xs text-slate-500">04 — Ceritakan kebutuhan Anda</span><textarea required rows={4} value={f.msg} onChange={set('msg')} className={`${input} resize-none`} placeholder="Apa yang ingin Anda bangun, dan kendala apa yang sedang dihadapi?" /></label>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 depth-2">
+                <p className="text-xs text-slate-500 max-w-[16rem]">Pesan akan terbuka di aplikasi email Anda dengan isi yang sudah terisi otomatis.</p>
+                <button type="submit" className="btn btn-primary justify-between shrink-0 whitespace-nowrap">Kirim Pesan <ArrowRight className="w-4 h-4" /></button>
               </div>
-              <label className="block depth-1"><span className="text-xs font-bold uppercase tracking-widest text-slate-400">Ceritakan kebutuhan Anda</span><textarea required rows={5} value={f.msg} onChange={set('msg')} className={`${input} mt-2 resize-none`} placeholder="Apa yang ingin Anda bangun, dan kendala apa yang sedang dihadapi?" /></label>
-              <button type="submit" className="btn btn-primary depth-2 w-full justify-center">Kirim Pesan <Send className="w-4 h-4" /></button>
-              <p className="text-xs text-slate-500 text-center">Pesan akan terbuka di aplikasi email Anda dengan isi yang sudah terisi otomatis.</p>
             </form>
           </Tilt>
         </div>

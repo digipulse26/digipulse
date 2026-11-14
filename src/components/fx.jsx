@@ -32,7 +32,7 @@ export function Particles({ density = 38 }) {
     const ctx = c.getContext('2d');
     let w = 0, h = 0, raf = 0, visible = true, mx = -999, my = -999;
     const small = window.innerWidth < 768; const n = small ? Math.round(density * 0.45) : density; let lastT = 0;
-    const ps = Array.from({ length: n }, () => ({ x: Math.random(), y: Math.random(), vx: (Math.random() - 0.5) * 0.00018, vy: (Math.random() - 0.5) * 0.00018, r: Math.random() * 1.8 + 0.6, a: Math.random() > 0.7 }));
+    const ps = Array.from({ length: n }, () => ({ x: Math.random(), y: Math.random(), vx: (Math.random() - 0.5) * 0.00018, vy: (Math.random() - 0.5) * 0.00018, r: Math.random() * 1.8 + 0.6, a: Math.random() > 0.88 }));
     const size = () => { const dpr = Math.min(window.devicePixelRatio || 1, 1.5); w = c.clientWidth; h = c.clientHeight; c.width = w * dpr; c.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); };
     const draw = (t = 0) => {
       raf = requestAnimationFrame(draw);
@@ -48,11 +48,11 @@ export function Particles({ density = 38 }) {
         const x = p.x * w, y = p.y * h;
         const dx = x - mx, dy = y - my, d = Math.hypot(dx, dy);
         const k = d < 120 ? (120 - d) / 120 : 0;
-        ctx.fillStyle = p.a ? `rgba(244,63,94,${0.55 + k * 0.4})` : `rgba(129,140,248,${0.55 + k * 0.4})`;
+        ctx.fillStyle = p.a ? `rgba(244,63,94,${0.5 + k * 0.4})` : `rgba(203,213,225,${0.35 + k * 0.5})`;
         ctx.beginPath(); ctx.arc(x + (dx / (d || 1)) * k * 14, y + (dy / (d || 1)) * k * 14, p.r + k * 2, 0, 6.283); ctx.fill();
         for (let j = i + 1; j < ps.length; j++) {
           const q = ps[j], ex = x - q.x * w, ey = y - q.y * h, dd = ex * ex + ey * ey;
-          if (dd < 11000) { ctx.strokeStyle = `rgba(129,140,248,${0.14 * (1 - dd / 11000)})`; ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(q.x * w, q.y * h); ctx.stroke(); }
+          if (dd < 11000) { ctx.strokeStyle = `rgba(165,180,252,${0.1 * (1 - dd / 11000)})`; ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(q.x * w, q.y * h); ctx.stroke(); }
         }
       }
     };
@@ -70,7 +70,7 @@ export function Particles({ density = 38 }) {
 export function Marquee({ items, className = '', rev = false }) {
   const row = items.map((t, i) => (
     <span key={i} className="flex items-center whitespace-nowrap">
-      <span className="mx-6 md:mx-10">{t}</span><span className="text-accent">✦</span>
+      <span className="mx-6 md:mx-10">{t}</span><span className="mono text-[0.5em] opacity-40">/</span>
     </span>
   ));
   return (
@@ -81,31 +81,37 @@ export function Marquee({ items, className = '', rev = false }) {
   );
 }
 
-export function CtaBand({ title = 'Siap mewujudkan ide Anda?', text = 'Tidak perlu persiapan yang rumit. Ceritakan gagasan, kebutuhan, atau tantangan Anda, dan kami bantu menentukan langkah terbaik berikutnya.' }) {
+// Garis kolom tipis di latar, memberi struktur seperti kertas grid desain
+export function Rules() {
   return (
-    <section className="py-24 px-6">
-      <div className="max-w-5xl mx-auto relative overflow-hidden rounded-[2rem] p-10 md:p-16 text-center bg-gradient-to-br from-primary/25 via-secondary to-accent/20 border border-white/10">
-        <div className="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-primary/30 blur-3xl liquid" />
-        <div className="relative reveal">
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">{title}</h2>
-          <p className="text-slate-300 mt-4 max-w-xl mx-auto">{text}</p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link to="/kontak" className="btn btn-primary">Ceritakan Ide Anda <ArrowRight className="w-4 h-4" /></Link>
-            <Link to="/portofolio" className="btn btn-ghost">Lihat Portofolio</Link>
+    <div className="rules" aria-hidden="true">
+      <div className="max-w-7xl mx-auto px-6"><i /><i /><i /><i /></div>
+    </div>
+  );
+}
+
+export function Label({ n, children, className = '' }) {
+  return <span className={`label ${className}`}>{n && <span className="n">{n}</span>}{children}</span>;
+}
+
+export function CtaBand({ title = 'Siap mewujudkan ide Anda?', text = 'Tidak perlu persiapan yang rumit. Ceritakan gagasan, kebutuhan, atau tantangan Anda, dan kami bantu menentukan langkah terbaik berikutnya.' }) {
+  const words = title.split(' ');
+  const last = words.pop();
+  return (
+    <section className="relative px-6 py-24 md:py-36 border-t rule overflow-hidden">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-12 gap-10 items-end">
+        <div className="md:col-span-8 reveal">
+          <Label>Mulai proyek</Label>
+          <h2 className="mt-6 text-[2.6rem] leading-[1] sm:text-6xl md:text-[5.5rem]">{words.join(' ')} <span className="serif">{last}</span></h2>
+        </div>
+        <div className="md:col-span-4 reveal" style={{ '--d': '120ms' }}>
+          <p className="text-slate-400 leading-relaxed">{text}</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link to="/kontak" className="btn btn-primary">Ceritakan ide Anda <ArrowRight className="w-4 h-4" /></Link>
+            <Link to="/portofolio" className="btn btn-ghost">Lihat portofolio</Link>
           </div>
         </div>
       </div>
     </section>
-  );
-}
-
-export function PageHead({ eyebrow, title, text, children, className = '' }) {
-  return (
-    <div className={`relative z-10 max-w-7xl mx-auto px-6 pt-36 pb-16 ${className}`}>
-      <span className="eyebrow">{eyebrow}</span>
-      <h1 className="mt-5 text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.05] max-w-4xl">{title}</h1>
-      {text && <p className="mt-6 text-lg text-slate-400 max-w-2xl leading-relaxed">{text}</p>}
-      {children}
-    </div>
   );
 }

@@ -17,8 +17,8 @@ export default function ScrollProgress() {
     return () => { window.removeEventListener('scroll', on); window.removeEventListener('resize', on); cancelAnimationFrame(raf); };
   }, []);
   return (
-    <div className="fixed top-0 left-0 right-0 z-[60] h-[3px] pointer-events-none">
-      <div ref={bar} className="h-full bg-gradient-to-r from-primary to-accent origin-left" style={{ transform: 'scaleX(0)' }} />
+    <div className="fixed top-0 left-0 right-0 z-[60] h-[2px] pointer-events-none">
+      <div ref={bar} className="h-full bg-primary-soft origin-left" style={{ transform: 'scaleX(0)' }} />
     </div>
   );
 }
