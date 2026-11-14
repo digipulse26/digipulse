@@ -1,28 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useParams, Navigate } from 'react-router-dom';
-import {
-  ArrowRight, ArrowUpRight, Palette, Zap, Search, PenLine, ShieldCheck, ChartLine, MousePointerClick, Layers, Target, Building2, CreditCard,
-  Activity, Users, PenTool, LayoutGrid, RefreshCw, Route, Webhook, Repeat, BookOpen, Smartphone, BellRing, Battery, Cpu, Printer, Megaphone,
-  Package, PartyPopper, Clapperboard, Wrench, HardDrive, MessagesSquare, Code,
-} from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { services, tools, groups, groupOf } from '../data';
 import { Marquee, CtaBand, Rules, Label, ConsultLink } from '../components/fx';
+import { CursorFollower } from '../components/interact';
 import { GroupVisual, ServiceVisual, Gallery } from '../components/visuals';
+import { ServicePlay } from '../components/play';
 
-// Ikon untuk setiap poin lingkup pekerjaan (urutan mengikuti services[].points)
-const pointIcons = {
-  'web-development': [Palette, Zap, Search, PenLine],
-  'web-application': [ShieldCheck, ChartLine, MousePointerClick, Layers],
-  'saas-development': [Target, Building2, CreditCard, Activity],
-  'ui-ux-design': [Users, PenTool, LayoutGrid, RefreshCw],
-  'system-integration': [Route, Webhook, Repeat, BookOpen],
-  'iot-embedded-system': [Smartphone, BellRing, Battery, Cpu],
-  'graphic-design': [Printer, Megaphone, Package, PenTool],
-  'video-editing': [PartyPopper, Clapperboard, Smartphone, RefreshCw],
-  'maintenance-support': [Activity, ShieldCheck, Wrench, HardDrive],
-};
-
-const flow = [[MessagesSquare, 'Konsultasi', 'Pahami kebutuhan'], [Search, 'Analisis', 'Susun lingkup'], [PenTool, 'Desain', 'Rancang tampilan'], [Code, 'Pengerjaan', 'Bangun bertahap']];
+const flow = [['Konsultasi', 'Pahami kebutuhan'], ['Analisis', 'Susun lingkup'], ['Desain', 'Rancang tampilan'], ['Pengerjaan', 'Bangun bertahap']];
 
 export function Kinetic({ text, wave = false, className = '' }) {
   return (
@@ -37,6 +22,8 @@ export function Kinetic({ text, wave = false, className = '' }) {
 }
 
 export function ServicesPage() {
+  // Pratinjau visual layanan yang mengikuti kursor saat baris disorot (laptop)
+  const [hov, setHov] = useState(null);
   return (
     <>
       <section className="relative overflow-hidden pt-36 pb-14">
@@ -66,13 +53,13 @@ export function ServicesPage() {
                 <span className="mono text-xs text-primary-soft">0{gi + 1} / 0{groups.length}</span>
                 <h2 className="mt-4 text-4xl md:text-5xl leading-[1.02]">{g.title}</h2>
                 <p className="mt-4 text-xl text-white leading-snug">{g.hook}</p>
-                <div className="mt-8 panel p-5 bg-[radial-gradient(ellipse_at_top,rgb(99_102_241/.16),transparent_70%)]"><GroupVisual slug={g.slug} /></div>
+                <div className="mt-8 blueprint rounded-[6px] border border-white/[0.08] p-5"><GroupVisual slug={g.slug} /></div>
                 <p className="mt-5 text-sm text-slate-500">Sesuai untuk <span className="text-slate-300">{g.who}</span></p>
               </div>
             </div>
             <div className="md:col-span-8 border-t rule">
               {g.items.map((slug) => { const s = services.find((x) => x.slug === slug); return (
-                <Link key={slug} to={`/layanan/${slug}`} className="svc-row reveal group grid grid-cols-12 gap-4 items-baseline py-7 border-b rule last:border-b-0">
+                <Link key={slug} to={`/layanan/${slug}`} onMouseEnter={() => setHov(slug)} onMouseLeave={() => setHov(null)} className="svc-row reveal group grid grid-cols-12 gap-4 items-baseline py-7 border-b rule last:border-b-0">
                   <h3 className="svc-title col-span-12 md:col-span-7 text-[2.1rem] leading-none md:text-5xl font-bold"><span className="fill glitch" data-text={s.title}>{s.title}</span></h3>
                   <p className="col-span-11 md:col-span-4 text-slate-400 leading-relaxed">{s.short}</p>
                   <ArrowUpRight className="col-span-1 justify-self-end w-6 h-6 text-slate-500 group-hover:text-white transition-all group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -82,6 +69,11 @@ export function ServicesPage() {
           </div>
         ))}
       </section>
+      <CursorFollower show={!!hov}>
+        <div className="w-[24rem] translate-x-[55%] -translate-y-[10%] blueprint bg-background/95 rounded-[6px] border border-white/15 p-6 shadow-2xl shadow-black/60">
+          {hov && <div key={hov} className="swap-in"><ServiceVisual slug={hov} /></div>}
+        </div>
+      </CursorFollower>
       <CtaBand />
     </>
   );
@@ -119,9 +111,9 @@ export function ServiceDetail() {
       </section>
 
       <section className="max-w-7xl mx-auto px-6 pb-16">
-        <div className="panel relative overflow-hidden px-5 py-10 sm:px-10 md:py-16 flex justify-center bg-[radial-gradient(ellipse_at_top,rgb(99_102_241/.2),transparent_65%)]">
+        <div className="relative overflow-hidden blueprint rounded-[6px] border border-white/[0.08] px-5 py-8 sm:px-10 md:py-12">
           <i className="hud tl" /><i className="hud tr" /><i className="hud bl" /><i className="hud br" />
-          <ServiceVisual slug={s.slug} />
+          <ServicePlay slug={s.slug} />
         </div>
       </section>
 
@@ -132,14 +124,14 @@ export function ServiceDetail() {
           <Label>Lingkup pekerjaan</Label>
           <h2 className="mt-6 text-4xl md:text-5xl leading-[1.02]">Yang kami <span className="serif">kerjakan.</span></h2>
         </div>
-        <ul className="md:col-span-8 md:col-start-5 grid sm:grid-cols-2 gap-4">
-          {s.points.map((p, i) => { const I = (pointIcons[s.slug] || [])[i] || ArrowRight; return (
-            <li key={p} style={{ '--d': `${i * 80}ms` }} className="reveal panel p-6 flex flex-col gap-5">
-              <span className="w-11 h-11 rounded-xl border border-primary-soft/40 bg-primary/15 text-primary-soft flex items-center justify-center"><I className="w-5 h-5" /></span>
-              <span className="text-lg text-slate-200 leading-snug">{p}</span>
+        <ol className="md:col-span-8 md:col-start-5 grid sm:grid-cols-2 border-t rule">
+          {s.points.map((p, i) => (
+            <li key={p} style={{ '--d': `${i * 80}ms` }} className={`reveal group py-8 border-b rule sm:[&:nth-child(odd)]:pr-8 sm:[&:nth-child(even)]:pl-8 sm:[&:nth-child(odd)]:border-r`}>
+              <span className="num-outline display text-6xl leading-none">0{i + 1}</span>
+              <p className="mt-5 text-lg text-slate-200 leading-snug transition-transform duration-500 group-hover:translate-x-1">{p}</p>
             </li>
-          ); })}
-        </ul>
+          ))}
+        </ol>
       </section>
 
       {(s.slug === 'graphic-design' || s.slug === 'video-editing') && (
@@ -177,12 +169,12 @@ export function ServiceDetail() {
       <section className="border-t rule px-6 py-24">
         <div className="max-w-7xl mx-auto">
           <div className="reveal"><Label>Proses</Label><h2 className="mt-6 text-4xl md:text-5xl leading-[1.02]">Cara kami <span className="serif">mengerjakannya.</span></h2></div>
-          <ol className="mt-12 relative grid grid-cols-2 lg:grid-cols-4 gap-y-10">
-            <span className="hidden lg:block absolute left-7 right-[12%] top-7 h-px bg-gradient-to-r from-primary-soft/60 via-primary-soft/30 to-transparent" />
-            {flow.map(([I, t, d], i) => (
-              <li key={t} style={{ '--d': `${i * 100}ms` }} className="reveal relative pr-4">
-                <span className="relative w-14 h-14 rounded-2xl bg-background border border-primary-soft/40 text-primary-soft flex items-center justify-center"><I className="w-6 h-6" /><span className="absolute -top-2 -right-2 mono text-[10px] bg-primary text-white rounded-full w-5 h-5 flex items-center justify-center">{i + 1}</span></span>
-                <h3 className="mt-5 text-xl">{t}</h3>
+          <ol className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-y-10 reveal flow">
+            {flow.map(([t, d], i) => (
+              <li key={t} className="relative pr-6 group">
+                <span className="flow-line block h-px bg-primary-soft origin-left" style={{ transitionDelay: `${i * 250}ms` }} />
+                <span className="mt-5 block mono text-xs text-primary-soft">Langkah 0{i + 1}</span>
+                <h3 className="mt-3 text-2xl transition-colors group-hover:text-primary-soft">{t}</h3>
                 <p className="mt-1 text-sm text-slate-400">{d}</p>
               </li>
             ))}

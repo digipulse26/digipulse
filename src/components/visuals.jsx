@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Parallax, Layer } from './interact';
 import { BellRing, Check, MessageCircle, CreditCard, FileSpreadsheet, Webhook, Play, ShoppingBag, Search, Mic, ArrowRight, ScanBarcode } from 'lucide-react';
 
 /*
@@ -76,8 +77,14 @@ export function ScreenSiteMobile() {
   );
 }
 
-export function ScreenDash() {
-  const bars = [40, 65, 50, 80, 58, 92, 74];
+export const DASH = [
+  { t: 'Ringkasan hari ini', k: [['Pendapatan', '128,4 jt', '+12%'], ['Pesanan', '342', '+8%'], ['Pelanggan', '1.204', '+5%']], bars: [40, 65, 50, 80, 58, 92, 74], line: 'M0 32 L12 28 L24 30 L36 20 L48 23 L60 14 L72 17 L84 8 L100 10' },
+  { t: 'Ringkasan 7 hari', k: [['Pendapatan', '842,0 jt', '+9%'], ['Pesanan', '2.311', '+6%'], ['Pelanggan', '5.870', '+4%']], bars: [70, 52, 88, 61, 76, 49, 95], line: 'M0 26 L12 30 L24 18 L36 24 L48 12 L60 20 L72 10 L84 16 L100 6' },
+  { t: 'Ringkasan 30 hari', k: [['Pendapatan', '3,6 M', '+15%'], ['Pesanan', '9.804', '+11%'], ['Pelanggan', '21.4 rb', '+7%']], bars: [30, 42, 55, 60, 72, 84, 98], line: 'M0 36 L12 33 L24 31 L36 26 L48 24 L60 18 L72 15 L84 10 L100 4' },
+];
+
+export function ScreenDash({ d = DASH[0] }) {
+  const bars = d.bars;
   return (
     <div className="aspect-[16/10] flex bg-[#0b1224]">
       <div className="w-[8%] border-r border-white/10 flex flex-col items-center gap-[2.2cqw] py-[3cqw]">
@@ -85,27 +92,27 @@ export function ScreenDash() {
       </div>
       <div className="flex-1 p-[3cqw] flex flex-col gap-[2.4cqw] min-w-0">
         <div className="flex items-center justify-between">
-          <span className="text-[2.2cqw] font-semibold text-white">Ringkasan hari ini</span>
+          <span className="text-[2.2cqw] font-semibold text-white">{d.t}</span>
           <i className="w-[12cqw] h-[3cqw] rounded-full bg-white/10" />
         </div>
         <div className="grid grid-cols-3 gap-[1.8cqw]">
-          {[['Pendapatan', '128,4 jt', '+12%'], ['Pesanan', '342', '+8%'], ['Pelanggan', '1.204', '+5%']].map(([k, v, d]) => (
+          {d.k.map(([k, v, dd]) => (
             <div key={k} className="rounded-[1cqw] border border-white/10 bg-white/[0.03] p-[1.6cqw]">
               <p className="text-[1.6cqw] text-slate-500 leading-none">{k}</p>
               <p className="mt-[1cqw] text-[3cqw] font-semibold text-white leading-none">{v}</p>
-              <p className="mt-[.8cqw] text-[1.5cqw] text-emerald-400 leading-none">{d}</p>
+              <p className="mt-[.8cqw] text-[1.5cqw] text-emerald-400 leading-none">{dd}</p>
             </div>
           ))}
         </div>
         <div className="flex-1 grid grid-cols-5 gap-[1.8cqw] min-h-0">
           <div className="col-span-3 rounded-[1cqw] border border-white/10 p-[1.6cqw]">
             <svg viewBox="0 0 100 40" preserveAspectRatio="none" className="w-full h-full">
-              <path d="M0 32 L12 28 L24 30 L36 20 L48 23 L60 14 L72 17 L84 8 L100 10 L100 40 L0 40Z" fill="rgba(99,102,241,.22)" />
-              <path className="draw" pathLength="1" d="M0 32 L12 28 L24 30 L36 20 L48 23 L60 14 L72 17 L84 8 L100 10" fill="none" stroke="rgb(165,180,252)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+              <path key={d.t + 'a'} className="fade-in" d={`${d.line} L100 40 L0 40Z`} fill="rgba(99,102,241,.22)" />
+              <path key={d.t} className="draw" pathLength="1" d={d.line} fill="none" stroke="rgb(165,180,252)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
             </svg>
           </div>
           <div className="col-span-2 rounded-[1cqw] border border-white/10 p-[1.6cqw] flex items-end gap-[6%]">
-            {bars.map((b, i) => <i key={i} className="bar-live flex-1 rounded-t-[.4cqw] bg-primary-soft/60" style={{ height: `${b}%`, '--d': `${i * -0.4}s` }} />)}
+            {bars.map((b, i) => <i key={i} className="bar-live flex-1 rounded-t-[.4cqw] bg-primary-soft/60 transition-[height] duration-700" style={{ height: `${b}%`, '--d': `${i * -0.4}s` }} />)}
           </div>
         </div>
       </div>
@@ -134,7 +141,7 @@ export function ScreenShop() {
   );
 }
 
-export function ScreenPortal() {
+export function ScreenPortal({ sel = 1, onSel }) {
   const st = ['Buat akun', 'Pilih paket', 'Undang tim'];
   return (
     <div className="aspect-[16/10] p-[3.5cqw] bg-gradient-to-br from-[#0b1224] to-[#12183a] grid grid-cols-5 gap-[3cqw]">
@@ -149,12 +156,12 @@ export function ScreenPortal() {
       </div>
       <div className="col-span-3 grid grid-cols-3 gap-[1.6cqw] items-stretch">
         {['Dasar', 'Bisnis', 'Tim'].map((p, i) => (
-          <div key={p} className={`rounded-[1.2cqw] border p-[1.6cqw] flex flex-col gap-[1.2cqw] ${i === 1 ? 'border-primary-soft/70 bg-primary/15 -translate-y-[1.5cqw]' : 'border-white/10'}`}>
+          <button type="button" key={p} onClick={() => onSel && onSel(i)} tabIndex={onSel ? 0 : -1} className={`text-left rounded-[1.2cqw] border p-[1.6cqw] flex flex-col gap-[1.2cqw] transition-all duration-500 ${i === sel ? 'border-primary-soft/70 bg-primary/15 -translate-y-[1.5cqw]' : 'border-white/10 hover:border-white/25'}`}>
             <span className="text-[1.7cqw] text-slate-400">{p}</span>
             <span className="text-[3cqw] font-semibold text-white leading-none">{['99', '249', '499'][i]}<span className="text-[1.4cqw] text-slate-500">rb</span></span>
             {[0, 1, 2].map((k) => <span key={k} className="flex items-center gap-[.8cqw]"><Check className="w-[1.6cqw] h-[1.6cqw] text-emerald-400 shrink-0" /><Bar w="70%" h="h-[.9cqw]" /></span>)}
-            <i className={`mt-auto h-[3cqw] rounded-full ${i === 1 ? 'bg-primary' : 'bg-white/10'}`} />
-          </div>
+            <i className={`mt-auto h-[3cqw] rounded-full transition-colors ${i === sel ? 'bg-primary' : 'bg-white/10'}`} />
+          </button>
         ))}
       </div>
     </div>
@@ -198,41 +205,56 @@ function Gauge({ v, label, unit, c = 'rgb(165,180,252)' }) {
   );
 }
 
-export function ScreenIoT() {
+export function ScreenIoT({ temp = 27 }) {
+  const hot = temp > 30;
   return (
     <div className="flex-1 px-[7cqw] pb-[7cqw] flex flex-col gap-[5cqw]">
       <div className="flex items-center justify-between"><p className="text-[6.5cqw] font-semibold text-white display">Gudang A</p><span className="flex items-center gap-[1.5cqw] text-[4cqw] text-emerald-300"><i className="w-[2cqw] h-[2cqw] rounded-full bg-emerald-400 blink" />Online</span></div>
       <div className="grid grid-cols-2 gap-[4cqw]">
-        <div className="@container"><Gauge v={68} label="27°" unit="Suhu" /></div>
+        <div className="@container"><Gauge v={Math.round(((temp - 10) / 35) * 100)} label={`${temp}°`} unit="Suhu" c={hot ? 'rgb(244,63,94)' : 'rgb(165,180,252)'} /></div>
         <div className="@container"><Gauge v={64} label="64%" unit="Lembap" c="rgb(56,189,248)" /></div>
       </div>
       <div className="rounded-[4cqw] border border-white/10 p-[4cqw]">
         <p className="text-[4cqw] text-slate-500">24 jam terakhir</p>
         <svg viewBox="0 0 100 30" preserveAspectRatio="none" className="mt-[2cqw] w-full h-[16cqw]"><path className="draw" pathLength="1" d="M0 20 L10 18 L20 22 L30 15 L40 17 L50 10 L60 14 L70 8 L80 12 L90 5 L100 9" fill="none" stroke="rgb(165,180,252)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" /></svg>
       </div>
-      <div className="mt-auto rounded-[4cqw] bg-accent/15 border border-accent/40 p-[4cqw] flex items-center gap-[3cqw] notif">
-        <BellRing className="w-[7cqw] h-[7cqw] text-accent shrink-0" />
-        <span className="text-[4.5cqw] text-slate-100 leading-snug">Suhu ruang 2 melewati batas</span>
-      </div>
+      {hot ? (
+        <div key="hot" className="mt-auto rounded-[4cqw] bg-accent/15 border border-accent/40 p-[4cqw] flex items-center gap-[3cqw] swap-in">
+          <BellRing className="w-[7cqw] h-[7cqw] text-accent shrink-0 ring-bell" />
+          <span className="text-[4.5cqw] text-slate-100 leading-snug">Suhu ruang 2 melewati batas</span>
+        </div>
+      ) : (
+        <div key="ok" className="mt-auto rounded-[4cqw] bg-emerald-400/10 border border-emerald-400/30 p-[4cqw] flex items-center gap-[3cqw] swap-in">
+          <Check className="w-[7cqw] h-[7cqw] text-emerald-300 shrink-0" />
+          <span className="text-[4.5cqw] text-slate-100 leading-snug">Semua sensor normal</span>
+        </div>
+      )}
     </div>
   );
 }
 
+const TICKET = { Baru: 'bg-accent/20 text-rose-300', Proses: 'bg-amber-300/15 text-amber-200', Selesai: 'bg-emerald-400/15 text-emerald-300' };
 export function ScreenInbox() {
-  const rows = [['Pesanan belum tiba', 'Baru', 'bg-accent/20 text-rose-300'], ['Ganti alamat kirim', 'Proses', 'bg-amber-300/15 text-amber-200'], ['Minta faktur', 'Selesai', 'bg-emerald-400/15 text-emerald-300'], ['Produk tidak sesuai', 'Proses', 'bg-amber-300/15 text-amber-200']];
+  const [rows, setRows] = useState([['Pesanan belum tiba', 'Baru'], ['Ganti alamat kirim', 'Proses'], ['Minta faktur', 'Selesai'], ['Produk tidak sesuai', 'Proses']]);
+  const [cur, setCur] = useState(0);
+  const pick = (i) => {
+    setCur(i);
+    setRows((r) => r.map((x, k) => (k === i ? [x[0], x[1] === 'Baru' ? 'Proses' : x[1] === 'Proses' ? 'Selesai' : 'Selesai'] : x)));
+  };
   return (
     <div className="aspect-[16/10] bg-[#0b1224] grid grid-cols-5">
       <div className="col-span-3 border-r border-white/10 p-[3cqw] space-y-[1.6cqw]">
         <span className="text-[2.4cqw] font-semibold text-white">Kotak masuk</span>
-        {rows.map(([t, s, c], i) => (
-          <div key={t} className={`flex items-center gap-[1.6cqw] rounded-[1cqw] p-[1.4cqw] ${i === 0 ? 'bg-white/[0.06]' : ''}`}>
+        {rows.map(([t, s], i) => (
+          <button type="button" key={t} onClick={() => pick(i)} className={`w-full text-left flex items-center gap-[1.6cqw] rounded-[1cqw] p-[1.4cqw] transition-colors ${i === cur ? 'bg-white/[0.08]' : 'hover:bg-white/[0.04]'}`}>
             <i className="w-[3.4cqw] h-[3.4cqw] rounded-full bg-gradient-to-br from-primary-soft/70 to-accent/50 shrink-0" />
             <span className="flex-1 min-w-0 text-[1.8cqw] text-slate-200 truncate">{t}</span>
-            <span className={`text-[1.4cqw] px-[1.2cqw] py-[.4cqw] rounded-full ${c}`}>{s}</span>
-          </div>
+            <span key={s} className={`text-[1.4cqw] px-[1.2cqw] py-[.4cqw] rounded-full swap-in ${TICKET[s]}`}>{s}</span>
+          </button>
         ))}
       </div>
-      <div className="col-span-2 p-[3cqw] flex flex-col gap-[1.8cqw]">
+      <div key={cur} className="col-span-2 p-[3cqw] flex flex-col gap-[1.8cqw] swap-in">
+        <span className="text-[1.7cqw] text-slate-400 truncate">{rows[cur][0]}</span>
         <span className="self-start max-w-[85%] rounded-[1.4cqw] bg-white/[0.07] p-[1.6cqw] space-y-[.8cqw]"><Bar w="12cqw" h="h-[.9cqw]" /><Bar w="9cqw" h="h-[.9cqw]" /></span>
         <span className="self-end max-w-[85%] rounded-[1.4cqw] bg-primary/60 p-[1.6cqw] space-y-[.8cqw]"><Bar w="13cqw" h="h-[.9cqw]" c="bg-white/50" /><Bar w="8cqw" h="h-[.9cqw]" c="bg-white/50" /></span>
         <span className="self-start rounded-[1.4cqw] bg-white/[0.07] px-[1.6cqw] py-[1.2cqw] flex gap-[.6cqw]"><i className="typing w-[1cqw] h-[1cqw] rounded-full bg-white/50" /><i className="typing w-[1cqw] h-[1cqw] rounded-full bg-white/50" style={{ animationDelay: '.15s' }} /><i className="typing w-[1cqw] h-[1cqw] rounded-full bg-white/50" style={{ animationDelay: '.3s' }} /></span>
@@ -243,22 +265,29 @@ export function ScreenInbox() {
 }
 
 export function ScreenStock() {
-  const rows = [['Beras 5 kg', 128, 80], ['Minyak 2 L', 12, 10], ['Gula 1 kg', 64, 48], ['Tepung 1 kg', 7, 6]];
+  const [rows, setRows] = useState([['Beras 5 kg', 128], ['Minyak 2 L', 12], ['Gula 1 kg', 64], ['Tepung 1 kg', 7]]);
+  const [hit, setHit] = useState(-1);
+  const scan = () => {
+    const i = rows.findIndex((r) => r[1] < 15);
+    const k = i < 0 ? Math.floor(Math.random() * rows.length) : i;
+    setHit(k);
+    setRows((r) => r.map((x, j) => (j === k ? [x[0], x[1] + 12] : x)));
+  };
   return (
     <div className="aspect-[16/10] bg-[#0b1224] p-[3cqw] flex flex-col gap-[2cqw]">
       <div className="flex items-center justify-between">
         <span className="text-[2.4cqw] font-semibold text-white">Stok · Gudang Utama</span>
-        <span className="flex items-center gap-[1cqw] rounded-full bg-primary px-[1.8cqw] py-[.8cqw] text-[1.6cqw] text-white"><ScanBarcode className="w-[2.2cqw] h-[2.2cqw]" />Pindai</span>
+        <button type="button" onClick={scan} className="flex items-center gap-[1cqw] rounded-full bg-primary hover:bg-primary-soft hover:text-slate-950 transition-colors px-[1.8cqw] py-[.8cqw] text-[1.6cqw] text-white"><ScanBarcode className="w-[2.2cqw] h-[2.2cqw]" />Pindai +12</button>
       </div>
       <div className="flex-1 rounded-[1cqw] border border-white/10 overflow-hidden">
-        {rows.map(([n, q, w], i) => (
-          <div key={n} className="grid grid-cols-12 items-center gap-[1.4cqw] px-[2cqw] py-[1.6cqw] border-b border-white/[0.06] last:border-0">
+        {rows.map(([n, q], i) => { const w = Math.min(100, (q / 140) * 100); return (
+          <div key={n} className={`grid grid-cols-12 items-center gap-[1.4cqw] px-[2cqw] py-[1.6cqw] border-b border-white/[0.06] last:border-0 transition-colors duration-700 ${hit === i ? 'bg-primary/15' : ''}`}>
             <span className="col-span-4 text-[1.8cqw] text-slate-200">{n}</span>
-            <span className="col-span-5 h-[1.2cqw] rounded-full bg-white/[0.06] overflow-hidden"><i className={`block h-full rounded-full ${q < 15 ? 'bg-accent' : 'bg-primary-soft/70'}`} style={{ width: `${w}%` }} /></span>
+            <span className="col-span-5 h-[1.2cqw] rounded-full bg-white/[0.06] overflow-hidden"><i className={`block h-full rounded-full transition-all duration-700 ${q < 15 ? 'bg-accent' : 'bg-primary-soft/70'}`} style={{ width: `${w}%` }} /></span>
             <span className="col-span-1 text-[1.8cqw] text-white text-right">{q}</span>
             <span className={`col-span-2 justify-self-end text-[1.3cqw] px-[1cqw] py-[.3cqw] rounded-full ${q < 15 ? 'bg-accent/20 text-rose-300' : 'bg-emerald-400/15 text-emerald-300'}`}>{q < 15 ? 'Menipis' : 'Aman'}</span>
           </div>
-        ))}
+        ); })}
       </div>
       <div className="flex items-end gap-[.4cqw] h-[5cqw]">{Array.from({ length: 34 }).map((_, i) => <i key={i} className="bg-white/70 h-full" style={{ width: `${[.3, .6, .3, .9][i % 4]}cqw` }} />)}<span className="ml-[1.6cqw] mono text-[1.5cqw] text-slate-500">899 1234 5678</span></div>
     </div>
@@ -266,7 +295,7 @@ export function ScreenStock() {
 }
 
 /* ---------- Perangkat & diagram ---------- */
-export function IotDevice({ className = '' }) {
+export function IotDevice({ className = '', alert = false }) {
   return (
     <svg viewBox="0 0 220 150" className={className} fill="none" aria-hidden="true">
       <path d="M40 92 H18 V112" stroke="rgba(165,180,252,.5)" strokeWidth="1.5" className="flow" />
@@ -277,7 +306,7 @@ export function IotDevice({ className = '' }) {
       {Array.from({ length: 10 }).map((_, i) => <rect key={'b' + i} x={50 + i * 10.5} y="118" width="4" height="8" rx="1" fill="rgba(203,213,225,.55)" />)}
       <rect x="82" y="64" width="36" height="36" rx="3" fill="#1e293b" stroke="rgba(255,255,255,.18)" />
       <text x="100" y="85" textAnchor="middle" fontSize="7" fill="#94a3b8" fontFamily="Geist Mono, monospace">ESP32</text>
-      <circle cx="56" cy="62" r="3.5" fill="#34d399" className="blink" />
+      <circle cx="56" cy="62" r="3.5" fill={alert ? '#f43f5e' : '#34d399'} className="blink" />
       <rect x="128" y="60" width="20" height="10" rx="2" fill="rgba(99,102,241,.5)" />
       <path d="M160 70 H170 V58 H176 V82 H182 V58 H188 V82 H194 V70" stroke="rgba(165,180,252,.7)" strokeWidth="1.5" />
       {[14, 26, 38].map((r, i) => <path key={r} className="wave" style={{ animationDelay: `${i * 0.35}s` }} d={`M${196 - r * 0.7} ${44 - r * 0.7} A ${r} ${r} 0 0 1 ${196 + r * 0.7} ${44 - r * 0.7}`} stroke="rgb(165,180,252)" strokeWidth="2" strokeLinecap="round" />)}
@@ -285,23 +314,25 @@ export function IotDevice({ className = '' }) {
   );
 }
 
-export function Hub() {
-  const nodes = [
+export const HUB_NODES = [
     { x: 14, y: 22, I: MessageCircle, t: 'WhatsApp', c: 'text-emerald-300' },
     { x: 86, y: 22, I: CreditCard, t: 'Pembayaran', c: 'text-sky-300' },
     { x: 14, y: 78, I: FileSpreadsheet, t: 'Spreadsheet', c: 'text-emerald-200' },
     { x: 86, y: 78, I: Webhook, t: 'API mitra', c: 'text-rose-300' },
-  ];
+];
+export function Hub({ onNode, packet, active = -1 }) {
+  const nodes = HUB_NODES;
   return (
     <div className="@container w-full"><div className="relative w-full aspect-[16/10]">
       <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 w-full h-full">
         {nodes.map((n) => <line key={n.t} x1="50" y1="50" x2={n.x} y2={n.y} stroke="rgba(165,180,252,.55)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" className="flow" />)}
       </svg>
-      {nodes.map((n) => (
-        <div key={n.t} className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-[1.2cqw]" style={{ left: `${n.x}%`, top: `${n.y}%` }}>
-          <span className={`w-[10cqw] h-[10cqw] rounded-[2.4cqw] bg-[#111a33] border border-white/12 flex items-center justify-center ${n.c}`}><n.I className="w-[4.6cqw] h-[4.6cqw]" /></span>
+      {packet && <i key={packet.id} className="packet" style={{ '--fx': `${nodes[packet.i].x}%`, '--fy': `${nodes[packet.i].y}%` }} />}
+      {nodes.map((n, i) => (
+        <button type="button" key={n.t} onClick={() => onNode && onNode(i)} tabIndex={onNode ? 0 : -1} className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-[1.2cqw] group" style={{ left: `${n.x}%`, top: `${n.y}%` }}>
+          <span className={`w-[10cqw] h-[10cqw] rounded-[2.4cqw] bg-[#111a33] border flex items-center justify-center transition-all duration-300 group-hover:scale-110 ${active === i ? 'border-primary-soft scale-110' : 'border-white/12'} ${n.c}`}><n.I className="w-[4.6cqw] h-[4.6cqw]" /></span>
           <span className="text-[2.2cqw] text-slate-300 whitespace-nowrap">{n.t}</span>
-        </div>
+        </button>
       ))}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[20cqw] h-[20cqw] rounded-full bg-primary/25 border border-primary-soft/60 flex flex-col items-center justify-center pulse-ring">
         <span className="text-[3cqw] font-semibold text-white display">Sistem Anda</span>
@@ -335,13 +366,21 @@ export function Wireframe() {
 }
 
 export function Monitor() {
-  const rows = [['Website', 'Online'], ['API', 'Online'], ['Database', 'Online']];
+  const names = ['Website', 'API', 'Database'];
+  const [st, setSt] = useState(['ok', 'ok', 'ok']);
+  const run = () => {
+    setSt(['wait', 'wait', 'wait']);
+    names.forEach((_, i) => setTimeout(() => setSt((s) => s.map((x, k) => (k === i ? 'ok' : x))), 600 + i * 500));
+  };
+  const busy = st.includes('wait');
   return (
     <div className="@container w-full"><div className="rounded-[1.6cqw] border border-white/12 bg-[#0b1224] p-[4cqw] space-y-[3cqw]">
-      <div className="flex items-center justify-between"><span className="text-[3.2cqw] font-semibold text-white display">Status sistem</span><span className="flex items-center gap-[1cqw] text-[2.2cqw] text-emerald-300"><i className="w-[1.4cqw] h-[1.4cqw] rounded-full bg-emerald-400 blink" />Semua berjalan normal</span></div>
-      <div className="flex gap-[.6cqw] h-[7cqw]">{Array.from({ length: 40 }).map((_, i) => <i key={i} className={`flex-1 rounded-[.4cqw] ${i === 27 ? 'bg-amber-300/80' : 'bg-emerald-400/70'}`} />)}</div>
-      {rows.map(([n, s]) => (
-        <div key={n} className="flex items-center justify-between border-t border-white/[0.07] pt-[2.4cqw]"><span className="text-[2.4cqw] text-slate-200">{n}</span><span className="text-[2.2cqw] text-emerald-300">● {s}</span></div>
+      <div className="flex items-center justify-between"><span className="text-[3.2cqw] font-semibold text-white display">Status sistem</span><button type="button" onClick={run} disabled={busy} className="flex items-center gap-[1cqw] text-[2.2cqw] rounded-full border border-white/15 px-[2cqw] py-[.8cqw] text-slate-200 hover:border-white/40 transition-colors disabled:opacity-60">{busy ? 'Memeriksa…' : 'Cek sekarang'}</button></div>
+      <div className="flex gap-[.6cqw] h-[7cqw]">{Array.from({ length: 40 }).map((_, i) => <i key={i} title={i === 27 ? 'Gangguan singkat, sudah ditangani' : 'Normal'} className={`flex-1 rounded-[.4cqw] origin-bottom transition-transform hover:scale-y-125 ${i === 27 ? 'bg-amber-300/80' : 'bg-emerald-400/70 hover:bg-emerald-300'}`} />)}</div>
+      {names.map((n, i) => (
+        <div key={n} className="flex items-center justify-between border-t border-white/[0.07] pt-[2.4cqw]"><span className="text-[2.4cqw] text-slate-200">{n}</span>
+          {st[i] === 'ok' ? <span key="ok" className="text-[2.2cqw] text-emerald-300 swap-in">● Online</span> : <span key="w" className="text-[2.2cqw] text-slate-400 flex items-center gap-[1cqw]"><i className="w-[2cqw] h-[2cqw] rounded-full border-2 border-slate-500 border-t-white spin" />Memeriksa</span>}
+        </div>
       ))}
       <div className="flex items-center justify-between rounded-[1.2cqw] bg-white/[0.04] p-[2cqw]"><span className="text-[2.2cqw] text-slate-400">Pencadangan terakhir</span><span className="mono text-[2.2cqw] text-white">Hari ini, 02.00</span></div>
     </div></div>
@@ -492,12 +531,12 @@ export function VectorArt({ className = '' }) {
   );
 }
 
-export function Reel({ className = '', title = 'Es Kopi Gula Aren', tone = 'from-[#3b2314] via-[#7c4a24] to-[#f59e0b]', time = '0:15' }) {
+export function Reel({ className = '', title = 'Es Kopi Gula Aren', tone = 'from-[#3b2314] via-[#7c4a24] to-[#f59e0b]', time = '0:15', playing = false }) {
   return (
-    <Box className={className} inner={`aspect-[9/16] bg-gradient-to-b ${tone} flex flex-col text-white`}>
-      <div className="flex gap-[1.6cqw] p-[5cqw]">{[1, 1, 0.4, 0].map((v, i) => <span key={i} className="flex-1 h-[1.2cqw] rounded-full bg-white/30 overflow-hidden"><i className="block h-full bg-white" style={{ width: `${v * 100}%` }} /></span>)}</div>
-      <i className="absolute left-1/2 top-[38%] -translate-x-1/2 w-[60%] aspect-square rounded-full bg-white/15" />
-      <span className="absolute left-1/2 top-[45%] -translate-x-1/2 -translate-y-1/2 w-[22cqw] h-[22cqw] rounded-full bg-white/90 text-slate-900 flex items-center justify-center pulse-ring"><Play className="w-[9cqw] h-[9cqw] ml-[1cqw]" fill="currentColor" /></span>
+    <Box className={className} inner={`aspect-[9/16] bg-gradient-to-b ${tone} flex flex-col text-white ${playing ? '' : 'paused'}`}>
+      <div className="flex gap-[1.6cqw] p-[5cqw]">{[0, 1, 2, 3].map((i) => <span key={i} className="flex-1 h-[1.2cqw] rounded-full bg-white/30 overflow-hidden"><i className={`story s${i} block h-full bg-white`} /></span>)}</div>
+      <i className="absolute left-1/2 top-[38%] -translate-x-1/2 w-[60%] aspect-square rounded-full bg-white/15 reel-zoom" />
+      <span className={`absolute left-1/2 top-[45%] -translate-x-1/2 -translate-y-1/2 w-[22cqw] h-[22cqw] rounded-full bg-white/90 text-slate-900 flex items-center justify-center transition-all duration-500 ${playing ? 'opacity-0 scale-75' : 'pulse-ring'}`}><Play className="w-[9cqw] h-[9cqw] ml-[1cqw]" fill="currentColor" /></span>
       <div className="mt-auto p-[6cqw] space-y-[2cqw]">
         <p className="display font-bold text-[10cqw] leading-[.95]">{title}</p>
         <div className="flex items-center justify-between text-[5cqw] opacity-80"><span>@kopisenja</span><span className="mono">{time}</span></div>
@@ -506,14 +545,14 @@ export function Reel({ className = '', title = 'Es Kopi Gula Aren', tone = 'from
   );
 }
 
-export function Timeline({ className = '' }) {
+export function Timeline({ className = '', playing = true }) {
   const tracks = [
     [['Intro', 18, 'bg-primary/70'], ['Produk', 34, 'bg-primary-soft/60'], ['Promo', 28, 'bg-primary/70'], ['Logo', 20, 'bg-primary-soft/60']],
     [['Teks judul', 30, 'bg-amber-300/70'], ['', 10, ''], ['Harga', 26, 'bg-amber-300/70']],
     [['Musik', 100, 'bg-emerald-400/50']],
   ];
   return (
-    <div className={`@container w-full ${className}`}><div className="rounded-[1.6cqw] border border-white/12 bg-[#0b1224] p-[3cqw]">
+    <div className={`@container w-full ${className}`}><div className={`rounded-[1.6cqw] border border-white/12 bg-[#0b1224] p-[3cqw] ${playing ? '' : 'paused'}`}>
       <div className="flex items-center justify-between mb-[2.4cqw]"><span className="text-[2.8cqw] font-semibold text-white">Promo_KopiSenja.mp4</span><span className="mono text-[2.2cqw] text-slate-500">00:15 · 1080×1920</span></div>
       <div className="relative space-y-[1.4cqw]">
         {tracks.map((t, k) => (
@@ -530,24 +569,29 @@ export function Timeline({ className = '' }) {
 /* ---------- Komposisi siap pakai ---------- */
 export function CreativeCollage({ className = '' }) {
   return (
-    <div className={`relative w-full aspect-[2/1] ${className}`}>
-      <div className="absolute left-[4%] top-[8%] w-[30%] -rotate-6 float"><Poster /></div>
-      <div className="absolute left-[34%] top-[22%] w-[32%] rotate-3 float" style={{ '--d': '-2s' }}><Social i={0} /></div>
-      <div className="absolute right-[4%] top-[2%] w-[24%] rotate-6 float" style={{ '--d': '-4s' }}><Reel /></div>
-    </div>
+    <Parallax className={`relative w-full aspect-[2/1] ${className}`}>
+      <Layer z={14} className="absolute left-[4%] top-[8%] w-[30%]"><div className="-rotate-6 float lift"><Poster /></div></Layer>
+      <Layer z={26} className="absolute left-[34%] top-[22%] w-[32%]"><div className="rotate-3 float lift" style={{ '--d': '-2s' }}><Social i={0} /></div></Layer>
+      <Layer z={-12} className="absolute right-[4%] top-[2%] w-[24%]"><div className="rotate-6 float lift" style={{ '--d': '-4s' }}><Reel playing /></div></Layer>
+    </Parallax>
   );
 }
 
 export function HeroVisual() {
+  // Data pada mockup berganti berkala agar terasa "hidup"
+  const [tick, setTick] = useState(0);
+  React.useEffect(() => { const id = setInterval(() => setTick((t) => t + 1), 3800); return () => clearInterval(id); }, []);
   return (
-    <div className="relative w-full aspect-[5/4]" aria-hidden="true">
-      <div className="absolute left-0 top-[4%] w-[86%] float"><Browser url="dasbor.usahaanda.id"><ScreenDash /></Browser></div>
-      <div className="absolute right-0 bottom-0 w-[29%] float" style={{ '--d': '-2.5s' }}><Phone><ScreenIoT /></Phone></div>
-      <div className="absolute left-[3%] bottom-[1%] w-[25%] -rotate-6 float" style={{ '--d': '-4s' }}><Poster /></div>
-      <div className="absolute right-[6%] -top-[4%] flex items-center gap-2 rounded-full border border-white/12 bg-secondary/90 pl-2 pr-3 py-1.5 text-[11px] sm:text-xs text-slate-200 shadow-lg shadow-black/40 notif">
-        <span className="w-5 h-5 rounded-full bg-emerald-400/20 text-emerald-300 flex items-center justify-center"><Check className="w-3 h-3" /></span>Pesanan baru tercatat otomatis
-      </div>
-    </div>
+    <Parallax className="relative w-full aspect-[5/4]" aria-hidden="true">
+      <Layer z={-10} className="absolute left-0 top-[4%] w-[86%]"><div className="float"><Browser url="dasbor.usahaanda.id"><ScreenDash d={DASH[tick % 3]} /></Browser></div></Layer>
+      <Layer z={22} className="absolute right-0 bottom-0 w-[29%]"><div className="float" style={{ '--d': '-2.5s' }}><Phone><ScreenIoT temp={[27, 29, 33][tick % 3]} /></Phone></div></Layer>
+      <Layer z={34} className="absolute left-[3%] bottom-[1%] w-[25%]"><div className="-rotate-6 float" style={{ '--d': '-4s' }}><Poster /></div></Layer>
+      <Layer z={44} className="absolute right-[6%] -top-[4%]">
+        <div key={tick} className="flex items-center gap-2 rounded-full border border-white/12 bg-secondary/90 pl-2 pr-3 py-1.5 text-[11px] sm:text-xs text-slate-200 shadow-lg shadow-black/40 swap-in">
+          <span className="w-5 h-5 rounded-full bg-emerald-400/20 text-emerald-300 flex items-center justify-center"><Check className="w-3 h-3" /></span>{['Pesanan baru tercatat otomatis', 'Laporan mingguan terkirim', 'Stok diperbarui dari gudang'][tick % 3]}
+        </div>
+      </Layer>
+    </Parallax>
   );
 }
 
@@ -601,35 +645,60 @@ export function ServiceVisual({ slug }) {
   }
 }
 
-// Galeri contoh karya untuk layanan kreatif
-export function Gallery({ slug }) {
-  const Cap = ({ t, children, className = '' }) => (
+// Galeri contoh karya untuk layanan kreatif. Klik karya untuk melihatnya lebih besar.
+function Cap({ t, children, className = '', wide = false, onOpen }) {
+  return (
     <figure className={`reveal ${className}`}>
-      {children}
+      <button type="button" onClick={() => onOpen({ t, node: children, wide })} className="block w-full text-left lift cursor-zoom-in" aria-label={`Perbesar ${t}`}>{children}</button>
       <figcaption className="mt-3 mono text-xs text-slate-500">{t}</figcaption>
     </figure>
   );
+}
+
+function Lightbox({ item, onClose }) {
+  React.useEffect(() => {
+    if (!item) return;
+    const k = (e) => e.key === 'Escape' && onClose();
+    window.addEventListener('keydown', k);
+    return () => window.removeEventListener('keydown', k);
+  }, [item, onClose]);
+  if (!item) return null;
+  const node = React.isValidElement(item.node) && item.node.type === Reel ? React.cloneElement(item.node, { playing: true }) : item.node;
+  return (
+    <div role="dialog" aria-modal="true" aria-label={item.t} onClick={onClose} className="fixed inset-0 z-[60] bg-background/92 backdrop-blur-sm flex flex-col items-center justify-center gap-5 p-6 fade-in cursor-zoom-out">
+      <div className={`w-full ${item.wide ? 'max-w-3xl' : 'max-w-sm'} swap-in`} onClick={(e) => e.stopPropagation()}>{node}</div>
+      <p className="mono text-xs uppercase tracking-wide text-slate-400">{item.t} · Esc untuk menutup</p>
+    </div>
+  );
+}
+
+export function Gallery({ slug }) {
+  const [item, setItem] = useState(null);
+  const close = React.useCallback(() => setItem(null), []);
+  const o = setItem;
   if (slug === 'video-editing') return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-x-5 gap-y-10">
-      <Cap t="Video promosi"><Reel /></Cap>
-      <Cap t="Undangan video"><Reel title="Rina & Dimas" tone="from-[#4a3b2a] via-[#a1887f] to-[#f5efe6]" time="0:30" /></Cap>
-      <Cap t="Reels produk"><Reel title="Madu Hutan 250 g" tone="from-[#451a03] via-[#b45309] to-[#fbbf24]" time="0:20" /></Cap>
-      <Cap t="Konten acara"><Reel title="Grand Opening" tone="from-[#1e1b4b] via-[#4338ca] to-[#f43f5e]" time="0:12" /></Cap>
-      <Cap t="Penyuntingan dengan teks & musik" className="col-span-2 md:col-span-4"><Timeline /></Cap>
+      <Lightbox item={item} onClose={close} />
+      <Cap onOpen={o} t="Video promosi"><Reel /></Cap>
+      <Cap onOpen={o} t="Undangan video"><Reel title="Rina & Dimas" tone="from-[#4a3b2a] via-[#a1887f] to-[#f5efe6]" time="0:30" /></Cap>
+      <Cap onOpen={o} t="Reels produk"><Reel title="Madu Hutan 250 g" tone="from-[#451a03] via-[#b45309] to-[#fbbf24]" time="0:20" /></Cap>
+      <Cap onOpen={o} t="Konten acara"><Reel title="Grand Opening" tone="from-[#1e1b4b] via-[#4338ca] to-[#f43f5e]" time="0:12" /></Cap>
+      <Cap onOpen={o} wide t="Penyuntingan dengan teks & musik" className="col-span-2 md:col-span-4"><Timeline /></Cap>
     </div>
   );
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-x-5 gap-y-10">
-      <Cap t="Poster acara"><Poster /></Cap>
-      <Cap t="Flyer promo"><Flyer /></Cap>
-      <Cap t="Undangan digital" className="row-span-2"><Invite /></Cap>
-      <Cap t="Label kemasan"><PackLabel /></Cap>
-      <Cap t="Konten media sosial" className="col-span-2 md:col-span-3">
+      <Lightbox item={item} onClose={close} />
+      <Cap onOpen={o} t="Poster acara"><Poster /></Cap>
+      <Cap onOpen={o} t="Flyer promo"><Flyer /></Cap>
+      <Cap onOpen={o} t="Undangan digital" className="row-span-2"><Invite /></Cap>
+      <Cap onOpen={o} t="Label kemasan"><PackLabel /></Cap>
+      <Cap onOpen={o} wide t="Konten media sosial" className="col-span-2 md:col-span-3">
         <div className="grid grid-cols-3 gap-3"><Social i={0} /><Social i={1} /><Social i={2} /></div>
       </Cap>
-      <Cap t="Spanduk / banner" className="col-span-2"><Banner /></Cap>
-      <Cap t="Edit foto"><PhotoEdit /></Cap>
-      <Cap t="Ilustrasi vektor"><VectorArt /></Cap>
+      <Cap onOpen={o} wide t="Spanduk / banner" className="col-span-2"><Banner /></Cap>
+      <Cap onOpen={o} t="Edit foto"><PhotoEdit /></Cap>
+      <Cap onOpen={o} t="Ilustrasi vektor"><VectorArt /></Cap>
     </div>
   );
 }

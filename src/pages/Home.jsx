@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ArrowUpRight, Plus, Globe, MessageCircle, FileSpreadsheet, LayoutDashboard, TriangleAlert, BellRing, Shuffle, LayoutGrid, Eye, LifeBuoy, Users } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Plus } from 'lucide-react';
 import { services, projects, groups, pains, faqs } from '../data';
 import { useScrollyProgress } from '../hooks';
 import { Marquee, CtaBand, Rules, Label, ConsultLink } from '../components/fx';
+import { CursorFollower } from '../components/interact';
 import { HeroVisual, GroupVisual, ProjectShot, ChatVisual, Wireframe, BuildVisual, Monitor } from '../components/visuals';
 
 const chapters = [
@@ -13,8 +14,7 @@ const chapters = [
   { k: 'Mendampingi', t: 'Tetap didampingi setelah rilis.', d: 'Pemantauan, pencadangan, dan perbaikan berjalan rutin.', V: Monitor },
 ];
 
-const trust = [[Eye, 'Progres transparan'], [LifeBuoy, 'Didampingi setelah rilis'], [Users, 'Desain & kode satu tim']];
-const painIcons = [[Globe, MessageCircle], [FileSpreadsheet, LayoutDashboard], [TriangleAlert, BellRing], [Shuffle, LayoutGrid]];
+const trust = ['Progres transparan', 'Didampingi setelah rilis', 'Desain & kode satu tim'];
 const featured = ['apex-financial-dashboard', 'kopi-senja-promosi'].map((slug) => projects.find((p) => p.slug === slug));
 
 function Scrolly() {
@@ -35,7 +35,7 @@ function Scrolly() {
           </div>
           <div className="md:col-span-5 md:col-start-8 relative h-[17rem] sm:h-[22rem] md:h-[28rem] order-1 md:order-2">
             {chapters.map((c, i) => (
-              <div key={c.k} className="scrolly-layer absolute inset-0 flex items-center justify-center" style={{ opacity: active === i ? 1 : 0, transform: active === i ? 'none' : `scale(.94) translate3d(0, ${i < active ? -24 : 24}px, 0)` }} aria-hidden="true">
+              <div key={c.k} className="scrolly-layer absolute inset-0 flex items-center justify-center" style={{ opacity: active === i ? 1 : 0, transform: active === i ? 'none' : `scale(.94) translate3d(0, ${i < active ? -24 : 24}px, 0)`, pointerEvents: active === i ? 'auto' : 'none' }} aria-hidden={active !== i}>
                 <div className="w-full max-w-[22rem] md:max-w-md"><c.V /></div>
               </div>
             ))}
@@ -54,33 +54,42 @@ function Scrolly() {
   );
 }
 
+// Setiap kendala "terselesaikan" saat digulir: teks masalah dicoret, solusinya muncul
 function Pains() {
   return (
     <section className="px-6 py-24 md:py-32 border-t rule">
       <div className="max-w-7xl mx-auto">
-        <div className="reveal max-w-3xl">
-          <Label>Kendala yang sering kami tangani</Label>
-          <h2 className="mt-6 text-4xl md:text-6xl leading-[1.02]">Dari kendala, menjadi <span className="serif">solusi.</span></h2>
+        <div className="reveal grid md:grid-cols-12 gap-6 items-end">
+          <div className="md:col-span-9"><Label>Kendala umum</Label><h2 className="mt-6 text-4xl md:text-6xl leading-[1.02]">Kendala yang sering kami temui, <span className="serif">lalu kami selesaikan.</span></h2></div>
         </div>
-        <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {pains.map((p, i) => { const [From, To] = painIcons[i]; return (
-            <a key={p.q} href={`#layanan-${p.to}`} style={{ '--d': `${i * 80}ms` }} className="reveal group panel p-6 flex flex-col hover:border-white/20 transition-colors">
-              <div className="flex items-center gap-3">
-                <span className="w-12 h-12 rounded-xl border border-accent/30 bg-accent/10 text-rose-300 flex items-center justify-center"><From className="w-5 h-5" /></span>
-                <span className="flex-1 h-px bg-gradient-to-r from-accent/40 to-primary-soft/60 relative"><ArrowRight className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 text-primary-soft nudge" /></span>
-                <span className="w-12 h-12 rounded-xl border border-primary-soft/40 bg-primary/15 text-primary-soft flex items-center justify-center"><To className="w-5 h-5" /></span>
-              </div>
-              <p className="mt-6 text-slate-500 line-through decoration-slate-600">{p.q}</p>
-              <p className="mt-2 display text-xl text-white leading-snug">{p.a}</p>
-            </a>
-          ); })}
-        </div>
+        <ol className="mt-14 border-t rule">
+          {pains.map((p, i) => (
+            <li key={p.q}>
+              <a href={`#layanan-${p.to}`} className="pain reveal group grid grid-cols-12 gap-x-4 gap-y-3 items-baseline py-8 md:py-10 border-b rule">
+                <span className="col-span-2 md:col-span-1 mono text-xs text-slate-500">0{i + 1}</span>
+                <p className="col-span-10 md:col-span-5 display text-2xl md:text-[2rem] leading-tight text-white"><span className="strike">{p.q}</span></p>
+                <p className="sol col-span-10 col-start-3 md:col-span-5 md:col-start-auto text-xl md:text-2xl text-primary-soft leading-snug">{p.a}</p>
+                <ArrowUpRight className="go hidden md:block col-span-1 justify-self-end w-6 h-6 text-slate-500 group-hover:text-white" />
+              </a>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );
 }
 
+// Pemilih bidang layanan: arahkan / ketuk nama bidang, panggung visual berganti
 function Groups() {
+  const [cur, setCur] = useState(0);
+  const [auto, setAuto] = useState(true);
+  useEffect(() => {
+    if (!auto) return;
+    const id = setInterval(() => setCur((c) => (c + 1) % groups.length), 5000);
+    return () => clearInterval(id);
+  }, [auto, cur]);
+  const pick = (i) => { setCur(i); setAuto(false); };
+  const g = groups[cur];
   return (
     <section className="px-6 py-24 md:py-32 border-t rule">
       <div className="max-w-7xl mx-auto">
@@ -91,26 +100,47 @@ function Groups() {
           </div>
           <Link to="/layanan" className="link self-start md:self-auto">Semua layanan <ArrowUpRight className="w-4 h-4" /></Link>
         </div>
-        <div className="mt-14 grid md:grid-cols-2 gap-5">
-          {groups.map((g, i) => (
-            <div key={g.slug} id={`layanan-${g.slug}`} style={{ '--d': `${(i % 2) * 100}ms` }} className="reveal scroll-mt-28 panel overflow-hidden group">
-              <Link to={`/layanan#${g.slug}`} aria-label={`Layanan ${g.title}`} className="block px-6 pt-8 pb-4 sm:px-10 sm:pt-10 bg-[radial-gradient(ellipse_at_top,rgb(99_102_241/.18),transparent_70%)] border-b rule">
-                <div className="transition-transform duration-700 group-hover:-translate-y-1"><GroupVisual slug={g.slug} /></div>
-              </Link>
-              <div className="p-6 sm:p-8">
-                <div className="flex items-baseline justify-between gap-4">
-                  <h3 className="text-3xl">{g.title}</h3>
-                  <span className="mono text-xs text-slate-500">0{i + 1}</span>
+        <div className="mt-14 grid lg:grid-cols-12 gap-10 items-start">
+          <ol className="lg:col-span-5 border-t rule">
+            {groups.map((x, i) => (
+              <li key={x.slug} id={`layanan-${x.slug}`} className="scroll-mt-28 border-b rule">
+                <button type="button" onMouseEnter={() => pick(i)} onFocus={() => pick(i)} onClick={() => pick(i)} aria-expanded={cur === i}
+                  className="w-full text-left py-6 flex items-baseline gap-5 group">
+                  <span className={`mono text-xs transition-colors ${cur === i ? 'text-primary-soft' : 'text-slate-600'}`}>0{i + 1}</span>
+                  <span className={`display text-[2rem] md:text-5xl leading-none transition-all duration-500 ${cur === i ? 'text-white translate-x-2' : 'text-slate-600 group-hover:text-slate-300'}`}>{x.title}</span>
+                </button>
+                <div className="lg:hidden grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(.2,.8,.2,1)]" style={{ gridTemplateRows: cur === i ? '1fr' : '0fr' }}>
+                  <div className="overflow-hidden">
+                    <div className="pb-7 pl-9">
+                      <p className="text-slate-300 text-lg">{x.hook}</p>
+                      <div className="mt-6 blueprint rounded-[6px] border border-white/[0.08] p-5">{cur === i && <div key={cur} className="swap-in"><GroupVisual slug={x.slug} /></div>}</div>
+                      <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
+                        {x.items.map((slug) => { const s = services.find((y) => y.slug === slug); return (
+                          <li key={slug}><Link to={`/layanan/${slug}`} className="link text-sm">{s.title} <ArrowUpRight className="w-3.5 h-3.5" /></Link></li>
+                        ); })}
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-                <p className="mt-2 text-slate-300">{g.hook}</p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {g.items.map((slug) => { const s = services.find((x) => x.slug === slug); return (
-                    <Link key={slug} to={`/layanan/${slug}`} className="inline-flex items-center gap-1.5 rounded-full border border-white/12 px-3 py-1.5 text-sm text-slate-300 hover:text-white hover:border-white/30 transition-colors">{s.title} <ArrowUpRight className="w-3.5 h-3.5" /></Link>
-                  ); })}
-                </div>
-              </div>
+                {cur === i && auto && <i key={cur} className="block h-px bg-primary-soft origin-left -mb-px" style={{ animation: 'growX 5s linear both' }} />}
+              </li>
+            ))}
+          </ol>
+          <div className="hidden lg:block lg:col-span-7 lg:sticky lg:top-28">
+            <Link to={`/layanan#${g.slug}`} aria-label={`Lihat layanan ${g.title}`} className="relative block blueprint rounded-[6px] border border-white/[0.08] p-10 overflow-hidden">
+              <i className="hud tl" /><i className="hud tr" /><i className="hud bl" /><i className="hud br" />
+              <span className="absolute top-4 right-6 mono text-[11px] text-slate-500">0{cur + 1} / 0{groups.length}</span>
+              <div key={cur} className="swap-in"><GroupVisual slug={g.slug} /></div>
+            </Link>
+            <div key={'t' + cur} className="mt-6 grid grid-cols-12 gap-6 items-start fade-in">
+              <p className="col-span-6 text-lg text-slate-300 leading-snug">{g.hook}</p>
+              <ul className="col-span-6 flex flex-wrap gap-x-6 gap-y-2">
+                {g.items.map((slug) => { const s = services.find((y) => y.slug === slug); return (
+                  <li key={slug}><Link to={`/layanan/${slug}`} className="link text-sm">{s.title} <ArrowUpRight className="w-3.5 h-3.5" /></Link></li>
+                ); })}
+              </ul>
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>
@@ -132,7 +162,7 @@ function Faq() {
           {faqs.map((f) => (
             <details key={f.q} className="group border-b rule reveal">
               <summary className="flex items-start justify-between gap-6 py-6 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-                <span className="text-lg md:text-xl text-white">{f.q}</span>
+                <span className="text-lg md:text-xl text-white transition-transform duration-300 group-hover:translate-x-1">{f.q}</span>
                 <Plus className="w-5 h-5 mt-1 shrink-0 text-slate-400 transition-transform duration-300 group-open:rotate-45" />
               </summary>
               <p className="pb-6 pr-10 text-slate-400 leading-relaxed">{f.a}</p>
@@ -146,6 +176,7 @@ function Faq() {
 
 export default function Home() {
   const words = ['Teknologi', 'yang', 'bekerja', 'untuk'];
+  const [hover, setHover] = useState(false);
   return (
     <>
       <section className="relative min-h-[100svh] flex flex-col justify-end overflow-hidden pt-32">
@@ -168,8 +199,8 @@ export default function Home() {
           <div className="lg:col-span-5 w-full max-w-lg mx-auto lg:max-w-none page-enter" style={{ animationDelay: '300ms' }}>
             <HeroVisual />
           </div>
-          <ul className="lg:col-span-12 pt-5 border-t rule grid grid-cols-3 gap-3 text-xs sm:text-sm text-slate-400 page-enter" style={{ animationDelay: '800ms' }}>
-            {trust.map(([I, t]) => <li key={t} className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3"><span className="w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center text-primary-soft shrink-0"><I className="w-4 h-4" /></span>{t}</li>)}
+          <ul className="lg:col-span-12 pt-5 border-t rule grid grid-cols-3 gap-4 mono text-[11px] sm:text-xs uppercase tracking-wide text-slate-500 page-enter" style={{ animationDelay: '800ms' }}>
+            {trust.map((t, i) => <li key={t}><span className="text-primary-soft">0{i + 1}</span> {t}</li>)}
           </ul>
         </div>
         <div className="relative py-6 border-t rule display text-3xl md:text-5xl text-slate-600">
@@ -191,9 +222,9 @@ export default function Home() {
           </div>
           <div className="grid md:grid-cols-12 gap-x-6 gap-y-14">
             {featured.map((p, i) => (
-              <Link key={p.slug} to={`/portofolio/${p.slug}`} style={{ '--d': `${i * 100}ms` }} className={`reveal group block ${i === 0 ? 'md:col-span-7' : 'md:col-span-5 md:mt-24'}`}>
-                <div className="relative overflow-hidden rounded-[6px] aspect-[4/3] border border-white/[0.08] bg-[radial-gradient(ellipse_at_top,rgb(99_102_241/.22),rgb(15_23_42/.6)_70%)]">
-                  <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-[1.03]"><ProjectShot shot={p.shot} /></div>
+              <Link key={p.slug} to={`/portofolio/${p.slug}`} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} style={{ '--d': `${i * 100}ms` }} className={`reveal group block md:cursor-none ${i === 0 ? 'md:col-span-7' : 'md:col-span-5 md:mt-24'}`}>
+                <div className="relative overflow-hidden rounded-[6px] aspect-[4/3] border border-white/[0.08] blueprint">
+                  <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-[1.04]"><ProjectShot shot={p.shot} /></div>
                 </div>
                 <div className="mt-5 flex items-baseline justify-between gap-4">
                   <h3 className="text-2xl md:text-3xl">{p.title}</h3>
@@ -204,6 +235,9 @@ export default function Home() {
             ))}
           </div>
         </div>
+        <CursorFollower show={hover}>
+          <span className="w-24 h-24 rounded-full bg-white text-slate-950 flex items-center justify-center mono text-[11px] uppercase tracking-wide">Lihat <ArrowUpRight className="w-3.5 h-3.5 ml-1" /></span>
+        </CursorFollower>
       </section>
 
       <Scrolly />

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight, MessageCircle } from 'lucide-react';
 import { WHATSAPP, WA_TEXT } from '../data';
+import { useScrollVelocity } from './interact';
 
 // Kartu 3D yang miring mengikuti kursor (efek AR/VR). Tidak aktif di layar sentuh / reduced motion.
 export function Tilt({ children, className = '', max = 10, as: Tag = 'div', ...rest }) {
@@ -69,13 +70,15 @@ export function Particles({ density = 38 }) {
 }
 
 export function Marquee({ items, className = '', rev = false }) {
+  const ref = useRef(null);
+  useScrollVelocity(ref);
   const row = items.map((t, i) => (
     <span key={i} className="flex items-center whitespace-nowrap">
       <span className="mx-6 md:mx-10">{t}</span><span className="mono text-[0.5em] opacity-40">/</span>
     </span>
   ));
   return (
-    <div className={`marquee ${rev ? 'rev' : ''} ${className}`} aria-hidden="true">
+    <div ref={ref} className={`marquee ${rev ? 'rev' : ''} ${className}`} aria-hidden="true">
       <div className="marquee-track">{row}</div>
       <div className="marquee-track">{row}</div>
     </div>

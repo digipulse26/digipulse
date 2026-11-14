@@ -222,7 +222,61 @@ h1, h2, h3, .display { font-family: 'Bricolage Grotesque', 'Geist', system-ui, s
 .playhead { animation: playhead 6s linear infinite; }
 @keyframes playhead { from { left: 0; } to { left: 100%; } }
 
+/* ---------- Interaksi (interact.jsx) ---------- */
+.px { transform: translate3d(calc(var(--mx, 0) * var(--z, 10) * 1px), calc(var(--my, 0) * var(--z, 10) * 1px), 0); will-change: transform; }
+.follower { transform: translate(-50%, -50%) scale(.4); opacity: 0; transition: transform .35s cubic-bezier(.2,.8,.2,1), opacity .25s; }
+.follower.on { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+/* Latar kertas grid teknis, menggantikan glow ungu */
+.blueprint { background-color: rgb(var(--secondary) / .35); background-image: linear-gradient(rgb(255 255 255 / .035) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / .035) 1px, transparent 1px); background-size: 28px 28px; background-position: -1px -1px; }
+/* Masalah dicoret, solusi muncul */
+.strike { background: linear-gradient(currentColor, currentColor) no-repeat 0 58% / 0% 2px; transition: background-size .9s cubic-bezier(.7,0,.2,1) .3s, color .6s .3s; }
+.pain.in .strike, .pain:hover .strike { background-size: 100% 2px; color: rgb(100 116 139); }
+.pain .sol { transition: opacity .7s cubic-bezier(.2,.8,.2,1) .8s, transform .7s cubic-bezier(.2,.8,.2,1) .8s; }
+.rv-on .pain:not(.in) .sol { opacity: 0; transform: translate3d(0, 14px, 0); }
+.pain .go { transition: transform .4s cubic-bezier(.2,.8,.2,1); }
+.pain:hover .go { transform: translate(4px, -4px); }
+/* Panggung VR mengikuti kursor */
+.vr-rig { transform-style: preserve-3d; transform: rotateY(calc(var(--mx, 0) * 22deg)) rotateX(calc(var(--my, 0) * -12deg)); }
+.grid-floor { translate: calc(var(--mx, 0) * -48px) 0; }
+/* Kata yang menyala bergiliran */
+.cycle { color: rgb(71 85 105); animation: cyc 8s infinite; animation-delay: calc(var(--i) * 2s); }
+@keyframes cyc { 0% { color: rgb(71 85 105); } 3%, 25% { color: rgb(var(--foreground)); } 29%, 100% { color: rgb(71 85 105); } }
+/* Pergantian visual: tirai terbuka */
+.swap-in { animation: swapIn .8s cubic-bezier(.7,0,.2,1) both; }
+@keyframes swapIn { from { clip-path: inset(0 0 100% 0); transform: translateY(16px) scale(.98); } to { clip-path: inset(0 0 0 0); transform: none; } }
+/* Angka besar bergaris yang terisi saat disorot */
+.num-outline { -webkit-text-stroke: 1px rgb(var(--foreground) / .35); color: transparent; transition: color .4s, -webkit-text-stroke-color .4s; }
+.group:hover .num-outline, .num-outline.on { color: rgb(var(--primary-soft)); -webkit-text-stroke-color: transparent; }
+.packet { position: absolute; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 9999px; background: rgb(var(--primary-soft)); box-shadow: 0 0 0 4px rgb(var(--primary-soft) / .25); animation: packet .9s cubic-bezier(.6,0,.3,1) both; }
+@keyframes packet { from { left: var(--fx); top: var(--fy); } to { left: 50%; top: 50%; opacity: .2; } }
+.paused, .paused * { animation-play-state: paused !important; }
+.flow-line { transition: transform 1s cubic-bezier(.7,0,.2,1); }
+.rv-on .flow:not(.in) .flow-line { transform: scaleX(0); }
+/* Huruf kinetik bereaksi saat disentuh kursor */
+.kin { transition: transform .35s cubic-bezier(.2,.8,.2,1), color .35s; }
+@media (hover: hover) { .kin:hover { transform: translateY(-.14em) rotate(-5deg); color: rgb(var(--primary-soft)); } }
+.fade-in { animation: fadeIn 1s ease both; }
+@keyframes fadeIn { from { opacity: 0; } }
+.spin { animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.ring-bell { transform-origin: 50% 10%; animation: bell 1.2s ease-in-out infinite; }
+@keyframes bell { 0%, 50%, 100% { transform: rotate(0); } 10%, 30% { transform: rotate(14deg); } 20%, 40% { transform: rotate(-14deg); } }
+.story { width: 0; animation: 8s linear infinite; }
+.story.s0 { animation-name: st0; } .story.s1 { animation-name: st1; } .story.s2 { animation-name: st2; } .story.s3 { animation-name: st3; }
+@keyframes st0 { 0% { width: 0; } 25%, 100% { width: 100%; } }
+@keyframes st1 { 0%, 25% { width: 0; } 50%, 100% { width: 100%; } }
+@keyframes st2 { 0%, 50% { width: 0; } 75%, 100% { width: 100%; } }
+@keyframes st3 { 0%, 75% { width: 0; } 100% { width: 100%; } }
+.reel-zoom { animation: reelZoom 4s ease-in-out infinite alternate; }
+@keyframes reelZoom { to { transform: translateX(-50%) scale(1.25); } }
+.lift { transition: translate .5s cubic-bezier(.2,.8,.2,1), scale .5s cubic-bezier(.2,.8,.2,1), rotate .5s cubic-bezier(.2,.8,.2,1); }
+.lift:hover { translate: 0 -10px; scale: 1.06; rotate: 0deg; z-index: 2; }
+input[type=range].dial { -webkit-appearance: none; appearance: none; height: 2px; background: rgb(255 255 255 / .15); border-radius: 2px; accent-color: rgb(var(--primary-soft)); }
+input[type=range].dial::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 9999px; background: #fff; border: 4px solid rgb(var(--primary)); cursor: grab; }
+input[type=range].dial::-moz-range-thumb { width: 14px; height: 14px; border-radius: 9999px; background: #fff; border: 4px solid rgb(var(--primary)); cursor: grab; }
+
 @media (prefers-reduced-motion: reduce) {
+  .cycle, .swap-in { animation: none !important; }
   .float, .bar-live, .eq, .pulse-ring, .blink, .notif, .typing, .flow, .wave, .nudge, .playhead { animation: none !important; }
   .wave, .notif { opacity: 1; }
 }

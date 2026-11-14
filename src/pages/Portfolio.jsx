@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link, useParams, Navigate } from 'react-router-dom';
-import { ArrowRight, ArrowUpRight, CircleAlert, Lightbulb, CircleCheck } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { projects } from '../data';
 import { Tilt, CtaBand, Label } from '../components/fx';
 import { ProjectShot } from '../components/visuals';
+import { useParallax, CursorFollower } from '../components/interact';
 
 // Panggung AR/VR: kubus wireframe 3D, cincin orbit, dan lantai grid bergerak
 export function VRStage({ className = '' }) {
+  const ref = useRef(null);
+  useParallax(ref);
   return (
-    <div className={`scene overflow-hidden ${className}`} aria-hidden="true">
+    <div ref={ref} className={`scene overflow-hidden ${className}`} aria-hidden="true">
       <div className="grid-floor" />
-      <div className="absolute inset-0 flex items-center justify-center preserve">
+      <div className="vr-rig absolute inset-0 flex items-center justify-center preserve">
         <div className="ring" style={{ width: '22rem', height: '22rem' }} />
         <div className="ring" style={{ width: '30rem', height: '30rem', borderColor: 'rgb(var(--accent) / .3)', animationDuration: '26s', animationDirection: 'reverse' }} />
         <div className="cube float"><b /><b /><b /><b /><b /><b /></div>
@@ -39,6 +42,7 @@ export function PortfolioPage() {
   const cats = ['Semua', 'Website', 'Aplikasi', 'Desain & Video'];
   const [f, setF] = useState('Semua');
   const list = f === 'Semua' ? projects : projects.filter((p) => p.tag === f);
+  const [hov, setHov] = useState(false);
   return (
     <>
       <StageHead label="Portofolio" text="Tantangan, solusi, dan hasil dari setiap proyek.">
@@ -56,7 +60,7 @@ export function PortfolioPage() {
           {list.map((p, i) => (
             <div key={p.slug} className={`page-enter ${i % 2 === 1 ? 'md:mt-20' : ''}`} style={{ animationDelay: `${i * 80}ms` }}>
               <Tilt max={6} className="rounded-[4px]">
-                <Link to={`/portofolio/${p.slug}`} aria-label={p.title} className="group relative block rounded-[4px] overflow-hidden border border-white/[0.08] bg-[radial-gradient(ellipse_at_top,rgb(99_102_241/.22),rgb(15_23_42/.7)_70%)] aspect-[4/3] scan">
+                <Link to={`/portofolio/${p.slug}`} aria-label={p.title} onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)} className="group relative block rounded-[4px] overflow-hidden border border-white/[0.08] blueprint aspect-[4/3] scan md:cursor-none">
                   <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-[1.03]"><ProjectShot shot={p.shot} /></div>
                   <i className="hud tl" /><i className="hud tr" /><i className="hud bl" /><i className="hud br" />
                   <span className="absolute top-4 left-6 mono text-[11px] text-white/80 depth-1">{String(i + 1).padStart(2, '0')}</span>
@@ -74,6 +78,9 @@ export function PortfolioPage() {
           ))}
         </div>
       </section>
+      <CursorFollower show={hov}>
+        <span className="w-24 h-24 rounded-full bg-white text-slate-950 flex items-center justify-center mono text-[11px] uppercase tracking-wide">Buka <ArrowUpRight className="w-3.5 h-3.5 ml-1" /></span>
+      </CursorFollower>
       <CtaBand />
     </>
   );
@@ -98,22 +105,20 @@ export function PortfolioDetail() {
         </div>
       </section>
       <section className="max-w-7xl mx-auto px-6 pb-16 scene">
-        <Tilt max={3} className="rounded-[6px] overflow-hidden aspect-[4/3] md:aspect-[16/9] relative border border-white/[0.08] bg-[radial-gradient(ellipse_at_top,rgb(99_102_241/.22),rgb(15_23_42/.7)_70%)]">
+        <Tilt max={4} className="rounded-[6px] overflow-hidden aspect-[4/3] md:aspect-[16/9] relative border border-white/[0.08] blueprint">
           <div className="absolute inset-0 md:inset-x-[12%]"><ProjectShot shot={p.shot} /></div>
         </Tilt>
       </section>
-      <section className="max-w-7xl mx-auto px-6 pb-24 grid md:grid-cols-3 gap-4">
-        {[[CircleAlert, 'Tantangan', p.problem, 'text-rose-300 border-accent/30 bg-accent/10'], [Lightbulb, 'Solusi', p.solution, 'text-amber-200 border-amber-300/30 bg-amber-300/10']].map(([I, h, t, c], k) => (
-          <div key={h} className="reveal panel p-7" style={{ '--d': `${k * 100}ms` }}>
-            <span className={`w-11 h-11 rounded-xl border flex items-center justify-center ${c}`}><I className="w-5 h-5" /></span>
-            <span className="label mt-6">{h}</span>
-            <p className="mt-3 text-lg text-slate-200 leading-relaxed">{t}</p>
+      <section className="max-w-7xl mx-auto px-6 pb-24 grid md:grid-cols-3 border-t rule">
+        {[['Tantangan', p.problem, 'text-rose-300'], ['Solusi', p.solution, 'text-amber-200']].map(([h, t, c], k) => (
+          <div key={h} className="reveal group py-10 md:pr-10 border-b md:border-b-0 md:border-r rule md:[&:nth-child(2)]:px-10" style={{ '--d': `${k * 120}ms` }}>
+            <span className={`mono text-xs uppercase tracking-wide ${c}`}>0{k + 1} · {h}</span>
+            <p className="mt-5 text-xl text-slate-200 leading-relaxed">{t}</p>
           </div>
         ))}
-        <div className="reveal panel p-7" style={{ '--d': '200ms' }}>
-          <span className="w-11 h-11 rounded-xl border border-emerald-400/30 bg-emerald-400/10 text-emerald-300 flex items-center justify-center"><CircleCheck className="w-5 h-5" /></span>
-          <span className="label mt-6">Hasil</span>
-          <ul className="mt-3 space-y-3">{p.result.map((r) => <li key={r} className="flex gap-3 text-slate-200"><CircleCheck className="w-4 h-4 mt-1 shrink-0 text-emerald-400" />{r}</li>)}</ul>
+        <div className="reveal py-10 md:pl-10" style={{ '--d': '240ms' }}>
+          <span className="mono text-xs uppercase tracking-wide text-emerald-300">03 · Hasil</span>
+          <ul className="mt-5 space-y-4">{p.result.map((r, n) => <li key={r} className="group flex gap-4 text-lg text-slate-200 transition-transform duration-500 hover:translate-x-1"><span className="num-outline display text-2xl leading-none">{n + 1}</span>{r}</li>)}</ul>
         </div>
       </section>
       <Link to={`/portofolio/${next.slug}`} className="group block px-6 py-16 border-t rule">

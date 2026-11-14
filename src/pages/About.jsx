@@ -1,27 +1,49 @@
-import React from 'react';
-import { Target, Layers, ShieldCheck, Handshake, PenTool, Code, Cpu, Compass, Globe, AppWindow, Cloud, Workflow, Radio, Palette } from 'lucide-react';
+import React, { useRef } from 'react';
 import { Particles, CtaBand, Label } from '../components/fx';
+import { Parallax, Layer, useScrollVelocity } from '../components/interact';
 import { tools } from '../data';
 
 const values = [
-  { I: Target, t: 'Sesuai kebutuhan', d: 'Hanya fitur yang benar-benar dipakai.' },
-  { I: Layers, t: 'Mudah dikembangkan', d: 'Kode rapi, mudah diteruskan siapa pun.' },
-  { I: ShieldCheck, t: 'Aman & andal', d: 'Keamanan dan performa diperiksa sejak awal.' },
-  { I: Handshake, t: 'Kolaborasi terbuka', d: 'Setiap keputusan dibahas bersama.' },
+  { t: 'Sesuai kebutuhan', d: 'Hanya fitur yang benar-benar dipakai.' },
+  { t: 'Mudah dikembangkan', d: 'Kode rapi, mudah diteruskan siapa pun.' },
+  { t: 'Aman & andal', d: 'Keamanan dan performa diperiksa sejak awal.' },
+  { t: 'Kolaborasi terbuka', d: 'Setiap keputusan dibahas bersama.' },
 ];
 
-const roles = [[PenTool, 'Desainer'], [Code, 'Engineer'], [Cpu, 'IoT'], [Compass, 'Strategi']];
-const scope = [[Globe, 'Website'], [AppWindow, 'Aplikasi web'], [Cloud, 'SaaS'], [Workflow, 'Integrasi'], [Radio, 'IoT'], [Palette, 'Desain & video']];
-const eco = ['react', 'next', 'node', 'laravel', 'postgres', 'docker', 'aws', 'cloudflare', 'vercel', 'xendit', 'esp32', 'raspberrypi', 'figma', 'illustrator', 'premiere', 'canva'];
+const roles = ['Desain', 'Kode', 'Perangkat', 'Strategi'];
+const scope = ['Website', 'Aplikasi web', 'SaaS', 'Integrasi', 'IoT', 'Desain & video'];
+const eco = [
+  ['react', 'next', 'node', 'laravel', 'postgres', 'docker', 'aws', 'cloudflare', 'vercel', 'xendit', 'stripe'],
+  ['esp32', 'raspberrypi', 'arduino', 'mqtt', 'grafana', 'figma', 'illustrator', 'photoshop', 'premiere', 'canva', 'davinci'],
+];
+
+// Deretan logo yang berjalan; lajunya mengikuti kecepatan gulir
+function LogoRow({ items, rev }) {
+  const ref = useRef(null);
+  useScrollVelocity(ref);
+  const row = items.map((it) => (
+    <span key={it} title={tools[it]} className="mx-2 w-20 h-20 md:w-24 md:h-24 shrink-0 rounded-[6px] bg-slate-100 flex items-center justify-center transition-transform duration-300 hover:-translate-y-1.5 hover:rotate-[-4deg]">
+      <img src={`${import.meta.env.BASE_URL}logos/${it}.svg`} alt={tools[it]} width="36" height="36" loading="lazy" decoding="async" className="w-[40%] h-[40%] object-contain" />
+    </span>
+  ));
+  return (
+    <div ref={ref} className={`marquee ${rev ? 'rev' : ''} py-2 hover:[&_.marquee-track]:[animation-play-state:paused]`}>
+      <div className="marquee-track">{row}</div>
+      <div className="marquee-track" aria-hidden="true">{row}</div>
+    </div>
+  );
+}
 
 export default function About() {
   return (
     <>
       <section className="relative overflow-hidden min-h-[92svh] flex items-end">
-        <div className="aurora"><i /><i /><i /></div>
-        <Particles />
-        <div className="absolute right-[-8rem] top-28 w-[26rem] h-[26rem] border border-primary-soft/25 liquid pointer-events-none hidden md:block" />
-        <div className="absolute right-[-4rem] top-40 w-[20rem] h-[20rem] bg-primary/10 liquid pointer-events-none hidden md:block" style={{ animationDelay: '-6s' }} />
+        <Parallax className="absolute inset-0">
+          <Layer z={-40} className="absolute inset-0"><div className="aurora"><i /><i /><i /></div></Layer>
+          <Particles />
+          <Layer z={30} className="absolute right-[-8rem] top-28 hidden md:block pointer-events-none"><div className="w-[26rem] h-[26rem] border border-primary-soft/25 liquid" /></Layer>
+          <Layer z={60} className="absolute right-[-4rem] top-40 hidden md:block pointer-events-none"><div className="w-[20rem] h-[20rem] bg-primary/10 liquid" style={{ animationDelay: '-6s' }} /></Layer>
+        </Parallax>
         <div className="relative z-10 max-w-7xl mx-auto px-6 pt-36 pb-16 w-full">
           <Label className="page-enter">Tentang DigiPulse</Label>
           <h1 className="mt-8 text-[2.75rem] sm:text-6xl md:text-[6.5rem] leading-[0.98] max-w-5xl page-enter" style={{ animationDelay: '80ms' }}>
@@ -36,60 +58,59 @@ export default function About() {
       </section>
 
       <section className="px-6 py-24 md:py-32 border-t rule">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-12 gap-10">
-          <div className="md:col-span-5 reveal">
+        <div className="max-w-7xl mx-auto">
+          <div className="reveal">
             <Label>Siapa kami</Label>
-            <h2 className="mt-6 text-4xl md:text-5xl leading-[1.02]">Tim ringkas yang bekerja <span className="serif">dekat</span> dengan setiap klien.</h2>
-          </div>
-          <div className="md:col-span-6 md:col-start-7 reveal" style={{ '--d': '120ms' }}>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {roles.map(([I, t], i) => (
-                <div key={t} className="panel aspect-square flex flex-col items-center justify-center gap-3 float" style={{ '--d': `${i * -1.5}s` }}>
-                  <span className="w-12 h-12 rounded-2xl bg-primary/15 border border-primary-soft/40 text-primary-soft flex items-center justify-center"><I className="w-6 h-6" /></span>
-                  <span className="text-sm text-slate-200">{t}</span>
-                </div>
+            <p className="mt-8 display text-[3.2rem] sm:text-7xl md:text-[7.5rem] leading-[0.92] tracking-[-0.045em]">
+              {roles.map((r, i) => (
+                <React.Fragment key={r}>
+                  <span className="cycle inline-block transition-transform duration-300 hover:-translate-y-2 hover:!text-white" style={{ '--i': i }}>{r}</span>
+                  {i < roles.length - 1 && <span className="serif text-slate-600"> + </span>}
+                </React.Fragment>
               ))}
-            </div>
-            <p className="mt-8 text-lg text-slate-300 leading-relaxed">Dari layar hingga sensor, ditangani oleh satu tim.</p>
-            <ul className="mt-6 flex flex-wrap gap-2">
-              {scope.map(([I, s]) => <li key={s} className="inline-flex items-center gap-2 rounded-full border border-white/12 px-3 py-1.5 text-sm text-slate-300"><I className="w-4 h-4 text-primary-soft" />{s}</li>)}
+            </p>
+          </div>
+          <div className="mt-14 pt-6 border-t rule grid md:grid-cols-12 gap-6 reveal" style={{ '--d': '120ms' }}>
+            <p className="md:col-span-5 text-xl text-slate-200 leading-snug">Satu tim ringkas, dari layar hingga sensor.</p>
+            <ul className="md:col-span-6 md:col-start-7 flex flex-wrap gap-x-5 gap-y-2 mono text-xs uppercase tracking-wide text-slate-500">
+              {scope.map((s, i) => <li key={s}><span className="text-primary-soft">0{i + 1}</span> {s}</li>)}
             </ul>
           </div>
         </div>
       </section>
 
       <section className="relative px-6 py-24 md:py-32 border-t rule overflow-hidden">
-        <div className="aurora opacity-60"><i /><i /></div>
+        <div className="aurora opacity-50"><i /><i /></div>
         <div className="relative max-w-7xl mx-auto">
           <div className="reveal max-w-3xl">
             <Label>Prinsip kerja</Label>
-            <h2 className="mt-6 text-4xl md:text-6xl leading-[1.02]">Prinsip yang kami terapkan dalam <span className="serif">setiap proyek.</span></h2>
+            <h2 className="mt-6 text-4xl md:text-6xl leading-[1.02]">Yang kami pegang di <span className="serif">setiap proyek.</span></h2>
           </div>
-          <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <ol className="mt-16 grid sm:grid-cols-2 border-t rule">
             {values.map((v, i) => (
-              <div key={v.t} style={{ '--d': `${i * 80}ms` }} className="reveal panel p-7">
-                <span className="w-12 h-12 rounded-2xl bg-primary/15 border border-primary-soft/40 text-primary-soft flex items-center justify-center"><v.I className="w-6 h-6" /></span>
-                <h3 className="mt-8 text-2xl">{v.t}</h3>
-                <p className="mt-2 text-slate-400 leading-relaxed">{v.d}</p>
-              </div>
+              <li key={v.t} style={{ '--d': `${(i % 2) * 100}ms` }} className="reveal group relative py-10 border-b rule sm:[&:nth-child(odd)]:pr-10 sm:[&:nth-child(even)]:pl-10 sm:[&:nth-child(odd)]:border-r overflow-hidden">
+                <span className="absolute inset-0 blueprint opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="relative flex items-start gap-6">
+                  <span className="num-outline display text-7xl leading-[.8]">{i + 1}</span>
+                  <div>
+                    <h3 className="text-2xl md:text-3xl transition-transform duration-500 group-hover:translate-x-1">{v.t}</h3>
+                    <p className="mt-2 text-slate-400 leading-relaxed">{v.d}</p>
+                  </div>
+                </div>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 
-      <section className="px-6 py-24 md:py-32 border-t rule">
-        <div className="max-w-7xl mx-auto">
-          <div className="reveal">
-            <Label>Ekosistem</Label>
-            <h2 className="mt-6 text-4xl md:text-5xl leading-[1.02]">Teknologi yang <span className="serif">teruji.</span></h2>
-          </div>
-          <ul className="mt-12 grid grid-cols-4 sm:grid-cols-8 gap-3">
-            {eco.map((it, i) => (
-              <li key={it} title={tools[it]} style={{ '--d': `${(i % 8) * 50}ms` }} className="reveal aspect-square rounded-xl bg-slate-100 flex items-center justify-center transition-transform hover:-translate-y-1">
-                <img src={`${import.meta.env.BASE_URL}logos/${it}.svg`} alt={tools[it]} width="32" height="32" loading="lazy" decoding="async" className="w-[42%] h-[42%] object-contain" />
-              </li>
-            ))}
-          </ul>
+      <section className="py-24 md:py-32 border-t rule overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 reveal">
+          <Label>Ekosistem</Label>
+          <h2 className="mt-6 text-4xl md:text-5xl leading-[1.02]">Teknologi yang <span className="serif">teruji.</span></h2>
+        </div>
+        <div className="mt-12 space-y-3">
+          <LogoRow items={eco[0]} />
+          <LogoRow items={eco[1]} rev />
         </div>
       </section>
       <CtaBand />

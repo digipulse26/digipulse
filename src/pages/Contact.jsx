@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { ArrowRight, ArrowUpRight, Mail, Clock, Globe, AppWindow, Radio, Palette, MessagesSquare, FileText, Rocket } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Mail, Clock, Globe, AppWindow, Radio, Palette } from 'lucide-react';
 import { EMAIL } from '../data';
 import { Label } from '../components/fx';
 import { VRStage } from './Portfolio';
 
 const kinds = [[Globe, 'Website'], [AppWindow, 'Aplikasi'], [Radio, 'IoT'], [Palette, 'Desain & Video']];
-const next = [[MessagesSquare, 'Diskusi kebutuhan'], [FileText, 'Penawaran tertulis'], [Rocket, 'Mulai dikerjakan']];
+const next = ['Diskusi kebutuhan', 'Penawaran tertulis', 'Mulai dikerjakan'];
 const field = 'mt-2 w-full rounded-xl bg-white/[0.03] border border-white/10 px-4 py-3 text-[0.97rem] text-white placeholder:text-slate-500 transition-colors hover:border-white/20 focus:border-primary-soft/70 focus:bg-white/[0.05] focus:outline-none';
 
 export default function Contact() {
@@ -25,14 +25,12 @@ export default function Contact() {
         <div className="lg:col-span-5">
           <Label className="page-enter">Mulai percakapan</Label>
           <h1 className="mt-8 text-[2.75rem] sm:text-6xl leading-[0.98] page-enter" style={{ animationDelay: '80ms' }}>Ceritakan apa yang sedang <span className="serif">Anda kerjakan.</span></h1>
-          <ol className="mt-10 flex items-start page-enter" style={{ animationDelay: '160ms' }}>
-            {next.map(([I, t], i) => (
-              <li key={t} className="flex-1 flex flex-col items-start">
-                <div className="w-full flex items-center">
-                  <span className="w-11 h-11 rounded-xl bg-primary/15 border border-primary-soft/40 text-primary-soft flex items-center justify-center shrink-0"><I className="w-5 h-5" /></span>
-                  {i < next.length - 1 && <span className="flex-1 h-px mx-2 bg-gradient-to-r from-primary-soft/50 to-transparent" />}
-                </div>
-                <span className="mt-3 text-sm text-slate-300 pr-2">{t}</span>
+          <ol className="mt-10 grid grid-cols-3 gap-4 reveal flow">
+            {next.map((t, i) => (
+              <li key={t}>
+                <span className="flow-line block h-px bg-primary-soft origin-left" style={{ transitionDelay: `${i * 300}ms` }} />
+                <span className="mt-4 block mono text-xs text-primary-soft">0{i + 1}</span>
+                <span className="mt-1 block text-sm text-slate-300">{t}</span>
               </li>
             ))}
           </ol>

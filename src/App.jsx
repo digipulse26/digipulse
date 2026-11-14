@@ -13,6 +13,7 @@ const PortfolioDetail = lazy(() => import('./pages/Portfolio').then(m => ({ defa
 const Products = lazy(() => import('./pages/Products'));
 const Contact = lazy(() => import('./pages/Contact'));
 import { useRevealAll } from './hooks';
+import { useMagnetic } from './components/interact';
 
 function Shell() {
   const { pathname, hash } = useLocation();
@@ -28,6 +29,7 @@ function Shell() {
   }, [pathname, hash]);
   // Panggil setelah halaman baru dirender
   useRevealAll();
+  useMagnetic();
   return (
     <div className="min-h-screen bg-background text-foreground">
       <ScrollProgress />
