@@ -11,10 +11,10 @@ const chapters = [
   { k: 'Memahami', t: 'Kami dengarkan kebutuhan Anda.', d: 'Kendala dan tujuan dicatat sebelum apa pun dibuat.', V: ChatVisual },
   { k: 'Merancang', t: 'Rancangan disetujui lebih dulu.', d: 'Anda melihat tampilannya sebelum pengembangan dimulai.', V: Wireframe },
   { k: 'Membangun', t: 'Progres dapat Anda pantau.', d: 'Versi uji diperbarui berkala untuk Anda coba.', V: BuildVisual },
-  { k: 'Mendampingi', t: 'Tetap didampingi setelah rilis.', d: 'Pemantauan, pencadangan, dan perbaikan berjalan rutin.', V: Monitor },
+  { k: 'Mendampingi', t: 'Kami akan mendampingi setelah rilis.', d: 'Pemantauan, pencadangan, dan perbaikan berjalan rutin.', V: Monitor },
 ];
 
-const trust = ['Progres transparan', 'Didampingi setelah rilis', 'Desain & kode satu tim'];
+const trust = ['Progres transparan', 'Kami akan mendampingi setelah rilis', 'Desain & kode satu tim'];
 const featured = ['apex-financial-dashboard', 'kopi-senja-promosi'].map((slug) => projects.find((p) => p.slug === slug));
 
 function Scrolly() {
@@ -186,7 +186,7 @@ export default function Home() {
             <Label className="page-enter">Studio pengembangan digital &amp; IoT</Label>
             <h1 className="mt-8 text-[3.1rem] sm:text-7xl lg:text-[6.4rem] leading-[0.95] font-semibold">
               {words.map((w, i) => <React.Fragment key={w}><span className="word"><span style={{ '--d': `${i * 90}ms` }}>{w}</span></span>{' '}</React.Fragment>)}
-              <span className="word"><span className="serif" style={{ '--d': '420ms' }}>bisnis Anda.</span></span>
+              <span className="word"><span className="serif" style={{ '--d': '420ms' }}>usaha Anda.</span></span>
             </h1>
             <p className="mt-8 text-lg md:text-xl text-slate-300 leading-relaxed max-w-xl page-enter" style={{ animationDelay: '500ms' }}>
               Website, aplikasi, IoT, dan materi promosi, <span className="text-white">dari rancangan hingga pendampingan.</span>

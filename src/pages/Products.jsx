@@ -43,7 +43,7 @@ export default function Products() {
           );
         })}
       </section>
-      <CtaBand title="Membutuhkan solusi yang dirancang khusus?" text="Kami rancang solusi yang sesuai dengan alur kerja Anda." />
+      <CtaBand title="Membutuhkan solusi yang dirancang khusus?" text="Kami merancang solusi yang sesuai dengan alur kerja Anda." />
     </>
   );
 }

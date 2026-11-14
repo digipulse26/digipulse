@@ -155,7 +155,7 @@ export function ScreenPortal({ sel = 1, onSel }) {
         ))}
       </div>
       <div className="col-span-3 grid grid-cols-3 gap-[1.6cqw] items-stretch">
-        {['Dasar', 'Bisnis', 'Tim'].map((p, i) => (
+        {['Dasar', 'Usaha', 'Tim'].map((p, i) => (
           <button type="button" key={p} onClick={() => onSel && onSel(i)} tabIndex={onSel ? 0 : -1} className={`text-left rounded-[1.2cqw] border p-[1.6cqw] flex flex-col gap-[1.2cqw] transition-all duration-500 ${i === sel ? 'border-primary-soft/70 bg-primary/15 -translate-y-[1.5cqw]' : 'border-white/10 hover:border-white/25'}`}>
             <span className="text-[1.7cqw] text-slate-400">{p}</span>
             <span className="text-[3cqw] font-semibold text-white leading-none">{['99', '249', '499'][i]}<span className="text-[1.4cqw] text-slate-500">rb</span></span>
@@ -402,7 +402,7 @@ export function ChatVisual() {
 }
 
 export function BuildVisual() {
-  const items = [['Desain disetujui', 100], ['Halaman utama', 100], ['Dasbor admin', 70], ['Pengujian', 20]];
+  const items = [['Desain disetujui', 100], ['Halaman utama', 100], ['Dashboard admin', 70], ['Pengujian', 20]];
   return (
     <div className="@container w-full"><div className="rounded-[3cqw] border border-white/12 bg-[#0b1224] p-[5cqw] space-y-[4cqw]">
       <div className="flex items-center justify-between"><span className="text-[4cqw] font-semibold text-white display">Progres proyek</span><span className="mono text-[3cqw] text-slate-500">Minggu 3</span></div>
@@ -583,7 +583,7 @@ export function HeroVisual() {
   React.useEffect(() => { const id = setInterval(() => setTick((t) => t + 1), 3800); return () => clearInterval(id); }, []);
   return (
     <Parallax className="relative w-full aspect-[5/4]" aria-hidden="true">
-      <Layer z={-10} className="absolute left-0 top-[4%] w-[86%]"><div className="float"><Browser url="dasbor.usahaanda.id"><ScreenDash d={DASH[tick % 3]} /></Browser></div></Layer>
+      <Layer z={-10} className="absolute left-0 top-[4%] w-[86%]"><div className="float"><Browser url="dashboard.usahaanda.id"><ScreenDash d={DASH[tick % 3]} /></Browser></div></Layer>
       <Layer z={22} className="absolute right-0 bottom-0 w-[29%]"><div className="float" style={{ '--d': '-2.5s' }}><Phone><ScreenIoT temp={[27, 29, 33][tick % 3]} /></Phone></div></Layer>
       <Layer z={34} className="absolute left-[3%] bottom-[1%] w-[25%]"><div className="-rotate-6 float" style={{ '--d': '-4s' }}><Poster /></div></Layer>
       <Layer z={44} className="absolute right-[6%] -top-[4%]">
@@ -707,7 +707,7 @@ export function Gallery({ slug }) {
 export function ProjectShot({ shot }) {
   const wrap = 'absolute inset-0 flex items-center justify-center p-[7%]';
   switch (shot) {
-    case 'dash': return <div className={wrap}><Browser className="w-full" url="apex.finance/dasbor"><ScreenDash /></Browser></div>;
+    case 'dash': return <div className={wrap}><Browser className="w-full" url="apex.finance/dashboard"><ScreenDash /></Browser></div>;
     case 'shop': return <div className={wrap}><Browser className="w-full" url="velox.store"><ScreenShop /></Browser></div>;
     case 'portal': return <div className={wrap}><Browser className="w-full" url="nexus.app/mulai"><ScreenPortal /></Browser></div>;
     case 'app': return <div className={`${wrap} gap-[6%]`}><Phone className="w-[30%] -rotate-3"><ScreenApp /></Phone><Phone className="w-[30%] rotate-3 mt-[8%]"><ScreenIoT /></Phone></div>;

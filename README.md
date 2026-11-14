@@ -20,7 +20,7 @@ Website resmi DigiPulse: homepage multi-halaman dengan scrollytelling, tipografi
 
 ## Tentang
 
-DigiPulse membantu bisnis dan institusi membuat produk digital yang mudah dipakai, dari website dan aplikasi web sampai desain grafis, video, dan sistem IoT. Repo ini berisi kode website resminya: situs *homepage* multi-halaman (bukan landing page satu layar) dengan animasi berbeda di setiap halaman.
+DigiPulse membantu usaha dan institusi membuat produk digital yang mudah dipakai, dari website dan aplikasi web sampai desain grafis, video, dan sistem IoT. Repo ini berisi kode website resminya: situs *homepage* multi-halaman (bukan landing page satu layar) dengan animasi berbeda di setiap halaman.
 
 ## Halaman & efek
 

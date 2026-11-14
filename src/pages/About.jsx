@@ -51,7 +51,7 @@ export default function About() {
           </h1>
           <div className="mt-12 pt-6 border-t rule grid md:grid-cols-12 gap-6 page-enter" style={{ animationDelay: '160ms' }}>
             <p className="md:col-span-6 text-lg text-slate-300 leading-relaxed">
-              Kami membantu bisnis dan institusi membangun produk digital yang tepat guna.
+              Kami membantu usaha dan institusi membangun produk digital yang tepat guna.
             </p>
           </div>
         </div>

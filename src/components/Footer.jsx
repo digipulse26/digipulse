@@ -13,7 +13,7 @@ export default function Footer() {
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
             <img src={logo} alt="DigiPulse" className="h-11 w-auto" />
-            <p className="mt-6 text-slate-400 max-w-sm leading-relaxed">Kami membantu bisnis dan institusi membangun produk digital yang nyaman digunakan, mulai dari gagasan awal hingga beroperasi di lapangan.</p>
+            <p className="mt-6 text-slate-400 max-w-sm leading-relaxed">Kami membantu usaha dan institusi membangun produk digital yang nyaman digunakan, mulai dari gagasan awal hingga beroperasi di lapangan.</p>
             <a href={`mailto:${EMAIL}`} className="link mt-8 text-lg">{EMAIL} <ArrowUpRight className="w-4 h-4" /></a>
           </div>
           <div className="md:col-span-3">

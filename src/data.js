@@ -10,7 +10,7 @@ export const services = [
   },
   {
     slug: 'web-application', no: '02', title: 'Web Application', short: 'Aplikasi web yang disesuaikan dengan alur kerja tim Anda.',
-    desc: 'Dasbor, sistem internal, hingga portal pelanggan untuk menggantikan pencatatan manual dan pekerjaan berulang.',
+    desc: 'Dashboard, sistem internal, hingga portal pelanggan untuk menggantikan pencatatan manual dan pekerjaan berulang.',
     points: ['Hak akses berdasarkan peran pengguna', 'Laporan dan ekspor data secara otomatis', 'Antarmuka yang mudah dipelajari oleh staf', 'Struktur sistem yang siap dikembangkan lebih lanjut'],
     tags: ['Dashboard', 'API', 'Database', 'Auth'], fit: 'Aplikasi',
     stack: [{ g: 'Frontend', items: ['react', 'typescript'] }, { g: 'Backend', items: ['node', 'laravel', 'postgres'] }, { g: 'Keamanan', items: ['jwt', 'cloudflare'] }],
@@ -38,10 +38,10 @@ export const services = [
   },
   {
     slug: 'iot-embedded-system', no: '06', title: 'IoT & Embedded System', short: 'Pemantauan perangkat dan lingkungan secara real-time.',
-    desc: 'Sensor, perangkat, dan dasbor untuk memantau kondisi di lapangan, dilengkapi notifikasi ketika terjadi perubahan.',
-    points: ['Pemantauan melalui ponsel maupun komputer', 'Notifikasi otomatis ketika nilai melewati batas', 'Perangkat hemat daya untuk penggunaan jangka panjang', 'Pengerjaan perangkat keras, firmware, dan dasbor'],
+    desc: 'Sensor, perangkat, dan dashboard untuk memantau kondisi di lapangan, dilengkapi notifikasi ketika terjadi perubahan.',
+    points: ['Pemantauan melalui ponsel maupun komputer', 'Notifikasi otomatis ketika nilai melewati batas', 'Perangkat hemat daya untuk penggunaan jangka panjang', 'Pengerjaan perangkat keras, firmware, dan dashboard'],
     tags: ['ESP32', 'MQTT', 'Sensor', 'Dashboard'], fit: 'IoT',
-    stack: [{ g: 'Perangkat', items: ['esp32', 'arduino', 'raspberrypi'] }, { g: 'Komunikasi', items: ['mqtt'] }, { g: 'Dasbor', items: ['nodered', 'grafana', 'influxdb', 'telegram'] }],
+    stack: [{ g: 'Perangkat', items: ['esp32', 'arduino', 'raspberrypi'] }, { g: 'Komunikasi', items: ['mqtt'] }, { g: 'Dashboard', items: ['nodered', 'grafana', 'influxdb', 'telegram'] }],
   },
   {
     slug: 'graphic-design', no: '07', title: 'Graphic Design', short: 'Desain promosi yang rapi dan sesuai karakter usaha.',
@@ -79,9 +79,9 @@ export const steps = [
 export const projects = [
   {
     slug: 'apex-financial-dashboard', title: 'Apex Financial Dashboard', cat: 'Web App', tag: 'Website', shot: 'dash',
-    desc: 'Dasbor pemantauan aset dengan laporan otomatis.',
+    desc: 'Dashboard pemantauan aset dengan laporan otomatis.',
     problem: 'Data dipindahkan manual ke spreadsheet setiap hari.',
-    solution: 'Dasbor real-time yang menarik data otomatis, lengkap dengan grafik dan peringatan.',
+    solution: 'Dashboard real-time yang menarik data otomatis, lengkap dengan grafik dan peringatan.',
     result: ['Laporan harian dari hitungan jam menjadi menit', 'Satu sumber data untuk seluruh tim', 'Peringatan otomatis saat angka melewati batas'],
   },
   {
@@ -131,12 +131,12 @@ export const projects = [
 export const products = [
   { slug: 'pulsedesk', name: 'PulseDesk', status: 'Tersedia', desc: 'Semua keluhan pelanggan dalam satu kotak masuk.', feats: ['Kotak masuk terpadu', 'Penugasan otomatis', 'Laporan waktu respons'], c: 'primary' },
   { slug: 'pulsestock', name: 'PulseStock', status: 'Tersedia', desc: 'Stok banyak gudang, cukup dipindai.', feats: ['Multi-gudang', 'Pindai barcode', 'Peringatan stok'], c: 'accent' },
-  { slug: 'pulsesense', name: 'PulseSense', status: 'Dalam pengembangan', desc: 'Suhu, kelembapan, dan energi terpantau dari ponsel.', feats: ['Dasbor real-time', 'Notifikasi ambang', 'Riwayat data'], c: 'primary' },
+  { slug: 'pulsesense', name: 'PulseSense', status: 'Dalam pengembangan', desc: 'Suhu, kelembapan, dan energi terpantau dari ponsel.', feats: ['Dashboard real-time', 'Notifikasi ambang', 'Riwayat data'], c: 'primary' },
 ];
 
 export const tools = { react: 'React', vite: 'Vite', tailwind: 'Tailwind CSS', typescript: 'TypeScript', ga4: 'Google Analytics', searchconsole: 'Search Console', vercel: 'Vercel', cloudflare: 'Cloudflare', githubactions: 'GitHub Actions', node: 'Node.js', laravel: 'Laravel', postgres: 'PostgreSQL', jwt: 'JWT', next: 'Next.js', redis: 'Redis', stripe: 'Stripe', xendit: 'Xendit', docker: 'Docker', aws: 'AWS', figma: 'Figma', storybook: 'Storybook', graphql: 'GraphQL', whatsapp: 'WhatsApp Business API', google: 'Google Workspace', n8n: 'n8n', sentry: 'Sentry', git: 'Git', esp32: 'ESP32', arduino: 'Arduino', raspberrypi: 'Raspberry Pi', mqtt: 'MQTT', nodered: 'Node-RED', grafana: 'Grafana', influxdb: 'InfluxDB', telegram: 'Telegram', illustrator: 'Adobe Illustrator', photoshop: 'Adobe Photoshop', premiere: 'Adobe Premiere Pro', aftereffects: 'After Effects', canva: 'Canva', coreldraw: 'CorelDRAW', davinci: 'DaVinci Resolve', capcut: 'CapCut' };
 
-// Nomor WhatsApp bisnis, format internasional tanpa "+" atau spasi, mis. '6281234567890'.
+// Nomor WhatsApp usaha, format internasional tanpa "+" atau spasi, mis. '6281234567890'.
 // Selama kosong, semua tombol konsultasi mengarah ke halaman Kontak.
 export const WHATSAPP = '';
 export const WA_TEXT = 'Halo DigiPulse, saya ingin berkonsultasi mengenai kebutuhan digital usaha saya.';
@@ -145,13 +145,13 @@ export const WA_TEXT = 'Halo DigiPulse, saya ingin berkonsultasi mengenai kebutu
 export const groups = [
   { slug: 'website', title: 'Website', hook: 'Website yang mencerminkan kredibilitas usaha Anda.', desc: 'Kami merancang website yang rapi, cepat diakses melalui ponsel, mudah ditemukan di mesin pencari, dan memudahkan pengunjung untuk menghubungi Anda.', who: 'UMKM, company profile, toko online, dan institusi', items: ['web-development', 'ui-ux-design'] },
   { slug: 'aplikasi', title: 'Aplikasi & Sistem', hook: 'Operasional yang lebih tertata dalam satu sistem.', desc: 'Pekerjaan yang selama ini bergantung pada spreadsheet dan input berulang kami pindahkan ke aplikasi yang disesuaikan dengan alur kerja tim Anda.', who: 'Perusahaan, startup, sekolah, dan klinik', items: ['web-application', 'saas-development', 'system-integration', 'maintenance-support'] },
-  { slug: 'iot', title: 'IoT', hook: 'Kondisi perangkat dan lokasi dapat dipantau dari jarak jauh.', desc: 'Kami merangkai sensor, perangkat, dan dasbor yang memberi peringatan ketika terjadi perubahan kondisi, sehingga tindakan dapat diambil lebih cepat.', who: 'Pabrik, gudang, pertanian, dan pengelola gedung', items: ['iot-embedded-system'] },
+  { slug: 'iot', title: 'IoT', hook: 'Kondisi perangkat dan lokasi dapat dipantau dari jarak jauh.', desc: 'Kami merangkai sensor, perangkat, dan dashboard yang memberi peringatan ketika terjadi perubahan kondisi, sehingga tindakan dapat diambil lebih cepat.', who: 'Pabrik, gudang, pertanian, dan pengelola gedung', items: ['iot-embedded-system'] },
   { slug: 'kreatif', title: 'Desain & Konten', hook: 'Materi promosi yang rapi dan konsisten.', desc: 'Poster, banner, konten media sosial, label kemasan, video singkat, dan undangan digital yang dikerjakan sesuai karakter usaha Anda.', who: 'UMKM, brand lokal, penyelenggara acara, dan komunitas', items: ['graphic-design', 'video-editing'] },
 ];
 
 export const pains = [
   { q: 'Website ada, tetapi sepi pertanyaan.', a: 'Pengunjung mudah menghubungi Anda.', to: 'website' },
-  { q: 'Data tersebar di banyak spreadsheet.', a: 'Satu dasbor, laporan otomatis.', to: 'aplikasi' },
+  { q: 'Data tersebar di banyak spreadsheet.', a: 'Satu dashboard, laporan otomatis.', to: 'aplikasi' },
   { q: 'Gangguan perangkat terlambat diketahui.', a: 'Notifikasi saat kondisi berubah.', to: 'iot' },
   { q: 'Konten promosi tidak seragam.', a: 'Gaya visual yang konsisten.', to: 'kreatif' },
 ];

@@ -47,7 +47,7 @@ function DashPlay() {
 function PortalPlay() {
   const [sel, setSel] = useState(1);
   return (
-    <Frame hint="Klik paket untuk memilih" controls={<span className="mono text-[11px] uppercase tracking-wide text-primary-soft">Paket {['Dasar', 'Bisnis', 'Tim'][sel]} dipilih</span>}>
+    <Frame hint="Klik paket untuk memilih" controls={<span className="mono text-[11px] uppercase tracking-wide text-primary-soft">Paket {['Dasar', 'Usaha', 'Tim'][sel]} dipilih</span>}>
       <Browser className="w-full max-w-3xl" url="app.produkanda.id/mulai"><ScreenPortal sel={sel} onSel={setSel} /></Browser>
     </Frame>
   );
