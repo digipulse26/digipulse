@@ -8,7 +8,8 @@ const nav = [['/', 'Beranda'], ['/tentang', 'Tentang'], ['/layanan', 'Layanan'],
 
 export default function Footer() {
   return (
-    <footer className="border-t rule">
+    <footer className="relative">
+      <span className="absolute inset-x-0 top-0 h-1" style={{ background: 'var(--brand)' }} />
       <div className="max-w-7xl mx-auto px-6 pt-16 pb-10">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">

@@ -11,6 +11,7 @@ const values = [
 ];
 
 const roles = ['Desain', 'Kode', 'Perangkat', 'Strategi'];
+const palette = ['#38BDF8', '#A78BFA', '#34D399', '#FBBF24'];
 const scope = ['Website', 'Aplikasi web', 'SaaS', 'Integrasi', 'IoT', 'Desain & video'];
 const eco = [
   ['react', 'next', 'node', 'laravel', 'postgres', 'docker', 'aws', 'cloudflare', 'vercel', 'xendit', 'stripe'],
@@ -64,7 +65,7 @@ export default function About() {
             <p className="mt-8 display text-[3.2rem] sm:text-7xl md:text-[7.5rem] leading-[0.92] tracking-[-0.045em]">
               {roles.map((r, i) => (
                 <React.Fragment key={r}>
-                  <span className="cycle inline-block transition-transform duration-300 hover:-translate-y-2 hover:!text-white" style={{ '--i': i }}>{r}</span>
+                  <span className="cycle inline-block transition-transform duration-300 hover:-translate-y-2" style={{ '--i': i, '--cc': palette[i] }}>{r}</span>
                   {i < roles.length - 1 && <span className="serif text-slate-600"> + </span>}
                 </React.Fragment>
               ))}
@@ -80,7 +81,6 @@ export default function About() {
       </section>
 
       <section className="relative px-6 py-24 md:py-32 border-t rule overflow-hidden">
-        <div className="aurora opacity-50"><i /><i /></div>
         <div className="relative max-w-7xl mx-auto">
           <div className="reveal max-w-3xl">
             <Label>Prinsip kerja</Label>
@@ -88,7 +88,7 @@ export default function About() {
           </div>
           <ol className="mt-16 grid sm:grid-cols-2 border-t rule">
             {values.map((v, i) => (
-              <li key={v.t} style={{ '--d': `${(i % 2) * 100}ms` }} className="reveal group relative py-10 border-b rule sm:[&:nth-child(odd)]:pr-10 sm:[&:nth-child(even)]:pl-10 sm:[&:nth-child(odd)]:border-r overflow-hidden">
+              <li key={v.t} style={{ '--d': `${(i % 2) * 100}ms`, '--gc': palette[i] }} className="reveal group relative py-10 border-b rule sm:[&:nth-child(odd)]:pr-10 sm:[&:nth-child(even)]:pl-10 sm:[&:nth-child(odd)]:border-r overflow-hidden">
                 <span className="absolute inset-0 blueprint opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                 <div className="relative flex items-start gap-6">
                   <span className="num-outline display text-7xl leading-[.8]">{i + 1}</span>

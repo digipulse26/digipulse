@@ -129,9 +129,9 @@ export const projects = [
 ];
 
 export const products = [
-  { slug: 'pulsedesk', name: 'PulseDesk', status: 'Tersedia', desc: 'Semua keluhan pelanggan dalam satu kotak masuk.', feats: ['Kotak masuk terpadu', 'Penugasan otomatis', 'Laporan waktu respons'], c: 'primary' },
-  { slug: 'pulsestock', name: 'PulseStock', status: 'Tersedia', desc: 'Stok banyak gudang, cukup dipindai.', feats: ['Multi-gudang', 'Pindai barcode', 'Peringatan stok'], c: 'accent' },
-  { slug: 'pulsesense', name: 'PulseSense', status: 'Dalam pengembangan', desc: 'Suhu, kelembapan, dan energi terpantau dari ponsel.', feats: ['Dashboard real-time', 'Notifikasi ambang', 'Riwayat data'], c: 'primary' },
+  { slug: 'pulsedesk', cat: 'Layanan pelanggan', color: '#38BDF8', hint: 'Klik tiket untuk memprosesnya', name: 'PulseDesk', status: 'Tersedia', desc: 'Semua keluhan pelanggan dalam satu kotak masuk.', feats: ['Kotak masuk terpadu', 'Penugasan otomatis', 'Laporan waktu respons'], c: 'primary' },
+  { slug: 'pulsestock', cat: 'Inventaris & gudang', color: '#FBBF24', hint: 'Tekan “Pindai” untuk menambah stok', name: 'PulseStock', status: 'Tersedia', desc: 'Stok banyak gudang, cukup dipindai.', feats: ['Multi-gudang', 'Pindai barcode', 'Peringatan stok'], c: 'accent' },
+  { slug: 'pulsesense', cat: 'Pemantauan IoT', color: '#FB7185', hint: 'Data sensor diperbarui langsung', name: 'PulseSense', status: 'Dalam pengembangan', desc: 'Suhu, kelembapan, dan energi terpantau dari ponsel.', feats: ['Dashboard real-time', 'Notifikasi ambang', 'Riwayat data'], c: 'primary' },
 ];
 
 export const tools = { react: 'React', vite: 'Vite', tailwind: 'Tailwind CSS', typescript: 'TypeScript', ga4: 'Google Analytics', searchconsole: 'Search Console', vercel: 'Vercel', cloudflare: 'Cloudflare', githubactions: 'GitHub Actions', node: 'Node.js', laravel: 'Laravel', postgres: 'PostgreSQL', jwt: 'JWT', next: 'Next.js', redis: 'Redis', stripe: 'Stripe', xendit: 'Xendit', docker: 'Docker', aws: 'AWS', figma: 'Figma', storybook: 'Storybook', graphql: 'GraphQL', whatsapp: 'WhatsApp Business API', google: 'Google Workspace', n8n: 'n8n', sentry: 'Sentry', git: 'Git', esp32: 'ESP32', arduino: 'Arduino', raspberrypi: 'Raspberry Pi', mqtt: 'MQTT', nodered: 'Node-RED', grafana: 'Grafana', influxdb: 'InfluxDB', telegram: 'Telegram', illustrator: 'Adobe Illustrator', photoshop: 'Adobe Photoshop', premiere: 'Adobe Premiere Pro', aftereffects: 'After Effects', canva: 'Canva', coreldraw: 'CorelDRAW', davinci: 'DaVinci Resolve', capcut: 'CapCut' };
@@ -143,10 +143,10 @@ export const WA_TEXT = 'Halo DigiPulse, saya ingin berkonsultasi mengenai kebutu
 
 // Empat bidang layanan, ditampilkan di Beranda, menu, dan halaman Layanan
 export const groups = [
-  { slug: 'website', title: 'Website', hook: 'Website yang mencerminkan kredibilitas usaha Anda.', desc: 'Kami merancang website yang rapi, cepat diakses melalui ponsel, mudah ditemukan di mesin pencari, dan memudahkan pengunjung untuk menghubungi Anda.', who: 'UMKM, company profile, toko online, dan institusi', items: ['web-development', 'ui-ux-design'] },
-  { slug: 'aplikasi', title: 'Aplikasi & Sistem', hook: 'Operasional yang lebih tertata dalam satu sistem.', desc: 'Pekerjaan yang selama ini bergantung pada spreadsheet dan input berulang kami pindahkan ke aplikasi yang disesuaikan dengan alur kerja tim Anda.', who: 'Perusahaan, startup, sekolah, dan klinik', items: ['web-application', 'saas-development', 'system-integration', 'maintenance-support'] },
-  { slug: 'iot', title: 'IoT', hook: 'Kondisi perangkat dan lokasi dapat dipantau dari jarak jauh.', desc: 'Kami merangkai sensor, perangkat, dan dashboard yang memberi peringatan ketika terjadi perubahan kondisi, sehingga tindakan dapat diambil lebih cepat.', who: 'Pabrik, gudang, pertanian, dan pengelola gedung', items: ['iot-embedded-system'] },
-  { slug: 'kreatif', title: 'Desain & Konten', hook: 'Materi promosi yang rapi dan konsisten.', desc: 'Poster, banner, konten media sosial, label kemasan, video singkat, dan undangan digital yang dikerjakan sesuai karakter usaha Anda.', who: 'UMKM, brand lokal, penyelenggara acara, dan komunitas', items: ['graphic-design', 'video-editing'] },
+  { slug: 'website', color: '#38BDF8', title: 'Website', hook: 'Website yang mencerminkan kredibilitas usaha Anda.', desc: 'Kami merancang website yang rapi, cepat diakses melalui ponsel, mudah ditemukan di mesin pencari, dan memudahkan pengunjung untuk menghubungi Anda.', who: 'UMKM, company profile, toko online, dan institusi', items: ['web-development', 'ui-ux-design'] },
+  { slug: 'aplikasi', color: '#A78BFA', title: 'Aplikasi & Sistem', hook: 'Operasional yang lebih tertata dalam satu sistem.', desc: 'Pekerjaan yang selama ini bergantung pada spreadsheet dan input berulang kami pindahkan ke aplikasi yang disesuaikan dengan alur kerja tim Anda.', who: 'Perusahaan, startup, sekolah, dan klinik', items: ['web-application', 'saas-development', 'system-integration', 'maintenance-support'] },
+  { slug: 'iot', color: '#34D399', title: 'IoT', hook: 'Kondisi perangkat dan lokasi dapat dipantau dari jarak jauh.', desc: 'Kami merangkai sensor, perangkat, dan dashboard yang memberi peringatan ketika terjadi perubahan kondisi, sehingga tindakan dapat diambil lebih cepat.', who: 'Pabrik, gudang, pertanian, dan pengelola gedung', items: ['iot-embedded-system'] },
+  { slug: 'kreatif', color: '#FBBF24', title: 'Desain & Konten', hook: 'Materi promosi yang rapi dan konsisten.', desc: 'Poster, banner, konten media sosial, label kemasan, video singkat, dan undangan digital yang dikerjakan sesuai karakter usaha Anda.', who: 'UMKM, brand lokal, penyelenggara acara, dan komunitas', items: ['graphic-design', 'video-editing'] },
 ];
 
 export const pains = [
@@ -164,5 +164,8 @@ export const faqs = [
   { q: 'Bagaimana jika terjadi kendala setelah peluncuran?', a: 'Kami menyediakan layanan Maintenance & Support yang mencakup pemantauan, pembaruan keamanan, dan perbaikan.' },
   { q: 'Apakah layanan desain atau video dapat dipesan secara terpisah?', a: 'Dapat. Layanan Desain & Konten, seperti poster, konten media sosial, label kemasan, dan undangan digital, dapat dipesan tanpa layanan lainnya.' },
 ];
+
+// Warna kategori portofolio, selaras dengan warna bidang layanan
+export const tagColor = { Website: '#38BDF8', Aplikasi: '#A78BFA', 'Desain & Video': '#FBBF24' };
 
 export const groupOf = (slug) => groups.find((g) => g.items.includes(slug));

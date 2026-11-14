@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Link, useParams, Navigate } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
-import { projects } from '../data';
+import { projects, tagColor } from '../data';
 import { Tilt, CtaBand, Label } from '../components/fx';
 import { ProjectShot } from '../components/visuals';
 import { useParallax, CursorFollower } from '../components/interact';
@@ -52,7 +52,7 @@ export function PortfolioPage() {
       <section className="max-w-7xl mx-auto px-6 py-16 md:py-24">
         <div className="flex items-center justify-between gap-4 border-b rule mb-12">
           <div className="flex gap-x-6 gap-y-1 flex-wrap" role="tablist">
-            {cats.map((c) => <button key={c} role="tab" aria-selected={f === c} onClick={() => setF(c)} className={`pb-4 -mb-px border-b whitespace-nowrap transition-colors ${f === c ? 'text-white border-white' : 'text-slate-500 border-transparent hover:text-slate-300'}`}>{c}</button>)}
+            {cats.map((c) => <button key={c} role="tab" aria-selected={f === c} onClick={() => setF(c)} className={`pb-4 -mb-px border-b whitespace-nowrap transition-colors ${f === c ? 'text-white border-accent-soft' : 'text-slate-500 border-transparent hover:text-slate-300'}`}>{c}</button>)}
           </div>
           <span className="hidden sm:inline mono text-xs text-slate-500 pb-4 shrink-0">{String(list.length).padStart(2, '0')} proyek</span>
         </div>
@@ -69,7 +69,7 @@ export function PortfolioPage() {
               <Link to={`/portofolio/${p.slug}`} className="group block mt-5">
                 <div className="flex items-baseline justify-between gap-4">
                   <h2 className="text-2xl md:text-3xl group-hover:text-primary-soft transition-colors">{p.title}</h2>
-                  <span className="mono text-xs text-slate-500 shrink-0">{p.cat}</span>
+                  <span className="inline-flex items-center gap-2 mono text-xs uppercase tracking-wide shrink-0" style={{ color: tagColor[p.tag] }}><i className="w-1.5 h-1.5 rounded-full" style={{ background: tagColor[p.tag] }} />{p.cat}</span>
                 </div>
                 <p className="mt-2 text-slate-400 max-w-md">{p.desc}</p>
                 <span className="link mt-4 text-sm">Lihat proyek <ArrowUpRight className="w-4 h-4" /></span>
@@ -98,7 +98,7 @@ export function PortfolioDetail() {
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-6 mono text-xs text-slate-500">
             <Link to="/portofolio" className="hover:text-white">← Portofolio</Link>
-            <span>{p.cat}</span>
+            <span style={{ color: tagColor[p.tag] }}>● {p.cat}</span>
           </div>
           <h1 className="mt-10 text-[2.75rem] sm:text-6xl md:text-[5.5rem] leading-[0.98] max-w-5xl">{p.title}</h1>
           <p className="mt-8 text-lg text-slate-300 max-w-2xl leading-relaxed">{p.desc}</p>

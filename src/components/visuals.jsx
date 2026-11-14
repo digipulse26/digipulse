@@ -14,7 +14,7 @@ const Bar = ({ w = '60%', c = 'bg-white/15', h = 'h-[1.1cqw]', className = '' })
 /* ---------- Bingkai ---------- */
 export function Browser({ url = 'usahaanda.id', children, className = '' }) {
   return (
-    <div className={`@container ${className}`}><div className="rounded-[1.4cqw] border border-white/12 bg-[#0b1224] overflow-hidden shadow-2xl shadow-black/50">
+    <div className={`@container ${className}`}><div className="rounded-[1.4cqw] border border-white/12 bg-[#111117] overflow-hidden shadow-2xl shadow-black/50">
       <div className="flex items-center gap-[1cqw] px-[2cqw] h-[4.6cqw] border-b border-white/10 bg-white/[0.03]">
         <i className="w-[1.3cqw] h-[1.3cqw] rounded-full bg-rose-400/60" /><i className="w-[1.3cqw] h-[1.3cqw] rounded-full bg-amber-300/60" /><i className="w-[1.3cqw] h-[1.3cqw] rounded-full bg-emerald-400/60" />
         <span className="ml-[2cqw] flex-1 max-w-[50%] h-[2.6cqw] rounded-full bg-white/[0.06] mono text-[1.6cqw] leading-[2.6cqw] px-[1.5cqw] text-slate-500 truncate">{url}</span>
@@ -26,7 +26,7 @@ export function Browser({ url = 'usahaanda.id', children, className = '' }) {
 
 export function Phone({ children, className = '' }) {
   return (
-    <div className={`@container ${className}`}><div className="relative aspect-[9/19] rounded-[14cqw] border-[2.5cqw] border-slate-700 bg-[#0b1224] overflow-hidden shadow-2xl shadow-black/60">
+    <div className={`@container ${className}`}><div className="relative aspect-[9/19] rounded-[14cqw] border-[2.5cqw] border-slate-700 bg-[#111117] overflow-hidden shadow-2xl shadow-black/60">
       <span className="absolute top-[2.5cqw] left-1/2 -translate-x-1/2 w-[26cqw] h-[4.5cqw] rounded-full bg-slate-800 z-10" />
       <div className="absolute inset-0 pt-[11cqw] flex flex-col">{children}</div>
     </div></div>
@@ -36,7 +36,7 @@ export function Phone({ children, className = '' }) {
 /* ---------- Layar website & aplikasi ---------- */
 export function ScreenSite() {
   return (
-    <div className="aspect-[16/10] p-[4cqw] flex flex-col gap-[3.5cqw] bg-gradient-to-br from-[#0b1224] to-[#141a3c]">
+    <div className="aspect-[16/10] p-[4cqw] flex flex-col gap-[3.5cqw] bg-gradient-to-br from-[#111117] to-[#1f1f29]">
       <div className="flex items-center gap-[1.6cqw]">
         <i className="w-[2.6cqw] h-[2.6cqw] rounded-[.6cqw] bg-primary" /><Bar w="10%" c="bg-white/60" />
         <span className="flex-1" /><Bar w="7%" /><Bar w="7%" /><Bar w="7%" />
@@ -67,7 +67,7 @@ export function ScreenSite() {
 
 export function ScreenSiteMobile() {
   return (
-    <div className="flex-1 px-[7cqw] pb-[7cqw] flex flex-col gap-[5cqw] bg-gradient-to-b from-[#0b1224] to-[#141a3c]">
+    <div className="flex-1 px-[7cqw] pb-[7cqw] flex flex-col gap-[5cqw] bg-gradient-to-b from-[#111117] to-[#1f1f29]">
       <div className="flex items-center justify-between"><i className="w-[9cqw] h-[9cqw] rounded-[2cqw] bg-primary" /><span className="space-y-[1.5cqw]"><Bar w="10cqw" h="h-[1.5cqw]" c="bg-white/50" /><Bar w="10cqw" h="h-[1.5cqw]" c="bg-white/50" /></span></div>
       <p className="text-[11cqw] leading-[1] font-semibold text-white display">Solusi tepat untuk usaha Anda.</p>
       <Bar w="90%" h="h-[2.4cqw]" /><Bar w="70%" h="h-[2.4cqw]" />
@@ -86,7 +86,7 @@ export const DASH = [
 export function ScreenDash({ d = DASH[0] }) {
   const bars = d.bars;
   return (
-    <div className="aspect-[16/10] flex bg-[#0b1224]">
+    <div className="aspect-[16/10] flex bg-[#111117]">
       <div className="w-[8%] border-r border-white/10 flex flex-col items-center gap-[2.2cqw] py-[3cqw]">
         {[0, 1, 2, 3, 4].map((i) => <i key={i} className={`w-[2.4cqw] h-[2.4cqw] rounded-[.6cqw] ${i === 0 ? 'bg-primary' : 'bg-white/15'}`} />)}
       </div>
@@ -123,7 +123,7 @@ export function ScreenDash({ d = DASH[0] }) {
 export function ScreenShop() {
   const c = ['from-rose-400/70 to-amber-300/60', 'from-sky-400/60 to-indigo-400/60', 'from-emerald-300/60 to-teal-500/50', 'from-violet-400/60 to-fuchsia-400/50', 'from-amber-300/70 to-orange-400/50', 'from-slate-300/50 to-slate-500/40'];
   return (
-    <div className="aspect-[16/10] p-[3cqw] bg-[#0b1224] flex flex-col gap-[2.4cqw]">
+    <div className="aspect-[16/10] p-[3cqw] bg-[#111117] flex flex-col gap-[2.4cqw]">
       <div className="flex items-center gap-[2cqw]">
         <span className="text-[2.4cqw] font-semibold text-white display">VELOX</span>
         <span className="flex-1 h-[3.4cqw] rounded-full bg-white/[0.06] flex items-center gap-[1cqw] px-[1.5cqw] text-slate-500"><Search className="w-[2cqw] h-[2cqw]" /><Bar w="30%" h="h-[1cqw]" c="bg-white/10" /></span>
@@ -144,7 +144,7 @@ export function ScreenShop() {
 export function ScreenPortal({ sel = 1, onSel }) {
   const st = ['Buat akun', 'Pilih paket', 'Undang tim'];
   return (
-    <div className="aspect-[16/10] p-[3.5cqw] bg-gradient-to-br from-[#0b1224] to-[#12183a] grid grid-cols-5 gap-[3cqw]">
+    <div className="aspect-[16/10] p-[3.5cqw] bg-gradient-to-br from-[#111117] to-[#1d1d27] grid grid-cols-5 gap-[3cqw]">
       <div className="col-span-2 flex flex-col gap-[2.2cqw]">
         <span className="text-[2.4cqw] font-semibold text-white display">Mulai dalam 3 langkah</span>
         {st.map((s, i) => (
@@ -242,7 +242,7 @@ export function ScreenInbox() {
     setRows((r) => r.map((x, k) => (k === i ? [x[0], x[1] === 'Baru' ? 'Proses' : x[1] === 'Proses' ? 'Selesai' : 'Selesai'] : x)));
   };
   return (
-    <div className="aspect-[16/10] bg-[#0b1224] grid grid-cols-5">
+    <div className="aspect-[16/10] bg-[#111117] grid grid-cols-5">
       <div className="col-span-3 border-r border-white/10 p-[3cqw] space-y-[1.6cqw]">
         <span className="text-[2.4cqw] font-semibold text-white">Kotak masuk</span>
         {rows.map(([t, s], i) => (
@@ -274,7 +274,7 @@ export function ScreenStock() {
     setRows((r) => r.map((x, j) => (j === k ? [x[0], x[1] + 12] : x)));
   };
   return (
-    <div className="aspect-[16/10] bg-[#0b1224] p-[3cqw] flex flex-col gap-[2cqw]">
+    <div className="aspect-[16/10] bg-[#111117] p-[3cqw] flex flex-col gap-[2cqw]">
       <div className="flex items-center justify-between">
         <span className="text-[2.4cqw] font-semibold text-white">Stok · Gudang Utama</span>
         <button type="button" onClick={scan} className="flex items-center gap-[1cqw] rounded-full bg-primary hover:bg-primary-soft hover:text-slate-950 transition-colors px-[1.8cqw] py-[.8cqw] text-[1.6cqw] text-white"><ScanBarcode className="w-[2.2cqw] h-[2.2cqw]" />Pindai +12</button>
@@ -299,9 +299,9 @@ export function IotDevice({ className = '', alert = false }) {
   return (
     <svg viewBox="0 0 220 150" className={className} fill="none" aria-hidden="true">
       <path d="M40 92 H18 V112" stroke="rgba(165,180,252,.5)" strokeWidth="1.5" className="flow" />
-      <rect x="4" y="112" width="30" height="24" rx="4" fill="#111a33" stroke="rgba(165,180,252,.6)" />
+      <rect x="4" y="112" width="30" height="24" rx="4" fill="#1b1b23" stroke="rgba(165,180,252,.6)" />
       <text x="19" y="128" textAnchor="middle" fontSize="9" fill="#cbd5e1" fontFamily="Geist Mono, monospace">°C</text>
-      <rect x="40" y="46" width="120" height="74" rx="6" fill="#0f1733" stroke="rgba(165,180,252,.55)" />
+      <rect x="40" y="46" width="120" height="74" rx="6" fill="#1a1a22" stroke="rgba(165,180,252,.55)" />
       {Array.from({ length: 10 }).map((_, i) => <rect key={'t' + i} x={50 + i * 10.5} y="40" width="4" height="8" rx="1" fill="rgba(203,213,225,.55)" />)}
       {Array.from({ length: 10 }).map((_, i) => <rect key={'b' + i} x={50 + i * 10.5} y="118" width="4" height="8" rx="1" fill="rgba(203,213,225,.55)" />)}
       <rect x="82" y="64" width="36" height="36" rx="3" fill="#1e293b" stroke="rgba(255,255,255,.18)" />
@@ -330,7 +330,7 @@ export function Hub({ onNode, packet, active = -1 }) {
       {packet && <i key={packet.id} className="packet" style={{ '--fx': `${nodes[packet.i].x}%`, '--fy': `${nodes[packet.i].y}%` }} />}
       {nodes.map((n, i) => (
         <button type="button" key={n.t} onClick={() => onNode && onNode(i)} tabIndex={onNode ? 0 : -1} className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-[1.2cqw] group" style={{ left: `${n.x}%`, top: `${n.y}%` }}>
-          <span className={`w-[10cqw] h-[10cqw] rounded-[2.4cqw] bg-[#111a33] border flex items-center justify-center transition-all duration-300 group-hover:scale-110 ${active === i ? 'border-primary-soft scale-110' : 'border-white/12'} ${n.c}`}><n.I className="w-[4.6cqw] h-[4.6cqw]" /></span>
+          <span className={`w-[10cqw] h-[10cqw] rounded-[2.4cqw] bg-[#1b1b23] border flex items-center justify-center transition-all duration-300 group-hover:scale-110 ${active === i ? 'border-primary-soft scale-110' : 'border-white/12'} ${n.c}`}><n.I className="w-[4.6cqw] h-[4.6cqw]" /></span>
           <span className="text-[2.2cqw] text-slate-300 whitespace-nowrap">{n.t}</span>
         </button>
       ))}
@@ -353,7 +353,7 @@ export function Wireframe() {
         <i className="mt-auto h-[4cqw] w-[45%] rounded-full border border-dashed border-white/30" />
       </div>
       <ArrowRight className="w-[5cqw] h-[5cqw] text-primary-soft nudge" />
-      <div className="aspect-[3/4] rounded-[1.6cqw] border border-white/12 bg-[#0f1733] p-[3cqw] flex flex-col gap-[2cqw]">
+      <div className="aspect-[3/4] rounded-[1.6cqw] border border-white/12 bg-[#1a1a22] p-[3cqw] flex flex-col gap-[2cqw]">
         <span className="mono text-[1.8cqw] text-primary-soft">FINAL</span>
         <i className="h-[12cqw] rounded-[1cqw] bg-gradient-to-br from-primary/70 via-primary-soft/40 to-accent/50" />
         <span className="text-[3cqw] font-semibold text-white display leading-tight">Pesan meja dalam 30 detik</span>
@@ -374,7 +374,7 @@ export function Monitor() {
   };
   const busy = st.includes('wait');
   return (
-    <div className="@container w-full"><div className="rounded-[1.6cqw] border border-white/12 bg-[#0b1224] p-[4cqw] space-y-[3cqw]">
+    <div className="@container w-full"><div className="rounded-[1.6cqw] border border-white/12 bg-[#111117] p-[4cqw] space-y-[3cqw]">
       <div className="flex items-center justify-between"><span className="text-[3.2cqw] font-semibold text-white display">Status sistem</span><button type="button" onClick={run} disabled={busy} className="flex items-center gap-[1cqw] text-[2.2cqw] rounded-full border border-white/15 px-[2cqw] py-[.8cqw] text-slate-200 hover:border-white/40 transition-colors disabled:opacity-60">{busy ? 'Memeriksa…' : 'Cek sekarang'}</button></div>
       <div className="flex gap-[.6cqw] h-[7cqw]">{Array.from({ length: 40 }).map((_, i) => <i key={i} title={i === 27 ? 'Gangguan singkat, sudah ditangani' : 'Normal'} className={`flex-1 rounded-[.4cqw] origin-bottom transition-transform hover:scale-y-125 ${i === 27 ? 'bg-amber-300/80' : 'bg-emerald-400/70 hover:bg-emerald-300'}`} />)}</div>
       {names.map((n, i) => (
@@ -404,7 +404,7 @@ export function ChatVisual() {
 export function BuildVisual() {
   const items = [['Desain disetujui', 100], ['Halaman utama', 100], ['Dashboard admin', 70], ['Pengujian', 20]];
   return (
-    <div className="@container w-full"><div className="rounded-[3cqw] border border-white/12 bg-[#0b1224] p-[5cqw] space-y-[4cqw]">
+    <div className="@container w-full"><div className="rounded-[3cqw] border border-white/12 bg-[#111117] p-[5cqw] space-y-[4cqw]">
       <div className="flex items-center justify-between"><span className="text-[4cqw] font-semibold text-white display">Progres proyek</span><span className="mono text-[3cqw] text-slate-500">Minggu 3</span></div>
       {items.map(([t, v]) => (
         <div key={t}>
@@ -552,7 +552,7 @@ export function Timeline({ className = '', playing = true }) {
     [['Musik', 100, 'bg-emerald-400/50']],
   ];
   return (
-    <div className={`@container w-full ${className}`}><div className={`rounded-[1.6cqw] border border-white/12 bg-[#0b1224] p-[3cqw] ${playing ? '' : 'paused'}`}>
+    <div className={`@container w-full ${className}`}><div className={`rounded-[1.6cqw] border border-white/12 bg-[#111117] p-[3cqw] ${playing ? '' : 'paused'}`}>
       <div className="flex items-center justify-between mb-[2.4cqw]"><span className="text-[2.8cqw] font-semibold text-white">Promo_KopiSenja.mp4</span><span className="mono text-[2.2cqw] text-slate-500">00:15 · 1080×1920</span></div>
       <div className="relative space-y-[1.4cqw]">
         {tracks.map((t, k) => (

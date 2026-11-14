@@ -28,7 +28,7 @@ export default function Navbar() {
   }, []);
   useEffect(() => { document.body.style.overflow = open ? 'hidden' : ''; }, [open]);
 
-  const cls = ({ isActive }) => `relative px-3 py-2 text-[0.92rem] transition-colors ${isActive ? 'text-white after:absolute after:left-3 after:right-3 after:-bottom-0.5 after:h-px after:bg-white' : 'text-slate-400 hover:text-white'}`;
+  const cls = ({ isActive }) => `relative px-3 py-2 text-[0.92rem] transition-colors ${isActive ? 'text-white after:absolute after:left-3 after:right-3 after:-bottom-0.5 after:h-0.5 after:rounded-full after:[background:var(--brand)]' : 'text-slate-400 hover:text-white'}`;
 
   return (
     <header className={`fixed top-0 inset-x-0 z-50 pt-[max(0.75rem,env(safe-area-inset-top))] sm:pt-0 transition-colors duration-300 ${scrolled || open ? 'bg-background/90 backdrop-blur-md border-b rule' : ''}`}>
@@ -45,7 +45,7 @@ export default function Navbar() {
                 <div className="w-[34rem] p-5 panel bg-secondary shadow-2xl grid grid-cols-2 gap-x-6 gap-y-5">
                   {groups.map((g) => (
                     <div key={g.slug}>
-                      <p className="mono text-[11px] uppercase tracking-wide text-slate-500">{g.title}</p>
+                      <p className="flex items-center gap-2 mono text-[11px] uppercase tracking-wide" style={{ color: g.color }}><i className="w-1.5 h-1.5 rounded-full" style={{ background: g.color }} />{g.title}</p>
                       <div className="mt-2 flex flex-col">
                         {g.items.map((slug) => { const sv = services.find((x) => x.slug === slug); return (
                           <Link key={slug} to={`/layanan/${slug}`} className="py-1 text-sm text-slate-300 hover:text-white">{sv.title}</Link>
@@ -63,7 +63,7 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <ConsultLink className="btn btn-primary hidden sm:inline-flex !py-2.5 !px-4 !text-sm">Konsultasi Sekarang <ArrowRight className="w-4 h-4" /></ConsultLink>
+          <ConsultLink className="btn btn-cta hidden sm:inline-flex !py-2.5 !px-4 !text-sm">Konsultasi Sekarang <ArrowRight className="w-4 h-4" /></ConsultLink>
           <button className="lg:hidden h-10 px-4 text-sm border rule rounded-full hover:border-white/30 transition-colors" onClick={() => setOpen(!open)} aria-label={open ? 'Tutup menu' : 'Buka menu'} aria-expanded={open}>
             {open ? "Tutup" : "Menu"}
           </button>
@@ -75,11 +75,11 @@ export default function Navbar() {
           <nav className="flex flex-col" aria-label="Seluler">
             {links.map((l, i) => (
               <NavLink key={l.to} to={l.to} end={l.end} style={{ animationDelay: `${i * 40}ms` }} className={({ isActive }) => `page-enter flex items-baseline gap-4 py-4 border-b rule display text-3xl ${isActive ? 'text-white' : 'text-slate-400'}`}>
-                <span className="mono text-xs text-slate-500">0{i + 1}</span>{l.label}
+                <span className="mono text-xs text-accent-soft">0{i + 1}</span>{l.label}
               </NavLink>
             ))}
           </nav>
-          <ConsultLink className="btn btn-primary mt-8 w-full justify-between">Konsultasi Sekarang <ArrowRight className="w-4 h-4" /></ConsultLink>
+          <ConsultLink className="btn btn-cta mt-8 w-full justify-between">Konsultasi Sekarang <ArrowRight className="w-4 h-4" /></ConsultLink>
         </div>
       )}
     </header>

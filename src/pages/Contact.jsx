@@ -4,7 +4,7 @@ import { EMAIL } from '../data';
 import { Label } from '../components/fx';
 import { VRStage } from './Portfolio';
 
-const kinds = [[Globe, 'Website'], [AppWindow, 'Aplikasi'], [Radio, 'IoT'], [Palette, 'Desain & Video']];
+const kinds = [[Globe, 'Website', '#38BDF8'], [AppWindow, 'Aplikasi', '#A78BFA'], [Radio, 'IoT', '#34D399'], [Palette, 'Desain & Video', '#FBBF24']];
 const next = ['Diskusi kebutuhan', 'Penawaran tertulis', 'Mulai dikerjakan'];
 const field = 'mt-2 w-full rounded-xl bg-white/[0.03] border border-white/10 px-4 py-3 text-[0.97rem] text-white placeholder:text-slate-500 transition-colors hover:border-white/20 focus:border-primary-soft/70 focus:bg-white/[0.05] focus:outline-none';
 
@@ -56,9 +56,9 @@ export default function Contact() {
             <fieldset>
               <legend className="text-sm text-slate-300">Saya ingin membuat</legend>
               <div className="mt-3 flex flex-wrap gap-2">
-                {kinds.map(([I, k]) => (
-                  <button type="button" key={k} onClick={() => setKind(k)} aria-pressed={kind === k}
-                    className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-sm border transition-colors duration-200 ${kind === k ? 'bg-white text-slate-950 border-white' : 'border-white/12 text-slate-400 hover:text-white hover:border-white/30'}`}>
+                {kinds.map(([I, k, c]) => (
+                  <button type="button" key={k} onClick={() => setKind(k)} aria-pressed={kind === k} style={kind === k ? { background: c, borderColor: c, color: '#0C0C10' } : { '--c': c }}
+                    className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-sm border transition-colors duration-200 ${kind === k ? 'font-semibold' : 'border-white/12 text-slate-400 hover:text-white hover:border-[var(--c)]'}`}>
                     <I className="w-4 h-4" />{k}
                   </button>
                 ))}
@@ -73,7 +73,7 @@ export default function Contact() {
 
             <div className="pt-2 flex flex-col-reverse sm:flex-row sm:items-center justify-between gap-4">
               <p className="text-xs text-slate-500 sm:max-w-[15rem]">Formulir ini akan membuka aplikasi email Anda dengan pesan yang telah terisi.</p>
-              <button type="submit" className="btn btn-primary justify-center shrink-0 whitespace-nowrap">Kirim Pesan <ArrowRight className="w-4 h-4" /></button>
+              <button type="submit" className="btn btn-cta justify-center shrink-0 whitespace-nowrap">Kirim Pesan <ArrowRight className="w-4 h-4" /></button>
             </div>
           </form>
         </div>

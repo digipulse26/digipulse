@@ -2,17 +2,21 @@
 
 @layer base {
   :root {
-    --primary: 99 102 241;
-    --primary-soft: 165 180 252;
+    --primary: 124 58 237;
+    --primary-soft: 196 181 253;
     --primary-foreground: 255 255 255;
-    --secondary: 15 23 42;
-    --background: 2 6 23;
-    --foreground: 241 245 249;
-    --accent: 244 63 94;
-    --card: 15 23 42;
-    --border: 30 41 59;
-    --muted: 30 41 59;
-    --muted-foreground: 148 163 184;
+    --secondary: 22 22 28;
+    --background: 12 12 16;
+    --foreground: 244 241 234;
+    --accent: 236 72 153;
+    --accent-soft: 244 114 182;
+    --hot: 34 211 238;
+    --card: 22 22 28;
+    --border: 42 42 52;
+    --muted: 42 42 52;
+    --muted-foreground: 160 158 170;
+    /* Satu warna aksen solid; dipakai untuk tombol, pita, dan penanda */
+    --brand: rgb(236 72 153);
   }
 }
 
@@ -24,6 +28,8 @@
   --color-background: rgb(var(--background));
   --color-foreground: rgb(var(--foreground));
   --color-accent: rgb(var(--accent));
+  --color-accent-soft: rgb(var(--accent-soft));
+  --color-hot: rgb(var(--hot));
   --color-card: rgb(var(--card));
   --color-border: rgb(var(--border));
   --color-muted: rgb(var(--muted));
@@ -45,12 +51,20 @@ body {
   overflow-x: clip;
   max-width: 100%;
 }
-::selection { background: rgb(var(--primary)); color: #fff; }
+::selection { background: rgb(var(--accent)); color: #fff; }
 
 h1, h2, h3, .display { font-family: 'Bricolage Grotesque', 'Geist', system-ui, sans-serif; letter-spacing: -0.035em; font-weight: 650; }
 
 /* Kata aksen: serif miring, bukan gradien */
-.serif { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: -0.01em; color: rgb(var(--primary-soft)); }
+.serif { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: -0.01em; color: var(--gc, rgb(var(--accent-soft))); }
+/* Teks bergradasi warna logo, hanya untuk frasa kunci */
+.group:hover .hover-grad { color: rgb(var(--accent)); -webkit-text-stroke: 0; }
+.grad-text { color: rgb(var(--accent)) !important; }
+/* Bagian terang untuk memecah ritme gelap */
+.light { background: #F4F1EA; color: #0C0C10; }
+.light .rule { border-color: rgb(12 12 16 / .14); }
+.light .label { color: #6B6870; }
+.light .serif { color: #DB2777; }
 .outline-text { -webkit-text-stroke: 1.2px rgb(var(--foreground) / 0.3); color: transparent; }
 
 ::-webkit-scrollbar { width: 10px; }
@@ -61,8 +75,8 @@ h1, h2, h3, .display { font-family: 'Bricolage Grotesque', 'Geist', system-ui, s
 @layer components {
   /* Label teknis bergaya mono, menggantikan pill "eyebrow" */
   .label { display: inline-flex; align-items: center; gap: .6rem; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: .04em; text-transform: uppercase; color: rgb(var(--muted-foreground)); }
-  .label::before { content: ''; width: 18px; height: 1px; background: currentColor; opacity: .6; }
-  .label .n { color: rgb(var(--primary-soft)); }
+  .label::before { content: ''; width: 22px; height: 2px; border-radius: 2px; background: var(--brand); }
+  .label .n { color: rgb(var(--accent-soft)); }
   .mono { font-family: 'Geist Mono', ui-monospace, monospace; }
 
   /* Tombol: bentuk kapsul lembut, isian warna meluncur halus saat disorot */
@@ -79,6 +93,19 @@ h1, h2, h3, .display { font-family: 'Bricolage Grotesque', 'Geist', system-ui, s
   .btn-ghost::before { background: rgb(255 255 255 / .07); }
   .btn-ghost:hover { border-color: rgb(255 255 255 / .3); }
   .btn:focus-visible { outline: 2px solid rgb(var(--primary-soft)); outline-offset: 3px; }
+  /* Tombol konsultasi: warna gradasi logo, kilau berkala, dan denyut halus agar selalu menonjol */
+  .btn-cta { background: rgb(var(--accent)); color: #0C0C10; font-weight: 600; }
+  .btn-cta::before { background: #F4F1EA; }
+  .btn-cta:hover { color: #0C0C10; }
+  .btn-dark { background: #0C0C10; color: #F4F1EA; font-weight: 600; }
+  .btn-dark::before { background: #F4F1EA; }
+  .btn-dark:hover { color: #0C0C10; }
+  .btn-outline-dark { border: 1.5px solid #0C0C10; color: #0C0C10; font-weight: 500; }
+  .btn-outline-dark::before { background: #0C0C10; }
+  .btn-outline-dark:hover { color: #F4F1EA; }
+  /* Tombol berwarna khusus tiap produk */
+  .btn-product { background: var(--pc); color: #0b0f1c; font-weight: 600; }
+  .btn-product::before { background: #fff; }
   .link { display: inline-flex; align-items: center; gap: .5rem; font-weight: 500; border-bottom: 1px solid rgb(255 255 255 / .25); padding-bottom: 2px; transition: border-color .2s, color .2s; }
   .link:hover { border-color: rgb(var(--primary-soft)); color: rgb(var(--primary-soft)); }
   .link svg { transition: transform .25s; }
@@ -149,7 +176,7 @@ h1, h2, h3, .display { font-family: 'Bricolage Grotesque', 'Geist', system-ui, s
 .svc-row { transition: padding .35s ease, background .35s ease; }
 .svc-row:hover { padding-left: 1rem; }
 .svc-title { -webkit-text-stroke: 1.2px rgb(var(--foreground) / .45); color: transparent; transition: -webkit-text-stroke-color .3s; }
-.svc-title .fill { background: linear-gradient(rgb(var(--foreground)), rgb(var(--foreground))) no-repeat left / 0% 100%; -webkit-background-clip: text; background-clip: text; transition: background-size .55s cubic-bezier(.2,.8,.2,1); }
+.svc-title .fill { background: linear-gradient(var(--gc, rgb(var(--foreground))), var(--gc, rgb(var(--foreground)))) no-repeat left / 0% 100%; -webkit-background-clip: text; background-clip: text; transition: background-size .55s cubic-bezier(.2,.8,.2,1); }
 .svc-row:hover .svc-title .fill { background-size: 100% 100%; }
 /* Layar sentuh tidak punya hover: judul langsung terisi agar mudah dibaca */
 @media (hover: none) { .svc-title .fill { background-size: 100% 100%; } }
@@ -222,6 +249,7 @@ h1, h2, h3, .display { font-family: 'Bricolage Grotesque', 'Geist', system-ui, s
 .playhead { animation: playhead 6s linear infinite; }
 @keyframes playhead { from { left: 0; } to { left: 100%; } }
 
+
 /* ---------- Interaksi (interact.jsx) ---------- */
 .px { transform: translate3d(calc(var(--mx, 0) * var(--z, 10) * 1px), calc(var(--my, 0) * var(--z, 10) * 1px), 0); will-change: transform; }
 .follower { transform: translate(-50%, -50%) scale(.4); opacity: 0; transition: transform .35s cubic-bezier(.2,.8,.2,1), opacity .25s; }
@@ -240,13 +268,14 @@ h1, h2, h3, .display { font-family: 'Bricolage Grotesque', 'Geist', system-ui, s
 .grid-floor { translate: calc(var(--mx, 0) * -48px) 0; }
 /* Kata yang menyala bergiliran */
 .cycle { color: rgb(71 85 105); animation: cyc 8s infinite; animation-delay: calc(var(--i) * 2s); }
-@keyframes cyc { 0% { color: rgb(71 85 105); } 3%, 25% { color: rgb(var(--foreground)); } 29%, 100% { color: rgb(71 85 105); } }
+@keyframes cyc { 0% { color: rgb(71 85 105); } 3%, 25% { color: var(--cc, rgb(var(--foreground))); } 29%, 100% { color: rgb(71 85 105); } }
 /* Pergantian visual: tirai terbuka */
 .swap-in { animation: swapIn .8s cubic-bezier(.7,0,.2,1) both; }
 @keyframes swapIn { from { clip-path: inset(0 0 100% 0); transform: translateY(16px) scale(.98); } to { clip-path: inset(0 0 0 0); transform: none; } }
 /* Angka besar bergaris yang terisi saat disorot */
 .num-outline { -webkit-text-stroke: 1px rgb(var(--foreground) / .35); color: transparent; transition: color .4s, -webkit-text-stroke-color .4s; }
-.group:hover .num-outline, .num-outline.on { color: rgb(var(--primary-soft)); -webkit-text-stroke-color: transparent; }
+.num-outline { -webkit-text-stroke-color: var(--gc, rgb(var(--foreground) / .35)); }
+.group:hover .num-outline, .num-outline.on { color: var(--gc, rgb(var(--primary-soft))); -webkit-text-stroke-color: transparent; }
 .packet { position: absolute; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 9999px; background: rgb(var(--primary-soft)); box-shadow: 0 0 0 4px rgb(var(--primary-soft) / .25); animation: packet .9s cubic-bezier(.6,0,.3,1) both; }
 @keyframes packet { from { left: var(--fx); top: var(--fy); } to { left: 50%; top: 50%; opacity: .2; } }
 .paused, .paused * { animation-play-state: paused !important; }
@@ -254,7 +283,7 @@ h1, h2, h3, .display { font-family: 'Bricolage Grotesque', 'Geist', system-ui, s
 .rv-on .flow:not(.in) .flow-line { transform: scaleX(0); }
 /* Huruf kinetik bereaksi saat disentuh kursor */
 .kin { transition: transform .35s cubic-bezier(.2,.8,.2,1), color .35s; }
-@media (hover: hover) { .kin:hover { transform: translateY(-.14em) rotate(-5deg); color: rgb(var(--primary-soft)); } }
+@media (hover: hover) { .kin:hover { transform: translateY(-.14em) rotate(-5deg); color: var(--gc, rgb(var(--accent-soft))); } }
 .fade-in { animation: fadeIn 1s ease both; }
 @keyframes fadeIn { from { opacity: 0; } }
 .spin { animation: spin .8s linear infinite; }

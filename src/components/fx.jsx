@@ -102,17 +102,17 @@ export function CtaBand({ title = 'Mari diskusikan proyek Anda.', text = 'Anda t
   const words = title.split(' ');
   const last = words.pop();
   return (
-    <section className="relative px-6 py-24 md:py-36 border-t rule overflow-hidden">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-12 gap-10 items-end">
+    <section className="cta-band relative px-6 py-24 md:py-36 overflow-hidden text-[#0C0C10]" style={{ background: 'var(--brand)' }}>
+      <div className="relative max-w-7xl mx-auto grid md:grid-cols-12 gap-10 items-end">
         <div className="md:col-span-8 reveal">
-          <Label>Konsultasi</Label>
-          <h2 className="mt-6 text-[2.6rem] leading-[1] sm:text-6xl md:text-[5.5rem]">{words.join(' ')} <span className="serif">{last}</span></h2>
+          <span className="inline-flex items-center gap-3 mono text-xs uppercase tracking-wide"><i className="w-6 h-0.5 bg-[#0C0C10]" />Mulai dari konsultasi</span>
+          <h2 className="mt-6 text-[2.6rem] leading-[1] sm:text-6xl md:text-[5.5rem] text-[#0C0C10]">{words.join(' ')} <span className="serif !text-[#0C0C10]">{last}</span></h2>
         </div>
         <div className="md:col-span-4 reveal" style={{ '--d': '120ms' }}>
-          <p className="text-slate-400 leading-relaxed">{text}</p>
+          <p className="text-[#0C0C10]/80 text-lg leading-relaxed">{text}</p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <ConsultLink className="btn btn-primary">Konsultasi Sekarang <ArrowRight className="w-4 h-4" /></ConsultLink>
-            <Link to="/portofolio" className="btn btn-ghost">Lihat portofolio</Link>
+            <ConsultLink className="btn btn-dark">Konsultasi Sekarang <ArrowRight className="w-4 h-4" /></ConsultLink>
+            <Link to="/portofolio" className="btn btn-outline-dark">Lihat portofolio</Link>
           </div>
         </div>
       </div>
@@ -142,7 +142,7 @@ export function FloatCta() {
   if (pathname === '/kontak') return null;
   return (
     <div className={`fixed z-40 right-4 sm:right-6 bottom-[max(1rem,env(safe-area-inset-bottom))] transition-all duration-500 ${show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6 pointer-events-none'}`}>
-      <ConsultLink className="btn btn-primary shadow-[0_12px_32px_-12px_rgba(0,0,0,.8)] !py-3.5" aria-label="Konsultasi sekarang">
+      <ConsultLink className="btn btn-cta shadow-[0_12px_32px_-12px_rgba(0,0,0,.8)] !py-3.5" aria-label="Konsultasi sekarang">
         <MessageCircle className="w-4 h-4" /> Konsultasi
       </ConsultLink>
     </div>

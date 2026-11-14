@@ -41,19 +41,19 @@ export function ServicesPage() {
         </div>
       </section>
 
-      <div className="py-5 border-y rule display text-5xl md:text-7xl font-bold outline-text overflow-hidden">
+      <div className="relative z-10 py-5 display text-5xl md:text-7xl font-bold text-[#0C0C10] overflow-hidden rotate-[1.2deg] scale-[1.03]" style={{ background: 'var(--brand)' }}>
         <Marquee items={['Web', 'Aplikasi', 'SaaS', 'UI/UX', 'API', 'IoT', 'Desain', 'Video']} />
       </div>
 
       <section className="max-w-7xl mx-auto px-6 py-16 md:py-24">
         {groups.map((g, gi) => (
-          <div key={g.slug} id={g.slug} className="scroll-mt-28 grid md:grid-cols-12 gap-6 md:gap-10 py-14 border-b rule first:pt-0">
+          <div key={g.slug} id={g.slug} style={{ '--gc': g.color }} className="scroll-mt-28 grid md:grid-cols-12 gap-6 md:gap-10 py-14 border-b rule first:pt-0">
             <div className="md:col-span-4 reveal">
               <div className="md:sticky md:top-28">
-                <span className="mono text-xs text-primary-soft">0{gi + 1} / 0{groups.length}</span>
-                <h2 className="mt-4 text-4xl md:text-5xl leading-[1.02]">{g.title}</h2>
+                <span className="inline-flex items-center gap-2 mono text-xs uppercase tracking-wide" style={{ color: g.color }}><i className="w-2 h-2 rounded-full" style={{ background: g.color }} />0{gi + 1} / 0{groups.length}</span>
+                <h2 className="mt-4 text-4xl md:text-6xl leading-[1.02]" style={{ color: g.color }}>{g.title}</h2>
                 <p className="mt-4 text-xl text-white leading-snug">{g.hook}</p>
-                <div className="mt-8 blueprint rounded-[6px] border border-white/[0.08] p-5"><GroupVisual slug={g.slug} /></div>
+                <div className="mt-8 blueprint rounded-[10px] border p-5" style={{ borderColor: `color-mix(in srgb, ${g.color} 45%, transparent)` }}><GroupVisual slug={g.slug} /></div>
                 <p className="mt-5 text-sm text-slate-500">Sesuai untuk <span className="text-slate-300">{g.who}</span></p>
               </div>
             </div>
@@ -88,13 +88,13 @@ export function ServiceDetail() {
   const [first, ...rest] = s.title.split(' ');
   const g = groupOf(s.slug);
   return (
-    <div key={slug}>
+    <div key={slug} style={{ '--gc': g ? g.color : undefined }}>
       <section className="relative overflow-hidden pt-36 pb-14">
         <Rules />
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-6 mono text-xs text-slate-500">
             <Link to="/layanan" className="hover:text-white">← Semua layanan</Link>
-            {g && <Link to={`/layanan#${g.slug}`} className="hover:text-white">{g.title}</Link>}
+            {g && <Link to={`/layanan#${g.slug}`} className="inline-flex items-center gap-2 uppercase tracking-wide hover:opacity-80" style={{ color: g.color }}><i className="w-2 h-2 rounded-full" style={{ background: g.color }} />{g.title}</Link>}
           </div>
           <h1 className="mt-10 font-bold tracking-[-0.05em] leading-[0.9] text-[14vw] md:text-[9rem] break-words">
             <span className="glitch auto" data-text={first}><Kinetic text={first} wave /></span>
@@ -103,7 +103,7 @@ export function ServiceDetail() {
           <div className="mt-10 pt-6 border-t rule grid md:grid-cols-12 gap-6 items-end">
             <p className="md:col-span-6 text-xl text-slate-300 leading-relaxed">{s.desc}</p>
             <div className="md:col-span-5 md:col-start-8 md:justify-self-end md:text-right">
-              <ConsultLink className="btn btn-primary">Konsultasikan layanan ini <ArrowRight className="w-4 h-4" /></ConsultLink>
+              <ConsultLink className="btn btn-cta">Konsultasikan layanan ini <ArrowRight className="w-4 h-4" /></ConsultLink>
               <p className="mt-3 text-sm text-slate-500">Perkembangan dapat dipantau · Pendampingan setelah peluncuran</p>
             </div>
           </div>
@@ -111,13 +111,14 @@ export function ServiceDetail() {
       </section>
 
       <section className="max-w-7xl mx-auto px-6 pb-16">
-        <div className="relative overflow-hidden blueprint rounded-[6px] border border-white/[0.08] px-5 py-8 sm:px-10 md:py-12">
+        <div className="relative overflow-hidden blueprint rounded-[10px] border px-5 py-8 sm:px-10 md:py-12" style={{ borderColor: 'color-mix(in srgb, var(--gc) 45%, transparent)' }}>
+          <span className="absolute inset-x-0 top-0 h-1" style={{ background: 'var(--gc)' }} />
           <i className="hud tl" /><i className="hud tr" /><i className="hud bl" /><i className="hud br" />
           <ServicePlay slug={s.slug} />
         </div>
       </section>
 
-      <div className="py-5 border-y rule display text-3xl md:text-5xl text-slate-600 overflow-hidden"><Marquee items={s.tags} rev /></div>
+      <div className="py-5 border-y rule display text-3xl md:text-5xl overflow-hidden" style={{ color: 'var(--gc)' }}><Marquee items={s.tags} rev /></div>
 
       <section className="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-12 gap-10">
         <div className="md:col-span-4 reveal">
@@ -172,9 +173,9 @@ export function ServiceDetail() {
           <ol className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-y-10 reveal flow">
             {flow.map(([t, d], i) => (
               <li key={t} className="relative pr-6 group">
-                <span className="flow-line block h-px bg-primary-soft origin-left" style={{ transitionDelay: `${i * 250}ms` }} />
-                <span className="mt-5 block mono text-xs text-primary-soft">Langkah 0{i + 1}</span>
-                <h3 className="mt-3 text-2xl transition-colors group-hover:text-primary-soft">{t}</h3>
+                <span className="flow-line block h-0.5 origin-left" style={{ background: 'var(--gc)', transitionDelay: `${i * 250}ms` }} />
+                <span className="mt-5 block mono text-xs" style={{ color: 'var(--gc)' }}>Langkah 0{i + 1}</span>
+                <h3 className="mt-3 text-2xl transition-colors group-hover:text-[var(--gc)]">{t}</h3>
                 <p className="mt-1 text-sm text-slate-400">{d}</p>
               </li>
             ))}
@@ -186,7 +187,7 @@ export function ServiceDetail() {
         <div className="max-w-7xl mx-auto flex items-end justify-between gap-6">
           <div>
             <span className="label">Layanan berikutnya</span>
-            <span className="block mt-4 display text-4xl md:text-7xl font-bold outline-text group-hover:text-white group-hover:[-webkit-text-stroke:0] transition-colors">{next.title}</span>
+            <span className="block mt-4 display text-4xl md:text-7xl font-bold outline-text hover-grad transition-colors">{next.title}</span>
           </div>
           <ArrowRight className="w-8 h-8 md:w-12 md:h-12 text-slate-500 group-hover:text-white group-hover:translate-x-2 transition-all shrink-0" />
         </div>
