@@ -3,7 +3,7 @@ export const EMAIL = 'digipulseid@gmail.com';
 export const services = [
   {
     slug: 'web-development', no: '01', title: 'Web Development', short: 'Website profesional yang mudah ditemukan dan cepat diakses.',
-    desc: 'Kami membangun website yang rapi, cepat diakses melalui ponsel, dan mudah ditemukan di mesin pencari.',
+    desc: 'Kami membangun website yang rapi, cepat diakses, dan mudah ditemukan.',
     points: ['Tampilan yang menyesuaikan identitas usaha Anda', 'Waktu akses cepat, bahkan lewat koneksi seluler', 'Optimasi SEO agar mudah ditemukan di Google, lengkap dengan statistik pengunjung', 'Isi website bisa Anda ubah sendiri melalui panel admin'],
     tags: ['React', 'Vite', 'Tailwind', 'SEO'], fit: 'Website',
     stack: [{ g: 'Frontend', items: ['react', 'vite', 'tailwind', 'typescript'] }, { g: 'Performa & SEO', items: ['ga4', 'searchconsole'] }, { g: 'Deploy', items: ['vercel', 'cloudflare', 'githubactions'] }],

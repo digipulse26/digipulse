@@ -7,7 +7,7 @@ import { CursorFollower } from '../components/interact';
 import { GroupVisual, ServiceVisual, Gallery } from '../components/visuals';
 import { ServicePlay } from '../components/play';
 
-const flow = [['Konsultasi', 'Solusi tepat'], ['Analisis', 'Rencana matang'], ['Desain', 'Desain menarik'], ['Pengerjaan', 'Sistem optimal']];
+const flow = [['Konsultasi', 'Solusi tepat'], ['Analisis', 'Rencana matang'], ['Desain', 'Tampilan menarik'], ['Pengerjaan', 'Sistem optimal']];
 
 export function Kinetic({ text, wave = false, className = '' }) {
   return (

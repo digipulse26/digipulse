@@ -69,7 +69,7 @@ export default function Contact() {
               <label className="block"><span className="text-sm text-slate-300">Nama</span><input required value={f.name} onChange={set('name')} className={field} placeholder="Nama lengkap" autoComplete="name" /></label>
               <label className="block"><span className="text-sm text-slate-300">Email</span><input required type="email" value={f.email} onChange={set('email')} className={field} placeholder="nama@email.com" autoComplete="email" /></label>
             </div>
-            <label className="block"><span className="text-sm text-slate-300">Pesan</span><textarea required rows={5} value={f.msg} onChange={set('msg')} className={`${field} resize-none`} placeholder="Ceritakan singkat kebutuhan Anda." /></label>
+            <label className="block"><span className="text-sm text-slate-300">Pesan</span><textarea required rows={5} value={f.msg} onChange={set('msg')} className={`${field} resize-none`} placeholder="Ceritakan kebutuhan Anda." /></label>
 
             <div className="pt-2 flex flex-col-reverse sm:flex-row sm:items-center justify-between gap-4">
               <p className="text-xs text-slate-500 sm:max-w-[15rem]">Formulir ini akan membuka aplikasi email Anda dengan pesan yang telah terisi.</p>
