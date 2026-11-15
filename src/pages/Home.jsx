@@ -14,7 +14,7 @@ const chapters = [
   { k: 'Mendampingi', t: 'Kami akan mendampingi setelah rilis.', d: 'Pemantauan, pencadangan, dan perbaikan berjalan rutin.', V: Monitor },
 ];
 
-const trust = ['Progres transparan', 'Kami akan mendampingi setelah rilis', 'Desain & kode satu tim'];
+const trust = ['Progres bisa dipantau', 'Kami akan mendampingi setelah rilis', 'Desain & kode satu tim'];
 const featured = ['apex-financial-dashboard', 'kopi-senja-promosi'].map((slug) => projects.find((p) => p.slug === slug));
 
 function Scrolly() {
@@ -193,7 +193,7 @@ export default function Home() {
               <span className="word"><span className="serif grad-text" style={{ '--d': '420ms' }}>usaha Anda.</span></span>
             </h1>
             <p className="mt-8 text-lg md:text-xl text-slate-300 leading-relaxed max-w-xl page-enter" style={{ animationDelay: '500ms' }}>
-              Website, aplikasi, IoT, dan materi promosi, <span className="text-white">dari rancangan hingga pendampingan.</span>
+              Kami membuat website, aplikasi, sistem IoT, dan materi promosi, <span className="text-white">mulai dari perancangan hingga pendampingan setelah rilis.</span>
             </p>
             <div className="mt-8 flex flex-wrap gap-3 page-enter" style={{ animationDelay: '650ms' }}>
               <ConsultLink className="btn btn-cta">Konsultasi Sekarang <ArrowRight className="w-4 h-4" /></ConsultLink>

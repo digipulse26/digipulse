@@ -4,42 +4,42 @@ export const services = [
   {
     slug: 'web-development', no: '01', title: 'Web Development', short: 'Website profesional yang mudah ditemukan dan cepat diakses.',
     desc: 'Kami membangun website yang rapi, cepat diakses melalui ponsel, dan mudah ditemukan di mesin pencari.',
-    points: ['Tampilan yang menyesuaikan identitas usaha Anda', 'Waktu akses cepat, bahkan lewat koneksi seluler', 'Optimasi SEO teknis dan pemasangan analytics', 'Konten dapat otomatis diperbarui melalui panel pengelola'],
+    points: ['Tampilan yang menyesuaikan identitas usaha Anda', 'Waktu akses cepat, bahkan lewat koneksi seluler', 'Optimasi SEO agar mudah ditemukan di Google, lengkap dengan statistik pengunjung', 'Isi website bisa Anda ubah sendiri melalui panel admin'],
     tags: ['React', 'Vite', 'Tailwind', 'SEO'], fit: 'Website',
     stack: [{ g: 'Frontend', items: ['react', 'vite', 'tailwind', 'typescript'] }, { g: 'Performa & SEO', items: ['ga4', 'searchconsole'] }, { g: 'Deploy', items: ['vercel', 'cloudflare', 'githubactions'] }],
   },
   {
     slug: 'web-application', no: '02', title: 'Web Application', short: 'Aplikasi web yang disesuaikan dengan alur kerja tim Anda.',
     desc: 'Dashboard, sistem internal, hingga portal pelanggan untuk menggantikan pencatatan manual dan pekerjaan berulang.',
-    points: ['Hak akses berdasarkan peran pengguna', 'Laporan dan ekspor data secara otomatis', 'Antarmuka yang mudah dipelajari oleh staf', 'Struktur sistem yang siap dikembangkan lebih lanjut'],
+    points: ['Hak akses berbeda untuk pemilik, admin, dan staf', 'Laporan otomatis yang bisa diunduh ke Excel atau PDF', 'Tampilan sederhana yang cepat dipahami staf', 'Fitur baru mudah ditambahkan saat usaha berkembang'],
     tags: ['Dashboard', 'API', 'Database', 'Auth'], fit: 'Aplikasi',
     stack: [{ g: 'Frontend', items: ['react', 'typescript'] }, { g: 'Backend', items: ['node', 'laravel', 'postgres'] }, { g: 'Keamanan', items: ['jwt', 'cloudflare'] }],
   },
   {
-    slug: 'saas-development', no: '03', title: 'SaaS Development', short: 'Pengembangan produk berlangganan sejak tahap awal.',
-    desc: 'Kami membantu menyusun versi pertama produk Anda (MVP), termasuk sistem langganan dan pembayaran, agar dapat segera diuji oleh pengguna.',
-    points: ['Penentuan fitur inti untuk versi pertama', 'Arsitektur multi-tenant untuk banyak pelanggan', 'Integrasi pembayaran berulang dan paket langganan', 'Data penggunaan sebagai dasar pengembangan berikutnya'],
+    slug: 'saas-development', no: '03', title: 'SaaS Development', short: 'Membangun aplikasi berlangganan milik Anda, dari versi pertama.',
+    desc: 'Kami membangun versi pertama aplikasi Anda (MVP) lengkap dengan sistem langganan dan pembayaran, agar bisa segera dipakai dan diuji oleh pelanggan.',
+    points: ['Penentuan fitur utama untuk versi pertama', 'Satu aplikasi untuk banyak pelanggan, data masing-masing tetap terpisah', 'Pembayaran langganan bulanan atau tahunan secara otomatis', 'Laporan penggunaan sebagai dasar menentukan fitur berikutnya'],
     tags: ['MVP', 'Billing', 'Multi-tenant', 'Cloud'], fit: 'Aplikasi',
     stack: [{ g: 'Produk', items: ['next', 'typescript', 'postgres', 'redis'] }, { g: 'Pembayaran', items: ['stripe', 'xendit'] }, { g: 'Infrastruktur', items: ['docker', 'aws', 'githubactions'] }],
   },
   {
-    slug: 'ui-ux-design', no: '04', title: 'UI/UX Design', short: 'Rancangan antarmuka yang jelas sebelum tahap pengembangan.',
-    desc: 'Riset pengguna, alur aplikasi, dan prototipe interaktif untuk memastikan produk mudah digunakan sebelum dibangun.',
-    points: ['Riset kebutuhan dan perilaku pengguna', 'Wireframe dan prototipe yang dapat diuji', 'Design system untuk tampilan yang konsisten', 'Mengurangi revisi pada tahap pengembangan'],
+    slug: 'ui-ux-design', no: '04', title: 'UI/UX Design', short: 'Rancangan tampilan aplikasi atau website sebelum mulai dibuat.',
+    desc: 'Kami meneliti kebutuhan pengguna lalu membuat rancangan dan prototipe yang bisa dicoba, sehingga Anda melihat hasilnya sebelum pengembangan dimulai.',
+    points: ['Riset kebutuhan dan kebiasaan pengguna', 'Rancangan awal (wireframe) dan prototipe yang bisa dicoba', 'Panduan tampilan (design system) agar semua halaman seragam', 'Revisi lebih sedikit saat pengembangan karena desain sudah disetujui'],
     tags: ['Figma', 'Prototype', 'Design System', 'Riset'], fit: 'Website',
     stack: [{ g: 'Desain', items: ['figma'] }, { g: 'Serah terima', items: ['storybook'] }],
   },
   {
     slug: 'system-integration', no: '05', title: 'System Integration', short: 'Menghubungkan sistem yang selama ini berjalan terpisah.',
-    desc: 'Integrasi antaraplikasi, layanan pembayaran, dan API pihak ketiga agar data tersinkron tanpa input ulang.',
-    points: ['Pemetaan sistem dan sumber data yang ada', 'Integrasi API, webhook, dan payment gateway', 'Sinkronisasi data yang dapat dipantau', 'Dokumentasi teknis untuk tim internal'],
+    desc: 'Kami menghubungkan aplikasi yang Anda pakai, seperti WhatsApp, pembayaran online, dan spreadsheet, agar data berpindah otomatis tanpa diketik ulang.',
+    points: ['Pemetaan aplikasi dan data yang sudah Anda gunakan', 'Koneksi ke WhatsApp, payment gateway, dan aplikasi lain', 'Riwayat perpindahan data yang bisa dicek kapan saja', 'Dokumentasi agar tim Anda memahami cara kerjanya'],
     tags: ['REST', 'Webhook', 'ETL', 'Payment'], fit: 'Aplikasi',
     stack: [{ g: 'Koneksi', items: ['graphql', 'whatsapp', 'google'] }, { g: 'Alur data', items: ['n8n', 'node'] }, { g: 'Pemantauan', items: ['sentry'] }],
   },
   {
-    slug: 'iot-embedded-system', no: '06', title: 'IoT & Embedded System', short: 'Pemantauan perangkat dan lingkungan secara real-time.',
+    slug: 'iot-embedded-system', no: '06', title: 'IoT & Embedded System', short: 'Pantau kondisi perangkat dan ruangan secara langsung dari ponsel.',
     desc: 'Sensor, perangkat, dan dashboard untuk memantau kondisi di lapangan, dilengkapi notifikasi ketika terjadi perubahan.',
-    points: ['Pemantauan melalui ponsel maupun komputer', 'Notifikasi otomatis ketika nilai melewati batas', 'Perangkat hemat daya untuk penggunaan jangka panjang', 'Pengerjaan perangkat keras, firmware, dan dashboard'],
+    points: ['Pemantauan melalui ponsel maupun komputer', 'Notifikasi otomatis saat suhu, kelembapan, atau nilai lain melewati batas', 'Perangkat hemat daya untuk pemakaian jangka panjang', 'Kami kerjakan seluruhnya: perangkat, program, dan dashboard'],
     tags: ['ESP32', 'MQTT', 'Sensor', 'Dashboard'], fit: 'IoT',
     stack: [{ g: 'Perangkat', items: ['esp32', 'arduino', 'raspberrypi'] }, { g: 'Komunikasi', items: ['mqtt'] }, { g: 'Dashboard', items: ['nodered', 'grafana', 'influxdb', 'telegram'] }],
   },
@@ -51,16 +51,16 @@ export const services = [
     stack: [{ g: 'Vector & ilustrasi', items: ['illustrator', 'coreldraw'] }, { g: 'Foto & layout', items: ['photoshop', 'canva', 'figma'] }],
   },
   {
-    slug: 'video-editing', no: '08', title: 'Video Editing', short: 'Video singkat dan undangan digital untuk berbagai keperluan.',
+    slug: 'video-editing', no: '08', title: 'Video Editing', short: 'Video promosi singkat dan undangan digital yang siap dibagikan.',
     desc: 'Penyuntingan video promosi dan konten media sosial, serta pembuatan undangan digital dalam format gambar maupun video.',
-    points: ['Undangan digital dalam format gambar atau video', 'Video promosi singkat dengan teks dan musik', 'Format yang sesuai untuk WhatsApp, Instagram, dan TikTok', 'Revisi sesuai kesepakatan di awal'],
+    points: ['Undangan digital dalam format gambar atau video', 'Video promosi singkat dengan teks dan musik', 'Format yang sesuai untuk WhatsApp, Instagram, dan TikTok', 'Jumlah revisi disepakati sebelum pengerjaan'],
     tags: ['Undangan Digital', 'Video Singkat', 'Reels', 'Teks & Musik'], fit: 'Kreatif',
     stack: [{ g: 'Penyuntingan', items: ['premiere', 'capcut', 'davinci'] }, { g: 'Efek & teks', items: ['aftereffects'] }],
   },
   {
-    slug: 'maintenance-support', no: '09', title: 'Maintenance & Support', short: 'Pemeliharaan rutin agar sistem tetap aman dan stabil.',
+    slug: 'maintenance-support', no: '09', title: 'Maintenance & Support', short: 'Pemeliharaan rutin agar website dan aplikasi tetap aman dan lancar.',
     desc: 'Pemantauan, pembaruan keamanan, dan perbaikan berkala untuk website maupun aplikasi yang sudah berjalan.',
-    points: ['Pemantauan uptime dan error', 'Pembaruan keamanan secara berkala', 'Penanganan kendala sesuai prioritas', 'Pencadangan data dan rencana perbaikan'],
+    points: ['Pemantauan agar website dan aplikasi tetap bisa diakses', 'Pembaruan keamanan secara berkala', 'Kendala ditangani sesuai tingkat urgensinya', 'Pencadangan data rutin dan rencana pemulihan'],
     tags: ['Monitoring', 'Security', 'SLA', 'Backup'], fit: 'Aplikasi',
     stack: [{ g: 'Pemantauan', items: ['sentry', 'cloudflare'] }, { g: 'Versi & cadangan', items: ['git', 'githubactions', 'docker'] }],
   },
@@ -78,7 +78,7 @@ export const steps = [
 
 export const projects = [
   {
-    slug: 'apex-financial-dashboard', title: 'Apex Financial Dashboard', cat: 'Web App', tag: 'Website', shot: 'dash',
+    slug: 'apex-financial-dashboard', title: 'Apex Financial Dashboard', cat: 'Web App', tag: 'Aplikasi', shot: 'dash',
     desc: 'Dashboard pemantauan aset dengan laporan otomatis.',
     problem: 'Data dipindahkan manual ke spreadsheet setiap hari.',
     solution: 'Dashboard real-time yang menarik data otomatis, lengkap dengan grafik dan peringatan.',
@@ -92,16 +92,16 @@ export const projects = [
     result: ['Checkout menjadi tiga langkah', 'Nyaman dipakai di ponsel', 'Tetap ringan di jaringan lambat'],
   },
   {
-    slug: 'pulse-ai-mobile', title: 'Pulse AI Assistant', cat: 'Mobile', tag: 'Aplikasi', shot: 'app',
-    desc: 'Aplikasi pencatat rapat dan pengingat tugas.',
+    slug: 'pulse-ai-mobile', title: 'Pulse AI Assistant', cat: 'Web App', tag: 'Aplikasi', shot: 'app',
+    desc: 'Aplikasi web pencatat rapat dan pengingat tugas.',
     problem: 'Catatan rapat tercecer dan tindak lanjut terlewat.',
     solution: 'Aplikasi yang merekam rapat, merangkum poin penting, dan membuat pengingat.',
-    result: ['Transkripsi selama rapat berlangsung', 'Daftar tugas dibuat otomatis', 'Tersedia di Android dan iOS'],
+    result: ['Transkripsi selama rapat berlangsung', 'Daftar tugas dibuat otomatis', 'Nyaman dipakai di ponsel maupun laptop'],
   },
   {
     slug: 'nexus-saas-portal', title: 'Nexus SaaS Portal', cat: 'Web App', tag: 'Aplikasi', shot: 'portal',
     desc: 'Portal pelanggan dan pendaftaran untuk produk langganan.',
-    problem: 'Calon pelanggan kesulitan memulai karena alurnya terpisah.',
+    problem: 'Calon pelanggan bingung harus mulai dari mana karena situs dan aplikasinya terpisah.',
     solution: 'Halaman awal, pendaftaran, dan panduan penggunaan disatukan dalam satu alur.',
     result: ['Pendaftaran dalam satu alur', 'Panduan untuk pengguna baru', 'Paket dan tagihan dikelola mandiri'],
   },
@@ -129,9 +129,9 @@ export const projects = [
 ];
 
 export const products = [
-  { slug: 'pulsedesk', cat: 'Layanan pelanggan', color: '#38BDF8', hint: 'Klik tiket untuk memprosesnya', name: 'PulseDesk', status: 'Tersedia', desc: 'Semua keluhan pelanggan dalam satu kotak masuk.', feats: ['Kotak masuk terpadu', 'Penugasan otomatis', 'Laporan waktu respons'], c: 'primary' },
-  { slug: 'pulsestock', cat: 'Inventaris & gudang', color: '#FBBF24', hint: 'Tekan “Pindai” untuk menambah stok', name: 'PulseStock', status: 'Tersedia', desc: 'Stok banyak gudang, cukup dipindai.', feats: ['Multi-gudang', 'Pindai barcode', 'Peringatan stok'], c: 'accent' },
-  { slug: 'pulsesense', cat: 'Pemantauan IoT', color: '#FB7185', hint: 'Data sensor diperbarui langsung', name: 'PulseSense', status: 'Dalam pengembangan', desc: 'Suhu, kelembapan, dan energi terpantau dari ponsel.', feats: ['Dashboard real-time', 'Notifikasi ambang', 'Riwayat data'], c: 'primary' },
+  { slug: 'pulsedesk', cat: 'Layanan pelanggan', color: '#38BDF8', hint: 'Klik tiket untuk memprosesnya', name: 'PulseDesk', status: 'Tersedia', desc: 'Semua keluhan pelanggan tercatat dalam satu kotak masuk.', feats: ['Pesan dari berbagai kanal di satu tempat', 'Tiket otomatis dibagikan ke staf', 'Laporan kecepatan tanggapan'], c: 'primary' },
+  { slug: 'pulsestock', cat: 'Inventaris & gudang', color: '#FBBF24', hint: 'Tekan “Pindai” untuk menambah stok', name: 'PulseStock', status: 'Tersedia', desc: 'Stok di beberapa gudang tercatat cukup dengan memindai barcode.', feats: ['Satu aplikasi untuk beberapa gudang', 'Pindai barcode dari ponsel', 'Peringatan saat stok menipis'], c: 'accent' },
+  { slug: 'pulsesense', cat: 'Pemantauan IoT', color: '#FB7185', hint: 'Data sensor diperbarui langsung', name: 'PulseSense', status: 'Dalam pengembangan', desc: 'Suhu, kelembapan, dan energi terpantau dari ponsel.', feats: ['Dashboard yang diperbarui langsung', 'Notifikasi saat melewati batas', 'Riwayat data harian'], c: 'primary' },
 ];
 
 export const tools = { react: 'React', vite: 'Vite', tailwind: 'Tailwind CSS', typescript: 'TypeScript', ga4: 'Google Analytics', searchconsole: 'Search Console', vercel: 'Vercel', cloudflare: 'Cloudflare', githubactions: 'GitHub Actions', node: 'Node.js', laravel: 'Laravel', postgres: 'PostgreSQL', jwt: 'JWT', next: 'Next.js', redis: 'Redis', stripe: 'Stripe', xendit: 'Xendit', docker: 'Docker', aws: 'AWS', figma: 'Figma', storybook: 'Storybook', graphql: 'GraphQL', whatsapp: 'WhatsApp Business API', google: 'Google Workspace', n8n: 'n8n', sentry: 'Sentry', git: 'Git', esp32: 'ESP32', arduino: 'Arduino', raspberrypi: 'Raspberry Pi', mqtt: 'MQTT', nodered: 'Node-RED', grafana: 'Grafana', influxdb: 'InfluxDB', telegram: 'Telegram', illustrator: 'Adobe Illustrator', photoshop: 'Adobe Photoshop', premiere: 'Adobe Premiere Pro', aftereffects: 'After Effects', canva: 'Canva', coreldraw: 'CorelDRAW', davinci: 'DaVinci Resolve', capcut: 'CapCut' };
@@ -159,9 +159,9 @@ export const pains = [
 export const faqs = [
   { q: 'Berapa lama waktu pengerjaannya?', a: 'Waktu pengerjaan bergantung pada lingkup pekerjaan. Website profil umumnya selesai lebih cepat dibandingkan aplikasi atau sistem IoT. Estimasi waktu akan kami sampaikan setelah konsultasi awal.' },
   { q: 'Bagaimana penentuan biayanya?', a: 'Biaya ditentukan berdasarkan lingkup dan tingkat kerumitan pekerjaan. Setelah kebutuhan Anda jelas, kami akan mengirimkan penawaran tertulis yang memuat rincian pekerjaan dan biayanya.' },
-  { q: 'Apa saja yang perlu disiapkan sebelum konsultasi?', a: 'Gambaran singkat mengenai usaha Anda, kendala yang ingin diatasi, dan hasil yang diharapkan sudah cukup. Dokumen yang lengkap tidak diwajibkan.' },
-  { q: 'Apakah perkembangan pekerjaan dapat dipantau?', a: 'Dapat. Hasil pekerjaan kami unggah secara bertahap ke lingkungan uji, sehingga Anda dapat mencobanya dan memberikan masukan.' },
-  { q: 'Bagaimana jika terjadi kendala setelah peluncuran?', a: 'Kami menyediakan layanan Maintenance & Support yang mencakup pemantauan, pembaruan keamanan, dan perbaikan.' },
+  { q: 'Apa saja yang perlu disiapkan sebelum konsultasi?', a: 'Cukup gambaran singkat tentang usaha Anda, kendala yang ingin diatasi, dan hasil yang diharapkan. Dokumen lengkap tidak diperlukan.' },
+  { q: 'Apakah perkembangan pekerjaan dapat dipantau?', a: 'Dapat. Hasil pekerjaan kami unggah secara bertahap ke alamat uji coba, sehingga Anda bisa mencobanya langsung dan memberi masukan sebelum dirilis.' },
+  { q: 'Bagaimana jika terjadi kendala setelah peluncuran?', a: 'Hubungi kami dan kendala akan ditangani. Untuk pemeliharaan jangka panjang, tersedia layanan Maintenance & Support; cakupan dan biayanya dicantumkan dalam penawaran.' },
   { q: 'Apakah layanan desain atau video dapat dipesan secara terpisah?', a: 'Dapat. Layanan Desain & Konten, seperti poster, konten media sosial, label kemasan, dan undangan digital, dapat dipesan tanpa layanan lainnya.' },
 ];
 

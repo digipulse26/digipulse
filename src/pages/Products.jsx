@@ -21,7 +21,7 @@ function Status({ p }) {
 export default function Products() {
   return (
     <>
-      <StageHead label="Produk digital" text="Perangkat lunak siap pakai buatan DigiPulse. Setiap tampilan di bawah dapat Anda coba langsung.">
+      <StageHead label="Produk digital" text="Perangkat lunak siap pakai buatan DigiPulse. Tampilan di bawah adalah simulasi yang bisa Anda coba.">
         Produk untuk menunjang <span className="serif">pekerjaan harian</span> Anda.
       </StageHead>
 

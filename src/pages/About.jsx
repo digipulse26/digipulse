@@ -72,7 +72,7 @@ export default function About() {
             </p>
           </div>
           <div className="mt-14 pt-6 border-t rule grid md:grid-cols-12 gap-6 reveal" style={{ '--d': '120ms' }}>
-            <p className="md:col-span-5 text-xl text-slate-200 leading-snug">Satu tim ringkas, dari layar hingga sensor.</p>
+            <p className="md:col-span-5 text-xl text-slate-200 leading-snug">Cukup satu tim untuk semua kebutuhan digital usaha Anda.</p>
             <ul className="md:col-span-6 md:col-start-7 flex flex-wrap gap-x-5 gap-y-2 mono text-xs uppercase tracking-wide text-slate-500">
               {scope.map((s, i) => <li key={s}><span className="text-primary-soft">0{i + 1}</span> {s}</li>)}
             </ul>

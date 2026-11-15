@@ -164,7 +164,7 @@ export function ServicePlay({ slug }) {
     case 'ui-ux-design': return <WirePlay />;
     case 'system-integration': return <HubPlay />;
     case 'iot-embedded-system': return <IotPlay />;
-    case 'graphic-design': return <Frame hint="Gerakkan kursor atau gulir, arahkan ke karya"><div className="w-full max-w-3xl"><CreativeCollage /></div></Frame>;
+    case 'graphic-design': return <Frame hint="Arahkan kursor ke karya untuk melihat lebih dekat"><div className="w-full max-w-3xl"><CreativeCollage /></div></Frame>;
     case 'video-editing': return <VideoPlay />;
     case 'maintenance-support': return <Frame hint="Tekan “Cek sekarang” untuk memeriksa sistem"><div className="w-full max-w-xl"><Monitor /></div></Frame>;
     default: return null;

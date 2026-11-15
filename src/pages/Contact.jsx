@@ -24,7 +24,7 @@ export default function Contact() {
       <div className="relative max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-14 lg:gap-10">
         <div className="lg:col-span-5">
           <Label className="page-enter">Mulai percakapan</Label>
-          <h1 className="mt-8 text-[2.75rem] sm:text-6xl leading-[0.98] page-enter" style={{ animationDelay: '80ms' }}>Ceritakan apa yang sedang <span className="serif">Anda kerjakan.</span></h1>
+          <h1 className="mt-8 text-[2.75rem] sm:text-6xl leading-[0.98] page-enter" style={{ animationDelay: '80ms' }}>Ceritakan kebutuhan <span className="serif">usaha Anda.</span></h1>
           <ol className="mt-10 grid grid-cols-3 gap-4 reveal flow">
             {next.map((t, i) => (
               <li key={t}>
