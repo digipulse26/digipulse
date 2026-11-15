@@ -150,10 +150,10 @@ export const groups = [
 ];
 
 export const pains = [
-  { q: 'Website ada, tetapi sepi pertanyaan.', a: 'Pengunjung mudah menghubungi Anda.', to: 'website' },
+  { q: 'Website sudah ada, tetapi jarang ada yang menghubungi.', a: 'Pengunjung tertarik, lalu langsung menghubungi Anda.', to: 'website' },
   { q: 'Data tersebar di banyak spreadsheet.', a: 'Satu dashboard, laporan otomatis.', to: 'aplikasi' },
-  { q: 'Gangguan perangkat terlambat diketahui.', a: 'Notifikasi saat kondisi berubah.', to: 'iot' },
-  { q: 'Konten promosi tidak seragam.', a: 'Gaya visual yang konsisten.', to: 'kreatif' },
+  { q: 'Gangguan perangkat terlambat diketahui.', a: 'Notifikasi langsung ke ponsel saat ada gangguan.', to: 'iot' },
+  { q: 'Tampilan promosi berubah-ubah, sulit dikenali.', a: 'Tampilan konsisten, usaha Anda mudah diingat.', to: 'kreatif' },
 ];
 
 export const faqs = [
