@@ -60,7 +60,7 @@ function Pains() {
     <section className="light px-6 py-24 md:py-32">
       <div className="max-w-7xl mx-auto">
         <div className="reveal grid md:grid-cols-12 gap-6 items-end">
-          <div className="md:col-span-9"><Label>Kendala umum</Label><h2 className="mt-6 text-4xl md:text-6xl leading-[1.02] text-[#0C0C10]">Kendala yang sering kami temui, <span className="serif">lalu kami selesaikan.</span></h2></div>
+          <div className="md:col-span-9"><Label>Kendala umum</Label><h2 className="mt-6 text-4xl md:text-6xl leading-[1.02] text-[#0C0C10]">Kendala Anda, <span className="serif">solusi dari kami.</span></h2></div>
         </div>
         <ol className="mt-14 border-t rule">
           {pains.map((p, i) => { const gc = groups.find((g) => g.slug === p.to).color; return (
