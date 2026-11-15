@@ -391,11 +391,11 @@ export function Monitor() {
 export function ChatVisual() {
   return (
     <div className="@container w-full"><div className="space-y-[3cqw]">
-      <div className="max-w-[78%] rounded-[3cqw] rounded-bl-[.8cqw] bg-white/[0.07] p-[3.4cqw] text-[3.4cqw] text-slate-200">Pelanggan sering bertanya stok lewat chat, admin kewalahan.</div>
-      <div className="ml-auto max-w-[78%] rounded-[3cqw] rounded-br-[.8cqw] bg-primary/70 p-[3.4cqw] text-[3.4cqw] text-white">Baik. Berapa banyak pesanan per hari, dan siapa yang mencatatnya?</div>
+      <div className="max-w-[78%] rounded-[3cqw] rounded-bl-[.8cqw] bg-white/[0.07] p-[3.4cqw] text-[3.4cqw] text-slate-200">Pesanan makin banyak, tapi stok masih dicatat manual. Sering salah hitung.</div>
+      <div className="ml-auto max-w-[78%] rounded-[3cqw] rounded-br-[.8cqw] bg-primary/70 p-[3.4cqw] text-[3.4cqw] text-white">Bisa kami bantu. Stok akan tercatat otomatis di setiap pesanan, jadi tidak ada lagi salah hitung.</div>
       <div className="rounded-[3cqw] border border-white/12 p-[3.4cqw] space-y-[2cqw]">
         <span className="mono text-[2.6cqw] text-primary-soft">CATATAN KEBUTUHAN</span>
-        {['Cek stok otomatis', 'Rekap pesanan harian', 'Notifikasi ke admin'].map((t) => <p key={t} className="flex items-center gap-[2cqw] text-[3.2cqw] text-slate-200"><Check className="w-[3.6cqw] h-[3.6cqw] text-emerald-400" />{t}</p>)}
+        {['Stok tercatat otomatis', 'Rekap pesanan harian', 'Peringatan saat stok menipis'].map((t) => <p key={t} className="flex items-center gap-[2cqw] text-[3.2cqw] text-slate-200"><Check className="w-[3.6cqw] h-[3.6cqw] text-emerald-400" />{t}</p>)}
       </div>
     </div></div>
   );

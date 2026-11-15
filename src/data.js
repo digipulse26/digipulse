@@ -153,7 +153,7 @@ export const pains = [
   { q: 'Website sudah ada, tetapi jarang ada yang menghubungi.', a: 'Pengunjung tertarik, lalu langsung menghubungi Anda.', to: 'website' },
   { q: 'Data tersebar di banyak spreadsheet.', a: 'Satu dashboard, laporan otomatis.', to: 'aplikasi' },
   { q: 'Gangguan perangkat terlambat diketahui.', a: 'Notifikasi langsung ke ponsel saat ada gangguan.', to: 'iot' },
-  { q: 'Tampilan promosi berubah-ubah, sulit dikenali.', a: 'Tampilan konsisten, usaha Anda mudah diingat.', to: 'kreatif' },
+  { q: 'Tampilan promosi berubah-ubah, sulit dikenali.', a: 'Tampilan konsisten, usaha Anda mudah dikenali.', to: 'kreatif' },
 ];
 
 export const faqs = [
